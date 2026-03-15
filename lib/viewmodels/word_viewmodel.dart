@@ -20,6 +20,49 @@ class WordViewModel extends ChangeNotifier {
 
   Future<void> _initTts() async {
     await _tts.setLanguage('en-US');
+
+    // Try to select a natural-sounding English voice on Android.
+    if (!kIsWeb) {
+      try {
+        final voices = await _tts.getVoices;
+        if (voices != null) {
+          final voiceList = List<Map<Object?, Object?>>.from(voices);
+
+          // Prefer en-US voices; filter by locale.
+          final enVoices = voiceList.where((v) {
+            final locale = (v['locale'] ?? '').toString().toLowerCase();
+            return locale.startsWith('en-us') || locale.startsWith('en_us');
+          }).toList();
+
+          // Among en-US voices, prefer high-quality / non-network voices
+          // that are typically installed by Google TTS.
+          Map<Object?, Object?>? bestVoice;
+          for (final v in enVoices) {
+            final name = (v['name'] ?? '').toString().toLowerCase();
+            // Google's high-quality voices contain these keywords.
+            if (name.contains('en-us-x-') ||
+                name.contains('en-us-language') ||
+                name.contains('english') ||
+                name.contains('google')) {
+              bestVoice = v;
+              break;
+            }
+          }
+          // Fall back to any en-US voice if no preferred one found.
+          bestVoice ??= enVoices.isNotEmpty ? enVoices.first : null;
+
+          if (bestVoice != null) {
+            await _tts.setVoice({
+              'name': bestVoice['name'].toString(),
+              'locale': bestVoice['locale'].toString(),
+            });
+          }
+        }
+      } catch (_) {
+        // Voice selection failed; fall back to default engine voice.
+      }
+    }
+
     // Web Speech API: 1.0 = normal speed. Native: 0.5 = normal.
     final rate = kIsWeb ? 0.9 : 0.5;
     await _tts.setSpeechRate(rate);
