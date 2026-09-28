@@ -4,13 +4,13 @@ import '../viewmodels/word_viewmodel.dart';
 import '../models/word_example.dart';
 import '../data/opic_phrases_data.dart';
 import '../services/examples_repository.dart';
-import '../viewmodels/quiz_controller.dart';
 import 'level_tab_bar.dart';
 import 'word_card_view.dart';
 import 'phrase_card_view.dart';
 import 'completion_view.dart';
-import 'quiz_view.dart';
-import 'quiz_result_view.dart';
+import 'quiz_screen.dart';
+import 'app_drawer.dart';
+import 'navigation_buttons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildScaffold(BuildContext context) {
     final quiz = _viewModel.quizController;
     if (_viewModel.showQuiz && quiz != null) {
-      return _buildQuizScaffold(context, quiz);
+      return QuizScreen(viewModel: _viewModel, quiz: quiz);
     }
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: colorScheme.surfaceContainerLowest,
-        drawer: _buildDrawer(context),
+        drawer: AppDrawer(viewModel: _viewModel),
         body: Column(
           children: [
             // ── 컬러 헤더: 앱바 + 레벨 탭 + 진행 정보 ──────────
@@ -194,8 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (!_viewModel.isFavoriteMode && !_isPhraseMode)
                       LevelTabBar(
                         selectedLevel: _viewModel.currentLevel,
-                        onSelectLevel: (level) =>
-                            _viewModel.selectLevel(level),
+                        onSelectLevel: (level) => _viewModel.selectLevel(level),
                         mode: _viewModel.mode,
                       ),
 
@@ -278,118 +277,119 @@ class _HomeScreenState extends State<HomeScreen> {
                       top: 0,
                       left: 0,
                       right: 0,
-                      child:
-                          Container(height: 20, color: colorScheme.primary),
+                      child: Container(height: 20, color: colorScheme.primary),
                     ),
                   Positioned.fill(
                     child: _isPhraseMode
-                  ? (_viewModel.showPhraseCompletion
-                      ? CompletionView(
-                          onReview: () => _viewModel.reviewCurrentTopic(),
-                          onNext: () => _viewModel.goToNextTopic(),
-                          isLastSet: _viewModel.currentTopicIndex >=
-                              _viewModel.totalTopics - 1,
-                        )
-                      : _viewModel.currentPhrase != null
-                          ? GestureDetector(
-                              onHorizontalDragEnd: (details) {
-                                final velocity =
-                                    details.primaryVelocity ?? 0;
-                                if (velocity < -300) {
-                                  _viewModel.nextPhrase();
-                                } else if (velocity > 300 &&
-                                    !_viewModel.isFirstPhrase) {
-                                  _viewModel.previousPhrase();
-                                }
-                              },
-                              child: PhraseCardView(
-                                phrase: _viewModel.currentPhrase!,
-                                phraseNumber:
-                                    _viewModel.currentPhraseNumber,
-                                totalPhrases:
-                                    _viewModel.totalPhrasesInTopic,
-                                onSpeak: () => _viewModel.speak(
-                                    _viewModel.currentPhrase!.english),
-                              ),
-                            )
-                          : const SizedBox.shrink())
-                  : _viewModel.isFavoriteMode &&
-                          _viewModel.currentLevelWords.isEmpty
-                      ? Center(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 32),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.star_border_rounded,
-                                  size: 64,
-                                  color: colorScheme.outline.withValues(alpha: 0.3),
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  '별표한 단어가 없습니다',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: colorScheme.onSurface
-                                        .withValues(alpha: 0.6),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  '단어 카드의 ☆를 눌러\n학습할 단어를 추가해보세요',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: colorScheme.outline,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      : _viewModel.showCompletion
-                          ? CompletionView(
-                              onReview: () => _viewModel.reviewCurrentSet(),
-                              onNext: () => _viewModel.goToNextSet(),
-                              isLastSet: _viewModel.currentSetIndex >=
-                                  _viewModel.totalSets - 1,
-                            )
-                          : _viewModel.currentWord != null
-                              ? GestureDetector(
-                                  onHorizontalDragEnd: (details) {
-                                    final velocity =
-                                        details.primaryVelocity ?? 0;
-                                    if (velocity < -300) {
-                                      _viewModel.nextWord();
-                                    } else if (velocity > 300 &&
-                                        !_viewModel.isFirstWord) {
-                                      _viewModel.previousWord();
-                                    }
-                                  },
-                                  child: WordCardView(
-                                    word: _viewModel.currentWord!,
-                                    wordNumberInSet:
-                                        _viewModel.currentWordNumberInSet,
-                                    totalInSet:
-                                        _viewModel.currentSet.length,
-                                    onSpeak: () => _viewModel.speak(
-                                      _viewModel.currentWord!.english,
-                                      phonetic:
-                                          _viewModel.currentWord!.phonetic,
+                        ? (_viewModel.showPhraseCompletion
+                            ? CompletionView(
+                                onReview: () => _viewModel.reviewCurrentTopic(),
+                                onNext: () => _viewModel.goToNextTopic(),
+                                isLastSet: _viewModel.currentTopicIndex >=
+                                    _viewModel.totalTopics - 1,
+                              )
+                            : _viewModel.currentPhrase != null
+                                ? GestureDetector(
+                                    onHorizontalDragEnd: (details) {
+                                      final velocity =
+                                          details.primaryVelocity ?? 0;
+                                      if (velocity < -300) {
+                                        _viewModel.nextPhrase();
+                                      } else if (velocity > 300 &&
+                                          !_viewModel.isFirstPhrase) {
+                                        _viewModel.previousPhrase();
+                                      }
+                                    },
+                                    child: PhraseCardView(
+                                      phrase: _viewModel.currentPhrase!,
+                                      phraseNumber:
+                                          _viewModel.currentPhraseNumber,
+                                      totalPhrases:
+                                          _viewModel.totalPhrasesInTopic,
+                                      onSpeak: () => _viewModel.speak(
+                                          _viewModel.currentPhrase!.english),
                                     ),
-                                    isFavorite: _viewModel.isFavorite(
-                                        _viewModel.currentWord!.english),
-                                    onToggleFavorite: () =>
-                                        _viewModel.toggleFavorite(
-                                            _viewModel.currentWord!.english),
-                                    examples: _getExamples(
-                                        _viewModel.currentWord!.english),
+                                  )
+                                : const SizedBox.shrink())
+                        : _viewModel.isFavoriteMode &&
+                                _viewModel.currentLevelWords.isEmpty
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 32),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.star_border_rounded,
+                                        size: 64,
+                                        color: colorScheme.outline
+                                            .withValues(alpha: 0.3),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        '별표한 단어가 없습니다',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: colorScheme.onSurface
+                                              .withValues(alpha: 0.6),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        '단어 카드의 ☆를 눌러\n학습할 단어를 추가해보세요',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: colorScheme.outline,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                )
-                              : const SizedBox.shrink(),
+                                ),
+                              )
+                            : _viewModel.showCompletion
+                                ? CompletionView(
+                                    onReview: () =>
+                                        _viewModel.reviewCurrentSet(),
+                                    onNext: () => _viewModel.goToNextSet(),
+                                    isLastSet: _viewModel.currentSetIndex >=
+                                        _viewModel.totalSets - 1,
+                                  )
+                                : _viewModel.currentWord != null
+                                    ? GestureDetector(
+                                        onHorizontalDragEnd: (details) {
+                                          final velocity =
+                                              details.primaryVelocity ?? 0;
+                                          if (velocity < -300) {
+                                            _viewModel.nextWord();
+                                          } else if (velocity > 300 &&
+                                              !_viewModel.isFirstWord) {
+                                            _viewModel.previousWord();
+                                          }
+                                        },
+                                        child: WordCardView(
+                                          word: _viewModel.currentWord!,
+                                          wordNumberInSet:
+                                              _viewModel.currentWordNumberInSet,
+                                          totalInSet:
+                                              _viewModel.currentSet.length,
+                                          onSpeak: () => _viewModel.speak(
+                                            _viewModel.currentWord!.english,
+                                            phonetic: _viewModel
+                                                .currentWord!.phonetic,
+                                          ),
+                                          isFavorite: _viewModel.isFavorite(
+                                              _viewModel.currentWord!.english),
+                                          onToggleFavorite: () => _viewModel
+                                              .toggleFavorite(_viewModel
+                                                  .currentWord!.english),
+                                          examples: _getExamples(
+                                              _viewModel.currentWord!.english),
+                                        ),
+                                      )
+                                    : const SizedBox.shrink(),
                   ),
                 ],
               ),
@@ -404,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 top: false,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 32, top: 16),
-                  child: _NavigationButtons(
+                  child: NavigationButtons(
                     isFirstWord: _isPhraseMode
                         ? _viewModel.isFirstPhrase
                         : _viewModel.isFirstWord,
@@ -417,127 +417,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ── 퀴즈 화면 (세트 완료 직후) ─────────────────────────────
-  Widget _buildQuizScaffold(BuildContext context, QuizController quiz) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final onHeader = colorScheme.onPrimary;
-    final finished = quiz.isFinished;
-
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        backgroundColor: colorScheme.surfaceContainerLowest,
-        body: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              color: colorScheme.primary,
-              child: SafeArea(
-                bottom: false,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 4),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.close_rounded, size: 26),
-                            color: onHeader,
-                            onPressed: () => _viewModel.exitQuiz(),
-                            tooltip: '퀴즈 종료',
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            finished
-                                ? '퀴즈 결과'
-                                : '세트 ${_viewModel.currentSetNumber} 복습 퀴즈',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: onHeader,
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            finished ? 'OPIc 중급' : '뜻 고르기',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: onHeader.withValues(alpha: 0.75),
-                            ),
-                          ),
-                          Text(
-                            finished
-                                ? '${quiz.score} / ${quiz.total}'
-                                : '${quiz.currentNumber} / ${quiz.total}',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: onHeader,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 6, 24, 22),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(3),
-                        child: LinearProgressIndicator(
-                          value: finished
-                              ? 1.0
-                              : (quiz.total > 0
-                                  ? quiz.currentNumber / quiz.total
-                                  : 0.0),
-                          backgroundColor: onHeader.withValues(alpha: 0.25),
-                          color: onHeader,
-                          minHeight: 5,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(height: 20, color: colorScheme.primary),
-                  ),
-                  Positioned.fill(
-                    child: finished
-                        ? QuizResultView(
-                            score: quiz.score,
-                            total: quiz.total,
-                            wrongWords: quiz.wrongWords,
-                            onRetryWrong: quiz.wrongWords.isEmpty
-                                ? null
-                                : () => quiz.retryWrongOnly(),
-                            onNextSet: () => _viewModel.finishQuizAndGoNext(),
-                          )
-                        : QuizView(controller: quiz),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
@@ -579,8 +458,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   OPIcPhrasesData.topics[i],
                   style: TextStyle(
                     fontSize: 13,
-                    fontWeight:
-                        selected ? FontWeight.w700 : FontWeight.w500,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                     color: selected
                         ? colorScheme.primary
                         : onHeader.withValues(alpha: 0.85),
@@ -591,304 +469,6 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-    );
-  }
-
-  Widget _buildDrawer(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Drawer(
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Drawer header
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-              decoration: BoxDecoration(
-                color: colorScheme.primaryContainer,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.school_rounded,
-                    size: 40,
-                    color: colorScheme.onPrimaryContainer,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    '영어 단어장',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onPrimaryContainer,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '학습 모드를 선택하세요',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color:
-                          colorScheme.onPrimaryContainer.withValues(alpha: 0.7),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 8),
-
-            // TOEIC menu item
-            _DrawerMenuItem(
-              icon: Icons.business_center_rounded,
-              title: 'TOEIC 단어',
-              subtitle: '토익 필수 어휘',
-              isSelected: _viewModel.mode == VocabMode.toeic &&
-                  !_viewModel.isFavoriteMode,
-              onTap: () {
-                _viewModel.setMode(VocabMode.toeic);
-                Navigator.pop(context);
-              },
-            ),
-
-            // OPIc menu item
-            _DrawerMenuItem(
-              icon: Icons.record_voice_over_rounded,
-              title: 'OPIc 단어',
-              subtitle: 'OPIc 필수 어휘',
-              isSelected: _viewModel.mode == VocabMode.opic &&
-                  !_viewModel.isFavoriteMode,
-              onTap: () {
-                _viewModel.setMode(VocabMode.opic);
-                Navigator.pop(context);
-              },
-            ),
-
-            // OPIc 실전 문장 menu item
-            _DrawerMenuItem(
-              icon: Icons.chat_bubble_outline_rounded,
-              title: 'OPIc 실전 문장',
-              subtitle: '주제별 핵심 표현 150',
-              isSelected: _viewModel.mode == VocabMode.opicPhrase &&
-                  !_viewModel.isFavoriteMode,
-              onTap: () {
-                _viewModel.setMode(VocabMode.opicPhrase);
-                Navigator.pop(context);
-              },
-            ),
-
-            const Divider(indent: 16, endIndent: 16),
-
-            // 별표 다시보기
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.star_rounded,
-                  color: Color(0xFFFFD700),
-                ),
-                title: const Text('별표 다시보기'),
-                subtitle: Text(
-                  '즐겨찾기한 단어 학습',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  _viewModel.enterFavoriteMode();
-                },
-              ),
-            ),
-
-            const Divider(indent: 16, endIndent: 16),
-
-            // Auto-speak toggle
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: ListTile(
-                leading: Icon(
-                  Icons.volume_up_rounded,
-                  color: colorScheme.onSurfaceVariant,
-                ),
-                title: const Text('자동 발음'),
-                subtitle: Text(
-                  _viewModel.autoSpeak ? '켜짐' : '꺼짐',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                trailing: Switch(
-                  value: _viewModel.autoSpeak,
-                  onChanged: (_) {
-                    _viewModel.toggleAutoSpeak();
-                    setState(() {});
-                  },
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-
-            // 퀴즈 모드 toggle
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: ListTile(
-                leading: Icon(
-                  Icons.quiz_rounded,
-                  color: colorScheme.onSurfaceVariant,
-                ),
-                title: const Text('퀴즈 모드'),
-                subtitle: Text(
-                  _viewModel.quizModeEnabled
-                      ? '세트 완료 후 4지선다 퀴즈'
-                      : '꺼짐',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                trailing: Switch(
-                  value: _viewModel.quizModeEnabled,
-                  onChanged: (_) => _viewModel.toggleQuizMode(),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DrawerMenuItem extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _DrawerMenuItem({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-      child: ListTile(
-        leading: Icon(
-          icon,
-          color: isSelected
-              ? colorScheme.primary
-              : colorScheme.onSurfaceVariant,
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-            color: isSelected ? colorScheme.primary : colorScheme.onSurface,
-          ),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: TextStyle(
-            fontSize: 12,
-            color: colorScheme.onSurfaceVariant,
-          ),
-        ),
-        selected: isSelected,
-        selectedTileColor: colorScheme.primaryContainer.withValues(alpha: 0.3),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        onTap: onTap,
-      ),
-    );
-  }
-}
-
-class _NavigationButtons extends StatelessWidget {
-  final bool isFirstWord;
-  final VoidCallback onPrevious;
-  final VoidCallback onNext;
-
-  const _NavigationButtons({
-    required this.isFirstWord,
-    required this.onPrevious,
-    required this.onNext,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // Previous Button
-        SizedBox(
-          width: 140,
-          height: 52,
-          child: OutlinedButton.icon(
-            onPressed: isFirstWord ? null : onPrevious,
-            icon: const Icon(Icons.chevron_left, size: 24),
-            label: const Text('이전', style: TextStyle(fontSize: 17)),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: isFirstWord
-                  ? colorScheme.outline.withValues(alpha: 0.4)
-                  : colorScheme.primary,
-              side: BorderSide(
-                color: isFirstWord
-                    ? colorScheme.outline.withValues(alpha: 0.2)
-                    : colorScheme.primary,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(26),
-              ),
-            ),
-          ),
-        ),
-
-        const SizedBox(width: 24),
-
-        // Next Button
-        SizedBox(
-          width: 140,
-          height: 52,
-          child: FilledButton.icon(
-            onPressed: onNext,
-            icon: const Text('다음', style: TextStyle(fontSize: 17)),
-            label: const Icon(Icons.chevron_right, size: 24),
-            style: FilledButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(26),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

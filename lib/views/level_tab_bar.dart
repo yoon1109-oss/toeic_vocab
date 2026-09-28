@@ -15,11 +15,14 @@ class LevelTabBar extends StatelessWidget {
     this.mode = VocabMode.toeic,
   });
 
-  List<String> get _labels {
+  /// 모드별 레벨 이름. 퀴즈 화면 등 다른 곳에서도 같은 이름을 쓴다.
+  static List<String> labelsFor(VocabMode mode) {
     if (mode == VocabMode.toeic) return ['Lv.1', 'Lv.2', 'Lv.3'];
     if (mode == VocabMode.opicPhrase) return ['1단계', '2단계', '3단계'];
     return ['초급', '중급', '고급'];
   }
+
+  List<String> get _labels => labelsFor(mode);
 
   @override
   Widget build(BuildContext context) {
