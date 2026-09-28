@@ -608,5 +608,709 @@ class ToeicExamplesLevel2B {
     'subsidize': [
       WordExample(english: 'The government agreed to subsidize the cost of public transportation in rural areas.', korean: '정부는 농촌 지역의 대중교통 비용을 보조하기로 합의했습니다.'),
     ],
+
+    // ── 추가 단어 (Additional Words) ─────────────────────────────
+    'negotiation': [
+      WordExample(
+        english: 'After two weeks of negotiation, the two firms reached an agreement.',
+        korean: '2주간의 협상 끝에 두 회사는 합의에 도달했습니다.',
+      ),
+    ],
+    'competitive': [
+      WordExample(
+        english: 'We offer a competitive salary and generous benefits.',
+        korean: '저희는 경쟁력 있는 급여와 넉넉한 복리후생을 제공합니다.',
+      ),
+    ],
+    'competition': [
+      WordExample(
+        english: 'Competition in the smartphone market has become very intense.',
+        korean: '스마트폰 시장의 경쟁이 매우 치열해졌습니다.',
+      ),
+    ],
+    'expand': [
+      WordExample(
+        english: 'The restaurant chain plans to expand into three new cities next year.',
+        korean: '그 식당 체인은 내년에 새로운 세 도시로 확장할 계획입니다.',
+      ),
+    ],
+    'expansion': [
+      WordExample(
+        english: 'The expansion of the factory will create 200 new jobs.',
+        korean: '공장 확장으로 200개의 새 일자리가 생길 것입니다.',
+      ),
+    ],
+    'acquire': [
+      WordExample(
+        english: 'The firm hopes to acquire a smaller competitor by the end of the year.',
+        korean: '그 회사는 연말까지 소규모 경쟁사를 인수하기를 희망합니다.',
+      ),
+    ],
+    'merge': [
+      WordExample(
+        english: 'The two banks agreed to merge in order to reduce costs.',
+        korean: '두 은행은 비용 절감을 위해 합병하기로 합의했습니다.',
+      ),
+    ],
+    'quotation': [
+      WordExample(
+        english: 'Please send us a quotation for 500 office chairs.',
+        korean: '사무용 의자 500개에 대한 견적서를 보내 주세요.',
+      ),
+    ],
+    'expense report': [
+      WordExample(
+        english: 'Submit your expense report along with all receipts within a week.',
+        korean: '일주일 이내에 모든 영수증과 함께 경비 보고서를 제출하세요.',
+      ),
+    ],
+    'reimbursable': [
+      WordExample(
+        english: 'Taxi fares for business trips are fully reimbursable.',
+        korean: '출장 중 택시 요금은 전액 환급됩니다.',
+      ),
+    ],
+    'revenue stream': [
+      WordExample(
+        english: 'Online subscriptions have become our largest revenue stream.',
+        korean: '온라인 구독이 저희의 가장 큰 수익원이 되었습니다.',
+      ),
+    ],
+    'forecast': [
+      WordExample(
+        english: 'Analysts forecast a steady rise in demand next quarter.',
+        korean: '분석가들은 다음 분기에 수요가 꾸준히 증가할 것으로 예측합니다.',
+      ),
+    ],
+    'analyze': [
+      WordExample(
+        english: 'The research team will analyze the survey results this week.',
+        korean: '연구팀이 이번 주에 설문 결과를 분석할 것입니다.',
+      ),
+    ],
+    'analysis': [
+      WordExample(
+        english: 'According to our analysis, customers prefer shorter delivery times.',
+        korean: '저희 분석에 따르면 고객들은 더 짧은 배송 시간을 선호합니다.',
+      ),
+    ],
+    'evaluate': [
+      WordExample(
+        english: 'Managers evaluate each employee\'s performance twice a year.',
+        korean: '관리자는 1년에 두 번 각 직원의 성과를 평가합니다.',
+      ),
+    ],
+    'evaluation': [
+      WordExample(
+        english: 'The final evaluation of the proposal will be completed on Friday.',
+        korean: '제안서에 대한 최종 평가는 금요일에 완료됩니다.',
+      ),
+    ],
+    'objective': [
+      WordExample(
+        english: 'Our main objective this year is to improve customer satisfaction.',
+        korean: '올해 저희의 주요 목표는 고객 만족도를 높이는 것입니다.',
+      ),
+    ],
+    'strategy': [
+      WordExample(
+        english: 'The new marketing strategy targets younger consumers.',
+        korean: '새로운 마케팅 전략은 젊은 소비자를 겨냥합니다.',
+      ),
+    ],
+    'initiative': [
+      WordExample(
+        english: 'The recycling initiative has reduced office waste by 30 percent.',
+        korean: '재활용 계획으로 사무실 쓰레기가 30퍼센트 줄었습니다.',
+      ),
+    ],
+    'proceed': [
+      WordExample(
+        english: 'Passengers for Flight 205 should proceed to Gate 12.',
+        korean: '205편 승객은 12번 게이트로 가 주시기 바랍니다.',
+      ),
+    ],
+    'postponement': [
+      WordExample(
+        english: 'The postponement of the conference was due to bad weather.',
+        korean: '학회 연기는 악천후 때문이었습니다.',
+      ),
+    ],
+    'extend': [
+      WordExample(
+        english: 'The library has extended its opening hours during exam week.',
+        korean: '도서관은 시험 기간 동안 운영 시간을 연장했습니다.',
+      ),
+    ],
+    'reminder': [
+      WordExample(
+        english: 'This is a reminder that your subscription expires next week.',
+        korean: '구독이 다음 주에 만료된다는 알림입니다.',
+      ),
+    ],
+    'remind': [
+      WordExample(
+        english: 'Please remind everyone to bring their ID badges tomorrow.',
+        korean: '내일 모두 사원증을 가져오도록 상기시켜 주세요.',
+      ),
+    ],
+    'notification': [
+      WordExample(
+        english: 'You will receive a notification when your order has shipped.',
+        korean: '주문하신 상품이 발송되면 알림을 받게 됩니다.',
+      ),
+    ],
+    'enclose': [
+      WordExample(
+        english: 'Please enclose a copy of your receipt with the return form.',
+        korean: '반품 신청서에 영수증 사본을 동봉해 주세요.',
+      ),
+    ],
+    'enclosed': [
+      WordExample(
+        english: 'The enclosed brochure describes our full range of services.',
+        korean: '동봉된 안내책자에 저희 서비스 전체가 설명되어 있습니다.',
+      ),
+    ],
+    'correspond': [
+      WordExample(
+        english: 'The figures in the report do not correspond with our records.',
+        korean: '보고서의 수치가 저희 기록과 일치하지 않습니다.',
+      ),
+    ],
+    'respondent': [
+      WordExample(
+        english: 'More than half of the respondents said they shop online weekly.',
+        korean: '응답자의 절반 이상이 매주 온라인 쇼핑을 한다고 답했습니다.',
+      ),
+    ],
+    'questionnaire': [
+      WordExample(
+        english: 'Please fill out the questionnaire before leaving the seminar.',
+        korean: '세미나를 떠나기 전에 설문지를 작성해 주세요.',
+      ),
+    ],
+    'satisfaction': [
+      WordExample(
+        english: 'Customer satisfaction has improved since we extended our service hours.',
+        korean: '서비스 시간을 연장한 이후로 고객 만족도가 향상되었습니다.',
+      ),
+    ],
+    'satisfy': [
+      WordExample(
+        english: 'The new design failed to satisfy the client\'s expectations.',
+        korean: '새 디자인은 고객의 기대를 충족시키지 못했습니다.',
+      ),
+    ],
+    'reliable': [
+      WordExample(
+        english: 'We need a reliable supplier who can deliver on time.',
+        korean: '제때 납품할 수 있는 믿을 만한 공급업체가 필요합니다.',
+      ),
+    ],
+    'reliability': [
+      WordExample(
+        english: 'The reliability of our products is our top priority.',
+        korean: '제품의 신뢰성이 저희의 최우선 과제입니다.',
+      ),
+    ],
+    'efficiency': [
+      WordExample(
+        english: 'The new software has greatly improved the efficiency of our team.',
+        korean: '새 소프트웨어가 저희 팀의 효율을 크게 높였습니다.',
+      ),
+    ],
+    'effective': [
+      WordExample(
+        english: 'The new policy will become effective on the first of next month.',
+        korean: '새 정책은 다음 달 1일부터 시행됩니다.',
+      ),
+    ],
+    'effectively': [
+      WordExample(
+        english: 'The manager handled the customer complaint quickly and effectively.',
+        korean: '관리자는 고객 불만을 신속하고 효과적으로 처리했습니다.',
+      ),
+    ],
+    'productive': [
+      WordExample(
+        english: 'Short breaks can help employees stay productive throughout the day.',
+        korean: '짧은 휴식은 직원들이 하루 종일 생산성을 유지하는 데 도움이 됩니다.',
+      ),
+    ],
+    'outcome': [
+      WordExample(
+        english: 'We are still waiting for the outcome of the negotiations.',
+        korean: '저희는 아직 협상 결과를 기다리고 있습니다.',
+      ),
+    ],
+    'result in': [
+      WordExample(
+        english: 'The system error resulted in a two-hour delay.',
+        korean: '시스템 오류로 두 시간이 지연되었습니다.',
+      ),
+    ],
+    'attribute': [
+      WordExample(
+        english: 'The manager attributed the rise in sales to the new advertising campaign.',
+        korean: '관리자는 매출 증가를 새 광고 캠페인 덕분으로 돌렸습니다.',
+      ),
+    ],
+    'contribute': [
+      WordExample(
+        english: 'Every team member contributed to the success of the project.',
+        korean: '모든 팀원이 프로젝트의 성공에 기여했습니다.',
+      ),
+    ],
+    'contribution': [
+      WordExample(
+        english: 'We thank Mr. Park for his many contributions to the company.',
+        korean: '회사에 많은 기여를 해 주신 박 씨께 감사드립니다.',
+      ),
+    ],
+    'donation': [
+      WordExample(
+        english: 'All donations will be used to support local schools.',
+        korean: '모든 기부금은 지역 학교를 지원하는 데 쓰일 것입니다.',
+      ),
+    ],
+    'volunteer': [
+      WordExample(
+        english: 'We are looking for volunteers to help at the charity event.',
+        korean: '자선 행사를 도와줄 자원봉사자를 찾고 있습니다.',
+      ),
+    ],
+    'nominate': [
+      WordExample(
+        english: 'Employees may nominate a colleague for the monthly service award.',
+        korean: '직원들은 월간 서비스상 후보로 동료를 추천할 수 있습니다.',
+      ),
+    ],
+    'nomination': [
+      WordExample(
+        english: 'Nominations for the award must be submitted by March 1.',
+        korean: '수상 후보 추천은 3월 1일까지 제출해야 합니다.',
+      ),
+    ],
+    'award': [
+      WordExample(
+        english: 'Ms. Kim received an award for her outstanding sales performance.',
+        korean: '김 씨는 뛰어난 판매 실적으로 상을 받았습니다.',
+      ),
+    ],
+    'recognition': [
+      WordExample(
+        english: 'The team received recognition for completing the project early.',
+        korean: '그 팀은 프로젝트를 일찍 완료해 표창을 받았습니다.',
+      ),
+    ],
+    'retirement': [
+      WordExample(
+        english: 'A party will be held to celebrate Mr. Choi\'s retirement.',
+        korean: '최 씨의 은퇴를 축하하는 파티가 열립니다.',
+      ),
+    ],
+    'resignation': [
+      WordExample(
+        english: 'The director announced her resignation at yesterday\'s meeting.',
+        korean: '이사는 어제 회의에서 사임을 발표했습니다.',
+      ),
+    ],
+    'transferable': [
+      WordExample(
+        english: 'Tickets are not transferable and must be used by the original buyer.',
+        korean: '티켓은 양도할 수 없으며 원래 구매자가 사용해야 합니다.',
+      ),
+    ],
+    'personnel': [
+      WordExample(
+        english: 'All personnel must wear protective gear in the factory.',
+        korean: '모든 직원은 공장 안에서 보호 장비를 착용해야 합니다.',
+      ),
+    ],
+    'workforce': [
+      WordExample(
+        english: 'The company plans to reduce its workforce by 10 percent.',
+        korean: '회사는 인력을 10퍼센트 줄일 계획입니다.',
+      ),
+    ],
+    'recruitment': [
+      WordExample(
+        english: 'The recruitment of new engineers will begin in April.',
+        korean: '신입 엔지니어 채용은 4월에 시작됩니다.',
+      ),
+    ],
+    'orientation': [
+      WordExample(
+        english: 'New employees will attend a two-day orientation next week.',
+        korean: '신입 사원은 다음 주에 이틀간의 오리엔테이션에 참석합니다.',
+      ),
+    ],
+    'mentor': [
+      WordExample(
+        english: 'Each intern will be paired with a mentor from the department.',
+        korean: '각 인턴은 부서의 멘토와 짝을 이루게 됩니다.',
+      ),
+    ],
+    'aptitude': [
+      WordExample(
+        english: 'Applicants must pass an aptitude test before the interview.',
+        korean: '지원자는 면접 전에 적성 검사를 통과해야 합니다.',
+      ),
+    ],
+    'competent': [
+      WordExample(
+        english: 'We are looking for a competent accountant with five years of experience.',
+        korean: '5년 경력의 유능한 회계사를 찾고 있습니다.',
+      ),
+    ],
+    'dedicated': [
+      WordExample(
+        english: 'Our dedicated support team is available 24 hours a day.',
+        korean: '저희 전담 지원팀은 24시간 이용 가능합니다.',
+      ),
+    ],
+    'diligent': [
+      WordExample(
+        english: 'She is a diligent worker who always meets her deadlines.',
+        korean: '그녀는 항상 마감을 지키는 성실한 직원입니다.',
+      ),
+    ],
+    'punctual': [
+      WordExample(
+        english: 'Please be punctual, as the tour bus will leave at 8 a.m. sharp.',
+        korean: '관광버스가 오전 8시 정각에 출발하니 시간을 지켜 주세요.',
+      ),
+    ],
+    'flexible': [
+      WordExample(
+        english: 'The company offers flexible working hours to all staff.',
+        korean: '회사는 전 직원에게 유연 근무 시간을 제공합니다.',
+      ),
+    ],
+    'flexibility': [
+      WordExample(
+        english: 'This position requires flexibility and strong communication skills.',
+        korean: '이 직책은 유연성과 뛰어난 의사소통 능력을 요구합니다.',
+      ),
+    ],
+    'accessible': [
+      WordExample(
+        english: 'The new building is fully accessible to wheelchair users.',
+        korean: '새 건물은 휠체어 사용자가 완전히 이용할 수 있습니다.',
+      ),
+    ],
+    'accessibility': [
+      WordExample(
+        english: 'We are improving the accessibility of our website for all users.',
+        korean: '모든 사용자를 위해 웹사이트 접근성을 개선하고 있습니다.',
+      ),
+    ],
+    'convenience': [
+      WordExample(
+        english: 'For your convenience, parking is available behind the hotel.',
+        korean: '편의를 위해 호텔 뒤편에 주차장이 마련되어 있습니다.',
+      ),
+    ],
+    'inconvenient': [
+      WordExample(
+        english: 'We are sorry if the schedule change is inconvenient for you.',
+        korean: '일정 변경으로 불편을 드렸다면 죄송합니다.',
+      ),
+    ],
+    'occupancy': [
+      WordExample(
+        english: 'Hotel occupancy rates are highest during the summer season.',
+        korean: '호텔 객실 점유율은 여름철에 가장 높습니다.',
+      ),
+    ],
+    'vacant': [
+      WordExample(
+        english: 'There are two vacant offices on the third floor.',
+        korean: '3층에 빈 사무실이 두 개 있습니다.',
+      ),
+    ],
+    'capacity': [
+      WordExample(
+        english: 'The conference hall has a seating capacity of 500 people.',
+        korean: '회의장은 500명을 수용할 수 있습니다.',
+      ),
+    ],
+    'registration': [
+      WordExample(
+        english: 'Online registration for the workshop closes on Friday.',
+        korean: '워크숍 온라인 등록은 금요일에 마감됩니다.',
+      ),
+    ],
+    'register': [
+      WordExample(
+        english: 'Please register at the front desk when you arrive.',
+        korean: '도착하시면 안내 데스크에서 등록해 주세요.',
+      ),
+    ],
+    'admission': [
+      WordExample(
+        english: 'Admission to the museum is free on the first Sunday of each month.',
+        korean: '매월 첫째 일요일에는 박물관 입장이 무료입니다.',
+      ),
+    ],
+    'exhibition': [
+      WordExample(
+        english: 'The art exhibition will run until the end of October.',
+        korean: '미술 전시회는 10월 말까지 열립니다.',
+      ),
+    ],
+    'trade show': [
+      WordExample(
+        english: 'We will display our newest products at the international trade show.',
+        korean: '국제 무역 박람회에서 신제품을 전시할 예정입니다.',
+      ),
+    ],
+    'booth': [
+      WordExample(
+        english: 'Please visit our booth near the main entrance of the exhibition hall.',
+        korean: '전시장 정문 근처에 있는 저희 부스를 방문해 주세요.',
+      ),
+    ],
+    'catalog': [
+      WordExample(
+        english: 'Our new spring catalog is now available online.',
+        korean: '새 봄 카탈로그를 이제 온라인에서 보실 수 있습니다.',
+      ),
+    ],
+    'inventory control': [
+      WordExample(
+        english: 'Better inventory control has helped us reduce storage costs.',
+        korean: '재고 관리 개선으로 보관 비용을 줄일 수 있었습니다.',
+      ),
+    ],
+    'stock up': [
+      WordExample(
+        english: 'Many stores stock up on heaters before winter begins.',
+        korean: '많은 매장이 겨울이 시작되기 전에 난방기를 비축합니다.',
+      ),
+    ],
+    'out of stock': [
+      WordExample(
+        english: 'The item you ordered is currently out of stock.',
+        korean: '주문하신 상품은 현재 품절입니다.',
+      ),
+    ],
+    'backorder': [
+      WordExample(
+        english: 'Your order is on backorder and will ship in two weeks.',
+        korean: '주문하신 상품은 이월 주문 상태이며 2주 후에 발송됩니다.',
+      ),
+    ],
+    'fulfill': [
+      WordExample(
+        english: 'We fulfill most online orders within two business days.',
+        korean: '대부분의 온라인 주문은 영업일 기준 이틀 안에 처리됩니다.',
+      ),
+    ],
+    'tracking number': [
+      WordExample(
+        english: 'You can check the status of your package with the tracking number.',
+        korean: '운송장 번호로 소포 배송 상태를 확인할 수 있습니다.',
+      ),
+    ],
+    'expedited shipping': [
+      WordExample(
+        english: 'Expedited shipping is available for an additional fee.',
+        korean: '추가 요금을 내면 빠른 배송을 이용할 수 있습니다.',
+      ),
+    ],
+    'packaging': [
+      WordExample(
+        english: 'The new packaging is made entirely from recycled materials.',
+        korean: '새 포장재는 모두 재활용 소재로 만들어졌습니다.',
+      ),
+    ],
+    'exchange rate': [
+      WordExample(
+        english: 'The exchange rate has changed significantly this month.',
+        korean: '이번 달 환율이 크게 변했습니다.',
+      ),
+    ],
+    'installment': [
+      WordExample(
+        english: 'You can pay for the laptop in six monthly installments.',
+        korean: '노트북 대금을 6개월 할부로 결제할 수 있습니다.',
+      ),
+    ],
+    'overdue': [
+      WordExample(
+        english: 'Your payment is two weeks overdue, so please pay as soon as possible.',
+        korean: '결제가 2주 연체되었으니 가능한 한 빨리 납부해 주세요.',
+      ),
+    ],
+    'outstanding balance': [
+      WordExample(
+        english: 'Please pay the outstanding balance by the end of the month.',
+        korean: '미결제 잔액을 이달 말까지 납부해 주세요.',
+      ),
+    ],
+    'statement of account': [
+      WordExample(
+        english: 'A monthly statement of account will be mailed to your address.',
+        korean: '월별 계좌 거래 내역서가 주소지로 우송됩니다.',
+      ),
+    ],
+    'transaction fee': [
+      WordExample(
+        english: 'There is no transaction fee for transfers between our branches.',
+        korean: '저희 지점 간 이체에는 거래 수수료가 없습니다.',
+      ),
+    ],
+    'withdrawal limit': [
+      WordExample(
+        english: 'The daily withdrawal limit for this card is 1,000 dollars.',
+        korean: '이 카드의 1일 인출 한도는 1,000달러입니다.',
+      ),
+    ],
+    'savings account': [
+      WordExample(
+        english: 'Opening a savings account takes only ten minutes.',
+        korean: '저축 예금 계좌 개설은 10분밖에 걸리지 않습니다.',
+      ),
+    ],
+    'checking account': [
+      WordExample(
+        english: 'Your salary will be deposited directly into your checking account.',
+        korean: '급여는 당좌 예금 계좌로 바로 입금됩니다.',
+      ),
+    ],
+    'accountant': [
+      WordExample(
+        english: 'Our accountant will review the tax documents next week.',
+        korean: '저희 회계사가 다음 주에 세금 서류를 검토할 것입니다.',
+      ),
+    ],
+    'accounting': [
+      WordExample(
+        english: 'She has worked in the accounting department for ten years.',
+        korean: '그녀는 10년 동안 회계 부서에서 일해 왔습니다.',
+      ),
+    ],
+    'auditor': [
+      WordExample(
+        english: 'An external auditor will examine the company\'s financial records.',
+        korean: '외부 감사관이 회사의 재무 기록을 검토할 것입니다.',
+      ),
+    ],
+    'tax return': [
+      WordExample(
+        english: 'The deadline for filing your tax return is May 31.',
+        korean: '세금 신고 마감일은 5월 31일입니다.',
+      ),
+    ],
+    'deduction': [
+      WordExample(
+        english: 'Charitable donations may qualify for a tax deduction.',
+        korean: '자선 기부금은 세금 공제 대상이 될 수 있습니다.',
+      ),
+    ],
+    'profitable': [
+      WordExample(
+        english: 'The new product line has proven to be highly profitable.',
+        korean: '새 제품군은 매우 수익성이 높은 것으로 입증되었습니다.',
+      ),
+    ],
+    'profitability': [
+      WordExample(
+        english: 'Cutting costs is essential to improving profitability.',
+        korean: '수익성 개선을 위해서는 비용 절감이 필수적입니다.',
+      ),
+    ],
+    'investor': [
+      WordExample(
+        english: 'The startup attracted several major investors last year.',
+        korean: '그 스타트업은 작년에 여러 주요 투자자를 유치했습니다.',
+      ),
+    ],
+    'stock market': [
+      WordExample(
+        english: 'The stock market rose sharply after the announcement.',
+        korean: '발표 이후 주식 시장이 급등했습니다.',
+      ),
+    ],
+    'share price': [
+      WordExample(
+        english: 'The company\'s share price fell by 5 percent yesterday.',
+        korean: '그 회사의 주가는 어제 5퍼센트 하락했습니다.',
+      ),
+    ],
+    'decline': [
+      WordExample(
+        english: 'Sales declined slightly in the second quarter.',
+        korean: '2분기 매출이 약간 감소했습니다.',
+      ),
+    ],
+    'increase': [
+      WordExample(
+        english: 'The company plans to increase production by 20 percent.',
+        korean: '회사는 생산량을 20퍼센트 늘릴 계획입니다.',
+      ),
+    ],
+    'decrease': [
+      WordExample(
+        english: 'The number of complaints decreased after the new policy was introduced.',
+        korean: '새 정책 도입 후 불만 건수가 줄었습니다.',
+      ),
+    ],
+    'steadily': [
+      WordExample(
+        english: 'Online sales have grown steadily over the past five years.',
+        korean: '지난 5년간 온라인 매출이 꾸준히 증가했습니다.',
+      ),
+    ],
+    'sharply': [
+      WordExample(
+        english: 'Fuel prices rose sharply last month.',
+        korean: '지난달 연료 가격이 급격히 올랐습니다.',
+      ),
+    ],
+    'slightly': [
+      WordExample(
+        english: 'The meeting will start slightly later than planned.',
+        korean: '회의는 예정보다 약간 늦게 시작됩니다.',
+      ),
+    ],
+    'dramatically': [
+      WordExample(
+        english: 'The number of visitors increased dramatically after the renovation.',
+        korean: '보수 공사 후 방문객 수가 극적으로 증가했습니다.',
+      ),
+    ],
+    'approximate': [
+      WordExample(
+        english: 'The approximate cost of the project is 50,000 dollars.',
+        korean: '프로젝트의 대략적인 비용은 5만 달러입니다.',
+      ),
+    ],
+    'estimated': [
+      WordExample(
+        english: 'The estimated delivery date is next Tuesday.',
+        korean: '예상 배송일은 다음 주 화요일입니다.',
+      ),
+    ],
+    'boarding pass': [
+      WordExample(
+        english: 'Please show your boarding pass and passport at the gate.',
+        korean: '게이트에서 탑승권과 여권을 보여 주세요.',
+      ),
+    ],
+    'carry-on': [
+      WordExample(
+        english: 'Each passenger is allowed one carry-on bag.',
+        korean: '승객 한 명당 기내 휴대 가방 하나가 허용됩니다.',
+      ),
+    ],
+    'connecting flight': [
+      WordExample(
+        english: 'I missed my connecting flight because of the delay.',
+        korean: '지연 때문에 연결 항공편을 놓쳤습니다.',
+      ),
+    ],
   };
 }

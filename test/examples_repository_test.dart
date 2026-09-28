@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:toeic_vocab/data/word_data.dart';
 import 'package:toeic_vocab/services/examples_repository.dart';
 import 'package:toeic_vocab/viewmodels/word_viewmodel.dart';
 import 'package:toeic_vocab/data/toeic_examples_level1_a.dart';
@@ -43,5 +44,18 @@ void main() {
     final result = repo.examplesFor(
         mode: VocabMode.opicPhrase, level: 1, english: 'anything');
     expect(result, isEmpty);
+  });
+
+  test('모든 TOEIC 단어에 해당 레벨 예문이 있다', () {
+    for (final level in [1, 2, 3]) {
+      final missing = WordData.words[level]!
+          .where((w) => repo
+              .examplesFor(
+                  mode: VocabMode.toeic, level: level, english: w.english)
+              .isEmpty)
+          .map((w) => w.english)
+          .toList();
+      expect(missing, isEmpty, reason: 'level $level');
+    }
   });
 }

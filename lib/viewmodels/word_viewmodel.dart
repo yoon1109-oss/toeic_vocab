@@ -24,13 +24,10 @@ class WordViewModel extends ChangeNotifier {
   List<Word> _shuffledWords = [];
 
   final FlutterTts _tts = FlutterTts();
+  late final Future<void> _ttsReady;
   final FavoriteService _favoriteService = FavoriteService();
   final QuizGenerator _quizGenerator = const QuizGenerator();
   static const int wordsPerSet = 10;
-
-  // 퀴즈: 현재는 OPIc 중급(레벨 2)에만 적용한다.
-  static const VocabMode quizMode = VocabMode.opic;
-  static const int quizLevel = 2;
 
   bool _quizModeEnabled = true;
   bool _showQuiz = false;
@@ -64,8 +61,15 @@ class WordViewModel extends ChangeNotifier {
   static const String _kPhraseLevel = 'phrase_level';
   static const String _kQuizMode = 'quiz_mode_enabled';
 
+  // 레벨별 진도 키: 레벨을 바꿨다 돌아와도 보던 위치에서 이어서 학습한다.
+  static String _levelKey(VocabMode mode, int level, String field) =>
+      'prog_${mode.name}_${level}_$field';
+  static String _lastLevelKey(VocabMode mode) => 'prog_${mode.name}_last_level';
+
+  SharedPreferences? _prefs;
+
   WordViewModel() {
-    _initTts();
+    _ttsReady = _initTts();
     _shuffleLevel();
     _initFavorites();
     _loadProgress();
@@ -73,22 +77,55 @@ class WordViewModel extends ChangeNotifier {
 
   Future<void> _saveProgress() async {
     if (_isFavoriteMode) return;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_kMode, _mode.name);
+    // 현재 상태를 먼저 확정한다. await 이후에 읽으면 그 사이 바뀐 레벨·위치가
+    // 섞여 저장될 수 있다.
+    final values = <String, Object>{_kMode: _mode.name};
     if (_mode == VocabMode.opicPhrase) {
-      await prefs.setInt(_kTopicIndex, _currentTopicIndex);
-      await prefs.setInt(_kPhraseIndex, _currentPhraseIndex);
-      await prefs.setInt(_kPhraseLevel, _currentPhraseLevel);
+      values[_kTopicIndex] = _currentTopicIndex;
+      values[_kPhraseIndex] = _currentPhraseIndex;
+      values[_kPhraseLevel] = _currentPhraseLevel;
     } else {
-      await prefs.setInt(_kLevel, _currentLevel);
-      await prefs.setInt(_kSetIndex, _currentSetIndex);
-      await prefs.setInt(_kWordIndex, _currentWordIndex);
-      await prefs.setInt(_kSeed, _shuffleSeed);
+      values[_kLevel] = _currentLevel;
+      values[_kSetIndex] = _currentSetIndex;
+      values[_kWordIndex] = _currentWordIndex;
+      values[_kSeed] = _shuffleSeed;
+      values[_lastLevelKey(_mode)] = _currentLevel;
+      values[_levelKey(_mode, _currentLevel, 'set')] = _currentSetIndex;
+      values[_levelKey(_mode, _currentLevel, 'word')] = _currentWordIndex;
+      values[_levelKey(_mode, _currentLevel, 'seed')] = _shuffleSeed;
     }
+    final prefs = _prefs ?? await SharedPreferences.getInstance();
+    // setX는 메모리 캐시를 즉시 갱신하므로, 바로 뒤의 레벨 전환에서도 최신 위치가 읽힌다.
+    await Future.wait(values.entries.map((e) {
+      final v = e.value;
+      return v is int
+          ? prefs.setInt(e.key, v)
+          : prefs.setString(e.key, v as String);
+    }));
+  }
+
+  /// 현재 모드·레벨의 저장된 위치와 셔플 순서를 복원한다. 없으면 처음부터.
+  void _restoreLevelPosition() {
+    final prefs = _prefs;
+    final seed = prefs?.getInt(_levelKey(_mode, _currentLevel, 'seed'));
+    if (seed == null) {
+      _currentSetIndex = 0;
+      _currentWordIndex = 0;
+      _shuffleLevel();
+      return;
+    }
+    _shuffleSeed = seed;
+    _shuffleLevel(regenerateSeed: false);
+    final setIndex = prefs!.getInt(_levelKey(_mode, _currentLevel, 'set')) ?? 0;
+    _currentSetIndex = setIndex.clamp(0, max(totalSets - 1, 0));
+    final wordIndex =
+        prefs.getInt(_levelKey(_mode, _currentLevel, 'word')) ?? 0;
+    _currentWordIndex = wordIndex.clamp(0, max(currentSet.length - 1, 0));
   }
 
   Future<void> _loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
+    _prefs = prefs;
     // 퀴즈 모드 설정은 진도와 별개로 항상 복원한다 (기본값 켜짐).
     _quizModeEnabled = prefs.getBool(_kQuizMode) ?? true;
     final modeStr = prefs.getString(_kMode);
@@ -111,6 +148,10 @@ class WordViewModel extends ChangeNotifier {
       _shuffleSeed = prefs.getInt(_kSeed) ?? _shuffleSeed;
       // 저장된 시드로 동일 순서 재현 → 복원된 인덱스가 정확히 일치
       _shuffleLevel(regenerateSeed: false);
+      // 단어 데이터가 바뀌어 저장된 위치가 범위를 벗어나도 안전하게
+      _currentSetIndex = _currentSetIndex.clamp(0, max(totalSets - 1, 0));
+      _currentWordIndex =
+          _currentWordIndex.clamp(0, max(currentSet.length - 1, 0));
     }
     notifyListeners();
   }
@@ -122,16 +163,29 @@ class WordViewModel extends ChangeNotifier {
 
   Future<void> _initTts() async {
     try {
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
+        // 무음 모드에서도 발음이 들리도록 playback 카테고리 사용
+        await _tts.setSharedInstance(true);
+        await _tts.setIosAudioCategory(
+          IosTextToSpeechAudioCategory.playback,
+          [
+            IosTextToSpeechAudioCategoryOptions.mixWithOthers,
+            IosTextToSpeechAudioCategoryOptions.defaultToSpeaker,
+          ],
+        );
+      }
       await _tts.setLanguage('en-US');
       await _tts.setSpeechRate(kIsWeb ? 0.9 : 0.5);
       await _tts.setPitch(1.0);
       await _tts.setVolume(1.0);
 
       // Google TTS 엔진 우선 사용 (삼성 TTS는 영어 발음이 부정확)
-      if (!kIsWeb) {
+      // Android 11+에서 엔진 목록을 받으려면 매니페스트의 TTS_SERVICE queries가 필요하다.
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
         final engines = await _tts.getEngines;
         if (engines != null) {
-          final engineList = (engines as List).map((e) => e.toString()).toList();
+          final engineList =
+              (engines as List).map((e) => e.toString()).toList();
           if (engineList.contains('com.google.android.tts')) {
             await _tts.setEngine('com.google.android.tts');
             await _tts.setLanguage('en-US'); // 엔진 변경 후 재설정
@@ -157,9 +211,8 @@ class WordViewModel extends ChangeNotifier {
   bool get showQuiz => _showQuiz;
   QuizController? get quizController => _quizController;
 
-  /// 퀴즈가 적용되는 범위인지. 현재는 OPIc 중급만.
-  bool get isQuizScope =>
-      !_isFavoriteMode && _mode == quizMode && _currentLevel == quizLevel;
+  /// 퀴즈가 적용되는 범위인지. TOEIC·OPIc 단어의 모든 레벨 (실전 문장·별표 제외).
+  bool get isQuizScope => !_isFavoriteMode && _mode != VocabMode.opicPhrase;
 
   void toggleQuizMode() {
     _quizModeEnabled = !_quizModeEnabled;
@@ -270,11 +323,9 @@ class WordViewModel extends ChangeNotifier {
       _currentPhraseLevel = 1;
       _showPhraseCompletion = false;
     } else {
-      _currentLevel = 1;
-      _currentSetIndex = 0;
-      _currentWordIndex = 0;
+      _currentLevel = _prefs?.getInt(_lastLevelKey(mode)) ?? 1;
       _showCompletion = false;
-      _shuffleLevel();
+      _restoreLevelPosition();
     }
     notifyListeners();
     _saveProgress();
@@ -405,6 +456,7 @@ class WordViewModel extends ChangeNotifier {
       if (_autoSpeak && currentPhrase != null) {
         speak(currentPhrase!.english);
       }
+      _saveProgress();
     }
   }
 
@@ -412,6 +464,7 @@ class WordViewModel extends ChangeNotifier {
     _currentPhraseIndex = 0;
     _showPhraseCompletion = false;
     notifyListeners();
+    _saveProgress();
   }
 
   void goToNextTopic() {
@@ -450,10 +503,8 @@ class WordViewModel extends ChangeNotifier {
     if (_isFavoriteMode) return;
     _resetQuiz();
     _currentLevel = level;
-    _currentSetIndex = 0;
-    _currentWordIndex = 0;
     _showCompletion = false;
-    _shuffleLevel();
+    _restoreLevelPosition();
     notifyListeners();
     _saveProgress();
   }
@@ -476,6 +527,7 @@ class WordViewModel extends ChangeNotifier {
       _currentWordIndex--;
       notifyListeners();
       _autoSpeakIfEnabled();
+      _saveProgress();
     }
   }
 
@@ -484,6 +536,7 @@ class WordViewModel extends ChangeNotifier {
     _currentWordIndex = 0;
     _showCompletion = false;
     notifyListeners();
+    _saveProgress();
   }
 
   void goToNextSet() {
@@ -491,7 +544,9 @@ class WordViewModel extends ChangeNotifier {
     if (_currentSetIndex < totalSets - 1) {
       _currentSetIndex++;
     } else {
+      // 레벨을 끝까지 학습하면 새 순서로 섞어 처음부터 다시 시작
       _currentSetIndex = 0;
+      if (!_isFavoriteMode) _shuffleLevel();
     }
     _currentWordIndex = 0;
     _showCompletion = false;
@@ -501,6 +556,8 @@ class WordViewModel extends ChangeNotifier {
 
   Future<void> speak(String text, {String? phonetic}) async {
     // 기기 내장 TTS 사용 (초기화 시 Google TTS 엔진 우선 선택)
+    // 초기화(엔진·언어 설정)가 끝나기 전에 재생하면 기본 엔진으로 읽히므로 기다린다.
+    await _ttsReady;
     try {
       await _tts.stop();
       await _tts.speak(text);
@@ -512,7 +569,7 @@ class WordViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _disposeQuiz();
-    _tts.stop();
+    _tts.stop().catchError((_) => null);
     super.dispose();
   }
 }

@@ -753,7 +753,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: const Text('퀴즈 모드'),
                 subtitle: Text(
                   _viewModel.quizModeEnabled
-                      ? '세트 완료 후 퀴즈 (OPIc 중급)'
+                      ? '세트 완료 후 4지선다 퀴즈'
                       : '꺼짐',
                   style: TextStyle(
                     fontSize: 12,

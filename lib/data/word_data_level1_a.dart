@@ -183,7 +183,6 @@ class WordDataLevel1A {
     Word(english: 'round-trip', phonetic: '/raʊnd trɪp/', meaning: '왕복의'),
 
     // 식당/음식 - Restaurants & Dining (171-200)
-    Word(english: 'reservation', phonetic: '/ˌrɛzərˈveɪʃən/', meaning: '예약'),
     Word(english: 'menu', phonetic: '/ˈmɛnjuː/', meaning: '메뉴'),
     Word(english: 'appetizer', phonetic: '/ˈæpɪtaɪzər/', meaning: '전채 요리'),
     Word(english: 'entree', phonetic: '/ˈɒntreɪ/', meaning: '주요리'),
@@ -221,7 +220,6 @@ class WordDataLevel1A {
     Word(english: 'withdrawal', phonetic: '/wɪðˈdrɔːəl/', meaning: '인출'),
     Word(english: 'balance', phonetic: '/ˈbæləns/', meaning: '잔액; 균형'),
     Word(english: 'transaction', phonetic: '/trænˈzækʃən/', meaning: '거래'),
-    Word(english: 'transfer', phonetic: '/ˈtrænsfɜːr/', meaning: '이체하다; 이동'),
     Word(english: 'loan', phonetic: '/loʊn/', meaning: '대출; 빌려주다'),
     Word(english: 'interest', phonetic: '/ˈɪntrəst/', meaning: '이자; 관심'),
     Word(english: 'invest', phonetic: '/ɪnˈvɛst/', meaning: '투자하다'),

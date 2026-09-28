@@ -1478,5 +1478,1285 @@ class ToeicExamplesLevel3B {
         korean: '모든 국제 화물 운송에 연료 할증료가 추가되었다.',
       ),
     ],
+
+    // ── 추가 단어 (Additional Words) ─────────────────────────────
+    'abdicate': [
+      WordExample(
+        english: 'Managers must not abdicate their responsibility for workplace safety.',
+        korean: '관리자는 직장 안전에 대한 책임을 포기해서는 안 됩니다.',
+      ),
+    ],
+    'aberration': [
+      WordExample(
+        english: 'The drop in sales last month was an aberration rather than a trend.',
+        korean: '지난달 매출 하락은 추세라기보다 일시적인 이상 현상이었습니다.',
+      ),
+    ],
+    'abeyance': [
+      WordExample(
+        english: 'The merger talks have been held in abeyance until the audit is complete.',
+        korean: '합병 협상은 감사가 끝날 때까지 보류되었습니다.',
+      ),
+    ],
+    'abrogate': [
+      WordExample(
+        english: 'Neither party may abrogate the agreement without written notice.',
+        korean: '어느 쪽도 서면 통지 없이 계약을 폐지할 수 없습니다.',
+      ),
+    ],
+    'abscond': [
+      WordExample(
+        english: 'The former treasurer absconded with funds from the charity.',
+        korean: '전 회계 담당자가 자선 단체의 자금을 가지고 도주했습니다.',
+      ),
+    ],
+    'accede': [
+      WordExample(
+        english: 'The board finally acceded to the union\'s request for higher wages.',
+        korean: '이사회는 마침내 임금 인상을 요구하는 노조의 요청에 응했습니다.',
+      ),
+    ],
+    'acclimate': [
+      WordExample(
+        english: 'It usually takes new hires a few weeks to acclimate to our systems.',
+        korean: '신입 사원이 저희 시스템에 적응하려면 보통 몇 주가 걸립니다.',
+      ),
+    ],
+    'accolade': [
+      WordExample(
+        english: 'The hotel has received numerous accolades for its customer service.',
+        korean: '그 호텔은 고객 서비스로 수많은 찬사를 받았습니다.',
+      ),
+    ],
+    'accountable': [
+      WordExample(
+        english: 'Department heads are accountable for meeting their budget targets.',
+        korean: '부서장은 예산 목표를 달성할 책임이 있습니다.',
+      ),
+    ],
+    'acquiesce': [
+      WordExample(
+        english: 'The supplier reluctantly acquiesced to the revised delivery schedule.',
+        korean: '공급업체는 수정된 납품 일정을 마지못해 받아들였습니다.',
+      ),
+    ],
+    'acumen': [
+      WordExample(
+        english: 'Her business acumen helped the startup grow rapidly.',
+        korean: '그녀의 사업 감각 덕분에 스타트업이 빠르게 성장했습니다.',
+      ),
+    ],
+    'addendum': [
+      WordExample(
+        english: 'An addendum to the contract clarifies the payment terms.',
+        korean: '계약서 부록이 지불 조건을 명확히 합니다.',
+      ),
+    ],
+    'adept': [
+      WordExample(
+        english: 'The new coordinator is adept at managing multiple projects at once.',
+        korean: '새 담당자는 여러 프로젝트를 동시에 관리하는 데 능숙합니다.',
+      ),
+    ],
+    'adjunct': [
+      WordExample(
+        english: 'The online course is an adjunct to our regular training program.',
+        korean: '온라인 강좌는 정규 교육 프로그램의 보조 과정입니다.',
+      ),
+    ],
+    'admonish': [
+      WordExample(
+        english: 'The supervisor admonished the staff for leaving the door unlocked.',
+        korean: '상사는 문을 잠그지 않은 것에 대해 직원들을 훈계했습니다.',
+      ),
+    ],
+    'adroit': [
+      WordExample(
+        english: 'The adroit negotiator secured favorable terms for both sides.',
+        korean: '노련한 협상가가 양측 모두에게 유리한 조건을 이끌어냈습니다.',
+      ),
+    ],
+    'advisable': [
+      WordExample(
+        english: 'It is advisable to book hotel rooms early during the festival.',
+        korean: '축제 기간에는 호텔 객실을 일찍 예약하는 것이 바람직합니다.',
+      ),
+    ],
+    'aforementioned': [
+      WordExample(
+        english: 'The aforementioned changes will take effect next month.',
+        korean: '앞서 언급한 변경 사항은 다음 달부터 시행됩니다.',
+      ),
+    ],
+    'allotment': [
+      WordExample(
+        english: 'Each department received an equal allotment of parking spaces.',
+        korean: '각 부서는 동일한 수의 주차 공간을 할당받았습니다.',
+      ),
+    ],
+    'amalgamate': [
+      WordExample(
+        english: 'The two divisions will be amalgamated into a single unit.',
+        korean: '두 사업부는 하나의 조직으로 통합될 것입니다.',
+      ),
+    ],
+    'ambiguous': [
+      WordExample(
+        english: 'The wording of the policy is ambiguous and needs clarification.',
+        korean: '정책 문구가 모호해서 명확히 할 필요가 있습니다.',
+      ),
+    ],
+    'amicable': [
+      WordExample(
+        english: 'The dispute was settled in an amicable manner.',
+        korean: '분쟁은 우호적으로 해결되었습니다.',
+      ),
+    ],
+    'anomaly': [
+      WordExample(
+        english: 'The auditors discovered an anomaly in the financial records.',
+        korean: '감사관들은 재무 기록에서 이상한 점을 발견했습니다.',
+      ),
+    ],
+    'antecedent': [
+      WordExample(
+        english: 'The proposal has several antecedents in earlier company policies.',
+        korean: '그 제안은 이전 회사 정책에 여러 선례가 있습니다.',
+      ),
+    ],
+    'anticipate': [
+      WordExample(
+        english: 'We anticipate strong demand for the product during the holidays.',
+        korean: '연휴 기간 동안 제품 수요가 많을 것으로 예상합니다.',
+      ),
+    ],
+    'apprise': [
+      WordExample(
+        english: 'Please keep me apprised of any changes to the schedule.',
+        korean: '일정에 변경이 있으면 계속 알려 주세요.',
+      ),
+    ],
+    'arbitrary': [
+      WordExample(
+        english: 'Promotions should be based on performance, not arbitrary decisions.',
+        korean: '승진은 임의적인 결정이 아니라 성과에 근거해야 합니다.',
+      ),
+    ],
+    'arrears': [
+      WordExample(
+        english: 'Tenants who are in arrears will receive a formal notice.',
+        korean: '임대료를 체납한 세입자는 공식 통지를 받게 됩니다.',
+      ),
+    ],
+    'assiduous': [
+      WordExample(
+        english: 'Thanks to her assiduous research, the report was highly accurate.',
+        korean: '그녀의 근면한 조사 덕분에 보고서가 매우 정확했습니다.',
+      ),
+    ],
+    'assuage': [
+      WordExample(
+        english: 'The CEO tried to assuage investors\' concerns about the delay.',
+        korean: 'CEO는 지연에 대한 투자자들의 우려를 달래려고 했습니다.',
+      ),
+    ],
+    'astute': [
+      WordExample(
+        english: 'An astute investor noticed the market trend early.',
+        korean: '기민한 투자자가 시장 흐름을 일찍 알아챘습니다.',
+      ),
+    ],
+    'attest': [
+      WordExample(
+        english: 'Several customers can attest to the quality of our service.',
+        korean: '여러 고객이 저희 서비스 품질을 증명해 줄 수 있습니다.',
+      ),
+    ],
+    'augment': [
+      WordExample(
+        english: 'The company hired temporary workers to augment its sales team.',
+        korean: '회사는 영업팀을 보강하기 위해 임시 직원을 고용했습니다.',
+      ),
+    ],
+    'auspicious': [
+      WordExample(
+        english: 'The product launch got off to an auspicious start.',
+        korean: '제품 출시는 상서로운 출발을 보였습니다.',
+      ),
+    ],
+    'authorization': [
+      WordExample(
+        english: 'You need written authorization to access the server room.',
+        korean: '서버실에 들어가려면 서면 승인이 필요합니다.',
+      ),
+    ],
+    'authorize': [
+      WordExample(
+        english: 'Only the finance director can authorize payments over 10,000 dollars.',
+        korean: '1만 달러가 넘는 지급은 재무 이사만 승인할 수 있습니다.',
+      ),
+    ],
+    'bankruptcy': [
+      WordExample(
+        english: 'The retailer filed for bankruptcy after years of losses.',
+        korean: '그 소매업체는 수년간의 적자 끝에 파산을 신청했습니다.',
+      ),
+    ],
+    'bequeath': [
+      WordExample(
+        english: 'The founder bequeathed his art collection to the city museum.',
+        korean: '설립자는 자신의 미술 소장품을 시립 박물관에 기증했습니다.',
+      ),
+    ],
+    'bolster': [
+      WordExample(
+        english: 'The new advertising campaign is expected to bolster sales.',
+        korean: '새 광고 캠페인이 매출을 끌어올릴 것으로 기대됩니다.',
+      ),
+    ],
+    'brevity': [
+      WordExample(
+        english: 'For the sake of brevity, only the key findings are listed.',
+        korean: '간결함을 위해 주요 결과만 나열했습니다.',
+      ),
+    ],
+    'burgeoning': [
+      WordExample(
+        english: 'The firm is investing in the burgeoning electric vehicle market.',
+        korean: '그 회사는 급성장하는 전기차 시장에 투자하고 있습니다.',
+      ),
+    ],
+    'candid': [
+      WordExample(
+        english: 'Thank you for your candid feedback on the proposal.',
+        korean: '제안서에 대해 솔직한 의견을 주셔서 감사합니다.',
+      ),
+    ],
+    'capitulate': [
+      WordExample(
+        english: 'The company refused to capitulate to the unreasonable demands.',
+        korean: '회사는 부당한 요구에 굴복하기를 거부했습니다.',
+      ),
+    ],
+    'causation': [
+      WordExample(
+        english: 'The study shows a correlation but does not prove causation.',
+        korean: '이 연구는 상관관계를 보여 주지만 인과 관계를 증명하지는 않습니다.',
+      ),
+    ],
+    'censure': [
+      WordExample(
+        english: 'The committee issued a formal censure against the director.',
+        korean: '위원회는 이사에게 공식 견책을 내렸습니다.',
+      ),
+    ],
+    'certify': [
+      WordExample(
+        english: 'The inspector must certify that the building is safe.',
+        korean: '검사관은 건물이 안전하다는 것을 인증해야 합니다.',
+      ),
+    ],
+    'circumspect': [
+      WordExample(
+        english: 'Investors are being circumspect because of market uncertainty.',
+        korean: '시장 불확실성 때문에 투자자들이 신중하게 움직이고 있습니다.',
+      ),
+    ],
+    'codify': [
+      WordExample(
+        english: 'The new handbook codifies the company\'s safety procedures.',
+        korean: '새 안내서는 회사의 안전 절차를 성문화합니다.',
+      ),
+    ],
+    'coerce': [
+      WordExample(
+        english: 'Employees should never be coerced into working overtime.',
+        korean: '직원에게 초과 근무를 강요해서는 절대 안 됩니다.',
+      ),
+    ],
+    'cogent': [
+      WordExample(
+        english: 'She presented a cogent argument for expanding overseas.',
+        korean: '그녀는 해외 확장을 위한 설득력 있는 주장을 펼쳤습니다.',
+      ),
+    ],
+    'cohesive': [
+      WordExample(
+        english: 'A cohesive team can solve problems more quickly.',
+        korean: '결속력 있는 팀은 문제를 더 빨리 해결할 수 있습니다.',
+      ),
+    ],
+    'collusion': [
+      WordExample(
+        english: 'The two companies were fined for collusion in setting prices.',
+        korean: '두 회사는 가격 담합으로 벌금을 부과받았습니다.',
+      ),
+    ],
+    'commence': [
+      WordExample(
+        english: 'Construction will commence as soon as the permit is approved.',
+        korean: '허가가 승인되는 대로 공사가 시작됩니다.',
+      ),
+    ],
+    'commendable': [
+      WordExample(
+        english: 'The staff showed commendable effort during the busy season.',
+        korean: '직원들은 성수기 동안 칭찬할 만한 노력을 보였습니다.',
+      ),
+    ],
+    'commensurately': [
+      WordExample(
+        english: 'Salaries will be increased commensurately with experience.',
+        korean: '급여는 경력에 상응하여 인상됩니다.',
+      ),
+    ],
+    'commission': [
+      WordExample(
+        english: 'Sales representatives earn a 5 percent commission on each sale.',
+        korean: '영업 사원은 판매 건당 5퍼센트의 수수료를 받습니다.',
+      ),
+    ],
+    'compendium': [
+      WordExample(
+        english: 'The guide is a compendium of useful tips for travelers.',
+        korean: '그 안내서는 여행자를 위한 유용한 팁 모음집입니다.',
+      ),
+    ],
+    'complacent': [
+      WordExample(
+        english: 'Despite our success, we cannot afford to become complacent.',
+        korean: '성공했지만 안주해서는 안 됩니다.',
+      ),
+    ],
+    'concede': [
+      WordExample(
+        english: 'The manager conceded that the deadline had been unrealistic.',
+        korean: '관리자는 마감이 비현실적이었다고 인정했습니다.',
+      ),
+    ],
+    'conciliatory': [
+      WordExample(
+        english: 'The company adopted a conciliatory tone in its response.',
+        korean: '회사는 답변에서 회유적인 어조를 취했습니다.',
+      ),
+    ],
+    'concur': [
+      WordExample(
+        english: 'I concur with your assessment of the situation.',
+        korean: '상황에 대한 당신의 평가에 동의합니다.',
+      ),
+    ],
+    'condone': [
+      WordExample(
+        english: 'The company does not condone any form of harassment.',
+        korean: '회사는 어떤 형태의 괴롭힘도 용납하지 않습니다.',
+      ),
+    ],
+    'confer': [
+      WordExample(
+        english: 'The board will confer with legal advisers before making a decision.',
+        korean: '이사회는 결정을 내리기 전에 법률 고문과 협의할 것입니다.',
+      ),
+    ],
+    'confiscate': [
+      WordExample(
+        english: 'Customs officials may confiscate items that are not declared.',
+        korean: '세관 공무원은 신고하지 않은 물품을 몰수할 수 있습니다.',
+      ),
+    ],
+    'conjecture': [
+      WordExample(
+        english: 'The report is based on facts rather than conjecture.',
+        korean: '보고서는 추측이 아닌 사실에 근거합니다.',
+      ),
+    ],
+    'consecutively': [
+      WordExample(
+        english: 'The company has won the award three years consecutively.',
+        korean: '그 회사는 3년 연속으로 상을 받았습니다.',
+      ),
+    ],
+    'consequential': [
+      WordExample(
+        english: 'The decision could be consequential for the entire industry.',
+        korean: '그 결정은 업계 전체에 중대한 영향을 미칠 수 있습니다.',
+      ),
+    ],
+    'conspicuous': [
+      WordExample(
+        english: 'Place the safety signs in a conspicuous location.',
+        korean: '안전 표지판을 눈에 잘 띄는 곳에 설치하세요.',
+      ),
+    ],
+    'constraint': [
+      WordExample(
+        english: 'Budget constraints forced us to postpone the project.',
+        korean: '예산 제약 때문에 프로젝트를 연기해야 했습니다.',
+      ),
+    ],
+    'construe': [
+      WordExample(
+        english: 'His silence should not be construed as agreement.',
+        korean: '그의 침묵을 동의로 해석해서는 안 됩니다.',
+      ),
+    ],
+    'contend': [
+      WordExample(
+        english: 'The lawyers contend that the contract is no longer valid.',
+        korean: '변호사들은 그 계약이 더 이상 유효하지 않다고 주장합니다.',
+      ),
+    ],
+    'contentious': [
+      WordExample(
+        english: 'The new parking fee became a contentious issue among employees.',
+        korean: '새 주차 요금은 직원들 사이에서 논쟁거리가 되었습니다.',
+      ),
+    ],
+    'convoluted': [
+      WordExample(
+        english: 'The old approval process was too convoluted and slow.',
+        korean: '기존 승인 절차는 너무 복잡하고 느렸습니다.',
+      ),
+    ],
+    'copious': [
+      WordExample(
+        english: 'The reporter took copious notes during the press conference.',
+        korean: '기자는 기자 회견 동안 많은 메모를 했습니다.',
+      ),
+    ],
+    'corporate': [
+      WordExample(
+        english: 'The corporate headquarters will relocate to Seoul next year.',
+        korean: '기업 본사는 내년에 서울로 이전합니다.',
+      ),
+    ],
+    'counteract': [
+      WordExample(
+        english: 'The company lowered prices to counteract falling demand.',
+        korean: '회사는 수요 감소에 대응하기 위해 가격을 낮췄습니다.',
+      ),
+    ],
+    'covenant': [
+      WordExample(
+        english: 'The loan agreement includes several financial covenants.',
+        korean: '대출 계약에는 여러 재무 약정 조항이 포함되어 있습니다.',
+      ),
+    ],
+    'credible': [
+      WordExample(
+        english: 'The journalist relied only on credible sources.',
+        korean: '기자는 믿을 만한 출처에만 의존했습니다.',
+      ),
+    ],
+    'creditor': [
+      WordExample(
+        english: 'The company is negotiating a repayment plan with its creditors.',
+        korean: '회사는 채권자들과 상환 계획을 협상하고 있습니다.',
+      ),
+    ],
+    'criterion': [
+      WordExample(
+        english: 'Experience is the most important criterion for this position.',
+        korean: '경력이 이 직책의 가장 중요한 기준입니다.',
+      ),
+    ],
+    'debtor': [
+      WordExample(
+        english: 'The bank sent a final notice to the debtor.',
+        korean: '은행은 채무자에게 최종 통지를 보냈습니다.',
+      ),
+    ],
+    'decisive': [
+      WordExample(
+        english: 'Quick and decisive action prevented further losses.',
+        korean: '신속하고 단호한 조치로 추가 손실을 막았습니다.',
+      ),
+    ],
+    'default': [
+      WordExample(
+        english: 'If the borrower defaults on the loan, the bank may take the property.',
+        korean: '차용인이 대출금을 갚지 못하면 은행이 부동산을 가져갈 수 있습니다.',
+      ),
+    ],
+    'defer': [
+      WordExample(
+        english: 'We decided to defer the decision until next month.',
+        korean: '결정을 다음 달로 미루기로 했습니다.',
+      ),
+    ],
+    'deferral': [
+      WordExample(
+        english: 'The tenant requested a deferral of the rent payment.',
+        korean: '세입자는 임대료 납부 유예를 요청했습니다.',
+      ),
+    ],
+    'deficient': [
+      WordExample(
+        english: 'The inspection found the safety equipment to be deficient.',
+        korean: '점검 결과 안전 장비가 부족한 것으로 나타났습니다.',
+      ),
+    ],
+    'delegation': [
+      WordExample(
+        english: 'A delegation from Japan will visit our factory next week.',
+        korean: '일본 대표단이 다음 주에 저희 공장을 방문합니다.',
+      ),
+    ],
+    'deliberate': [
+      WordExample(
+        english: 'The error was not deliberate but caused by a system failure.',
+        korean: '그 오류는 의도적인 것이 아니라 시스템 장애 때문이었습니다.',
+      ),
+    ],
+    'deliberation': [
+      WordExample(
+        english: 'After much deliberation, the committee approved the budget.',
+        korean: '오랜 숙고 끝에 위원회는 예산을 승인했습니다.',
+      ),
+    ],
+    'demise': [
+      WordExample(
+        english: 'The demise of the local bookstore surprised many residents.',
+        korean: '동네 서점의 폐업은 많은 주민을 놀라게 했습니다.',
+      ),
+    ],
+    'derogatory': [
+      WordExample(
+        english: 'Derogatory comments about coworkers will not be tolerated.',
+        korean: '동료에 대한 경멸적인 발언은 용납되지 않습니다.',
+      ),
+    ],
+    'deterrent': [
+      WordExample(
+        english: 'Security cameras serve as a deterrent to theft.',
+        korean: '보안 카메라는 절도를 억제하는 역할을 합니다.',
+      ),
+    ],
+    'devise': [
+      WordExample(
+        english: 'The team devised a new method to reduce waste.',
+        korean: '팀은 폐기물을 줄이는 새로운 방법을 고안했습니다.',
+      ),
+    ],
+    'diligence': [
+      WordExample(
+        english: 'Her diligence and attention to detail earned her a promotion.',
+        korean: '그녀의 성실함과 꼼꼼함이 승진으로 이어졌습니다.',
+      ),
+    ],
+    'diminish': [
+      WordExample(
+        english: 'The value of the equipment will diminish over time.',
+        korean: '장비의 가치는 시간이 지나면서 줄어들 것입니다.',
+      ),
+    ],
+    'disburse': [
+      WordExample(
+        english: 'Funds will be disbursed once the application is approved.',
+        korean: '신청이 승인되면 자금이 지급됩니다.',
+      ),
+    ],
+    'discern': [
+      WordExample(
+        english: 'It was difficult to discern any pattern in the data.',
+        korean: '데이터에서 어떤 패턴도 분간하기 어려웠습니다.',
+      ),
+    ],
+    'disclose': [
+      WordExample(
+        english: 'Companies must disclose their financial results every quarter.',
+        korean: '회사는 매 분기 재무 실적을 공개해야 합니다.',
+      ),
+    ],
+    'discontinue': [
+      WordExample(
+        english: 'The manufacturer will discontinue this model next year.',
+        korean: '제조사는 내년에 이 모델을 단종할 것입니다.',
+      ),
+    ],
+    'disparity': [
+      WordExample(
+        english: 'There is a large disparity in wages between the two regions.',
+        korean: '두 지역 간 임금 격차가 큽니다.',
+      ),
+    ],
+    'dissolution': [
+      WordExample(
+        english: 'The dissolution of the partnership was completed last month.',
+        korean: '동업 관계의 해산이 지난달 완료되었습니다.',
+      ),
+    ],
+    'dissolve': [
+      WordExample(
+        english: 'The committee was dissolved after the project ended.',
+        korean: '프로젝트가 끝난 후 위원회는 해산되었습니다.',
+      ),
+    ],
+    'divest': [
+      WordExample(
+        english: 'The group plans to divest its hotel business.',
+        korean: '그 그룹은 호텔 사업을 매각할 계획입니다.',
+      ),
+    ],
+    'dormant': [
+      WordExample(
+        english: 'Accounts that remain dormant for two years will be closed.',
+        korean: '2년간 휴면 상태인 계좌는 해지됩니다.',
+      ),
+    ],
+    'duplicate': [
+      WordExample(
+        english: 'Please do not submit duplicate copies of the same invoice.',
+        korean: '같은 청구서를 중복해서 제출하지 마세요.',
+      ),
+    ],
+    'duress': [
+      WordExample(
+        english: 'A contract signed under duress is not legally binding.',
+        korean: '강압에 의해 서명된 계약은 법적 구속력이 없습니다.',
+      ),
+    ],
+    'efficacy': [
+      WordExample(
+        english: 'Clinical trials confirmed the efficacy of the new medicine.',
+        korean: '임상 시험으로 신약의 효능이 확인되었습니다.',
+      ),
+    ],
+    'elicit': [
+      WordExample(
+        english: 'The survey was designed to elicit honest feedback from customers.',
+        korean: '그 설문은 고객에게서 솔직한 의견을 끌어내도록 설계되었습니다.',
+      ),
+    ],
+    'eloquent': [
+      WordExample(
+        english: 'The keynote speaker gave an eloquent speech on leadership.',
+        korean: '기조 연설자는 리더십에 대해 설득력 있는 연설을 했습니다.',
+      ),
+    ],
+    'emphatically': [
+      WordExample(
+        english: 'The spokesperson emphatically denied the rumors of a merger.',
+        korean: '대변인은 합병 소문을 단호하게 부인했습니다.',
+      ),
+    ],
+    'encroach': [
+      WordExample(
+        english: 'The new building must not encroach on the neighboring property.',
+        korean: '새 건물이 인접 부지를 침범해서는 안 됩니다.',
+      ),
+    ],
+    'endeavor': [
+      WordExample(
+        english: 'We will endeavor to resolve your complaint within three days.',
+        korean: '3일 이내에 불만 사항을 해결하도록 노력하겠습니다.',
+      ),
+    ],
+    'engender': [
+      WordExample(
+        english: 'Open communication helps engender trust among team members.',
+        korean: '열린 소통은 팀원 간 신뢰를 형성하는 데 도움이 됩니다.',
+      ),
+    ],
+    'enhance': [
+      WordExample(
+        english: 'The upgrade will enhance the security of our online system.',
+        korean: '이번 업그레이드로 온라인 시스템의 보안이 강화됩니다.',
+      ),
+    ],
+    'entail': [
+      WordExample(
+        english: 'The position entails frequent travel to overseas branches.',
+        korean: '이 직책은 해외 지사로의 잦은 출장을 수반합니다.',
+      ),
+    ],
+    'entitle': [
+      WordExample(
+        english: 'Full-time employees are entitled to 15 days of paid leave.',
+        korean: '정규직 직원은 15일의 유급 휴가를 받을 자격이 있습니다.',
+      ),
+    ],
+    'entitlement': [
+      WordExample(
+        english: 'Your leave entitlement increases with years of service.',
+        korean: '휴가 일수는 근속 연수에 따라 늘어납니다.',
+      ),
+    ],
+    'enumerate': [
+      WordExample(
+        english: 'The contract enumerates the duties of each party.',
+        korean: '계약서에는 각 당사자의 의무가 열거되어 있습니다.',
+      ),
+    ],
+    'equitable': [
+      WordExample(
+        english: 'The committee aims to ensure an equitable distribution of resources.',
+        korean: '위원회는 자원의 공정한 분배를 보장하는 것을 목표로 합니다.',
+      ),
+    ],
+    'erroneous': [
+      WordExample(
+        english: 'The invoice contained an erroneous charge, which has been removed.',
+        korean: '청구서에 잘못된 요금이 있어 삭제했습니다.',
+      ),
+    ],
+    'escrow': [
+      WordExample(
+        english: 'The deposit will be held in escrow until the sale is completed.',
+        korean: '계약금은 매매가 완료될 때까지 제3자에게 예탁됩니다.',
+      ),
+    ],
+    'esteemed': [
+      WordExample(
+        english: 'We are honored to welcome our esteemed guests from abroad.',
+        korean: '해외에서 오신 귀빈 여러분을 맞이하게 되어 영광입니다.',
+      ),
+    ],
+    'exacerbate': [
+      WordExample(
+        english: 'The shipping delays exacerbated the shortage of parts.',
+        korean: '배송 지연으로 부품 부족이 더 심해졌습니다.',
+      ),
+    ],
+    'exemplary': [
+      WordExample(
+        english: 'She was praised for her exemplary service to customers.',
+        korean: '그녀는 고객에 대한 모범적인 서비스로 칭찬을 받았습니다.',
+      ),
+    ],
+    'exemption': [
+      WordExample(
+        english: 'Small businesses may apply for a tax exemption.',
+        korean: '소규모 사업체는 세금 면제를 신청할 수 있습니다.',
+      ),
+    ],
+    'exhaustive': [
+      WordExample(
+        english: 'The team conducted an exhaustive review of all contracts.',
+        korean: '팀은 모든 계약서를 철저하게 검토했습니다.',
+      ),
+    ],
+    'expedient': [
+      WordExample(
+        english: 'Hiring temporary staff was an expedient solution to the labor shortage.',
+        korean: '임시 직원 채용은 인력 부족에 대한 편리한 해결책이었습니다.',
+      ),
+    ],
+    'exploit': [
+      WordExample(
+        english: 'The company plans to exploit new opportunities in Asian markets.',
+        korean: '회사는 아시아 시장의 새로운 기회를 활용할 계획입니다.',
+      ),
+    ],
+    'expropriate': [
+      WordExample(
+        english: 'The government expropriated the land to build a new highway.',
+        korean: '정부는 새 고속도로 건설을 위해 토지를 수용했습니다.',
+      ),
+    ],
+    'extraneous': [
+      WordExample(
+        english: 'Please remove any extraneous information from the report.',
+        korean: '보고서에서 관련 없는 정보는 모두 삭제해 주세요.',
+      ),
+    ],
+    'fabricate': [
+      WordExample(
+        english: 'The factory fabricates steel parts for the automobile industry.',
+        korean: '그 공장은 자동차 산업용 철강 부품을 제조합니다.',
+      ),
+    ],
+    'fallible': [
+      WordExample(
+        english: 'Even experienced analysts are fallible, so double-check the data.',
+        korean: '숙련된 분석가도 틀릴 수 있으니 데이터를 다시 확인하세요.',
+      ),
+    ],
+    'fervent': [
+      WordExample(
+        english: 'The director is a fervent supporter of the recycling program.',
+        korean: '그 이사는 재활용 프로그램의 열렬한 지지자입니다.',
+      ),
+    ],
+    'fidelity': [
+      WordExample(
+        english: 'The translation was praised for its fidelity to the original text.',
+        korean: '그 번역은 원문에 충실하다는 칭찬을 받았습니다.',
+      ),
+    ],
+    'finalize': [
+      WordExample(
+        english: 'We hope to finalize the contract by the end of the week.',
+        korean: '이번 주 말까지 계약을 마무리하기를 바랍니다.',
+      ),
+    ],
+    'forestall': [
+      WordExample(
+        english: 'The company cut prices to forestall competition from new rivals.',
+        korean: '회사는 새 경쟁사와의 경쟁을 미리 막기 위해 가격을 인하했습니다.',
+      ),
+    ],
+    'formulate': [
+      WordExample(
+        english: 'The committee will formulate a plan to reduce energy costs.',
+        korean: '위원회는 에너지 비용을 줄이기 위한 계획을 수립할 것입니다.',
+      ),
+    ],
+    'fortuitous': [
+      WordExample(
+        english: 'The fortuitous meeting led to a valuable business partnership.',
+        korean: '우연한 만남이 귀중한 사업 협력으로 이어졌습니다.',
+      ),
+    ],
+    'fraudulent': [
+      WordExample(
+        english: 'Please report any fraudulent charges on your credit card immediately.',
+        korean: '신용카드에 부정 결제가 있으면 즉시 신고해 주세요.',
+      ),
+    ],
+    'frugal': [
+      WordExample(
+        english: 'Being frugal with office supplies helped reduce overall costs.',
+        korean: '사무용품을 아껴 쓴 것이 전체 비용 절감에 도움이 되었습니다.',
+      ),
+    ],
+    'garner': [
+      WordExample(
+        english: 'The new product garnered positive reviews from critics.',
+        korean: '신제품은 비평가들로부터 호평을 받았습니다.',
+      ),
+    ],
+    'gratuitous': [
+      WordExample(
+        english: 'The editor removed gratuitous details from the article.',
+        korean: '편집자는 기사에서 불필요한 세부 내용을 삭제했습니다.',
+      ),
+    ],
+    'hamper': [
+      WordExample(
+        english: 'Heavy snow hampered efforts to deliver the packages on time.',
+        korean: '폭설로 소포를 제때 배송하려는 노력이 방해를 받았습니다.',
+      ),
+    ],
+    'heed': [
+      WordExample(
+        english: 'Employees should heed the safety warnings posted in the factory.',
+        korean: '직원들은 공장에 게시된 안전 경고에 주의를 기울여야 합니다.',
+      ),
+    ],
+    'hinder': [
+      WordExample(
+        english: 'A lack of funding could hinder the progress of the research.',
+        korean: '자금 부족이 연구 진행을 방해할 수 있습니다.',
+      ),
+    ],
+    'holistic': [
+      WordExample(
+        english: 'The program takes a holistic approach to employee well-being.',
+        korean: '그 프로그램은 직원 복지에 전체론적으로 접근합니다.',
+      ),
+    ],
+    'impartial': [
+      WordExample(
+        english: 'An impartial panel will review all of the applications.',
+        korean: '공정한 심사단이 모든 지원서를 검토할 것입니다.',
+      ),
+    ],
+    'impeccable': [
+      WordExample(
+        english: 'The hotel is known for its impeccable service.',
+        korean: '그 호텔은 흠잡을 데 없는 서비스로 유명합니다.',
+      ),
+    ],
+    'impending': [
+      WordExample(
+        english: 'Staff were informed of the impending changes to the schedule.',
+        korean: '직원들은 곧 있을 일정 변경에 대해 안내받았습니다.',
+      ),
+    ],
+    'impose': [
+      WordExample(
+        english: 'The city will impose a fee on single-use plastic bags.',
+        korean: '시는 일회용 비닐봉지에 요금을 부과할 것입니다.',
+      ),
+    ],
+    'inaugurate': [
+      WordExample(
+        english: 'The mayor will inaugurate the new library next Monday.',
+        korean: '시장이 다음 주 월요일 새 도서관의 개관식을 엽니다.',
+      ),
+    ],
+    'incidental': [
+      WordExample(
+        english: 'Incidental expenses such as meals will be reimbursed.',
+        korean: '식비와 같은 부수적인 경비는 환급됩니다.',
+      ),
+    ],
+    'incur': [
+      WordExample(
+        english: 'Customers may incur a late fee if payment is not received on time.',
+        korean: '제때 결제되지 않으면 고객에게 연체료가 부과될 수 있습니다.',
+      ),
+    ],
+    'indebted': [
+      WordExample(
+        english: 'We are deeply indebted to our volunteers for their hard work.',
+        korean: '자원봉사자들의 노고에 깊이 감사드립니다.',
+      ),
+    ],
+    'inherent': [
+      WordExample(
+        english: 'Every investment carries some inherent risk.',
+        korean: '모든 투자에는 어느 정도의 내재된 위험이 있습니다.',
+      ),
+    ],
+    'insinuate': [
+      WordExample(
+        english: 'The report seemed to insinuate that the manager was responsible.',
+        korean: '그 보고서는 관리자에게 책임이 있다고 암시하는 듯했습니다.',
+      ),
+    ],
+    'instigate': [
+      WordExample(
+        english: 'The new director instigated a review of all spending.',
+        korean: '새 이사는 모든 지출에 대한 검토에 착수했습니다.',
+      ),
+    ],
+    'integral': [
+      WordExample(
+        english: 'Customer feedback is an integral part of our product design.',
+        korean: '고객 피드백은 제품 디자인의 필수적인 부분입니다.',
+      ),
+    ],
+    'integrity': [
+      WordExample(
+        english: 'We value honesty and integrity in all of our employees.',
+        korean: '저희는 모든 직원의 정직과 청렴을 중요하게 생각합니다.',
+      ),
+    ],
+    'intermediary': [
+      WordExample(
+        english: 'The bank acted as an intermediary between the buyer and seller.',
+        korean: '은행이 구매자와 판매자 사이의 중개자 역할을 했습니다.',
+      ),
+    ],
+    'interim': [
+      WordExample(
+        english: 'Mr. Lee will serve as interim director until a replacement is found.',
+        korean: '후임자를 찾을 때까지 이 씨가 임시 이사를 맡습니다.',
+      ),
+    ],
+    'intervene': [
+      WordExample(
+        english: 'The manager had to intervene to settle the disagreement.',
+        korean: '관리자가 의견 충돌을 해결하기 위해 개입해야 했습니다.',
+      ),
+    ],
+    'invalidate': [
+      WordExample(
+        english: 'Any changes to the form will invalidate the application.',
+        korean: '양식을 수정하면 신청이 무효가 됩니다.',
+      ),
+    ],
+    'judicious': [
+      WordExample(
+        english: 'Judicious use of resources allowed us to finish under budget.',
+        korean: '자원을 현명하게 사용한 덕분에 예산 내에서 마칠 수 있었습니다.',
+      ),
+    ],
+    'lenient': [
+      WordExample(
+        english: 'The company has a lenient policy on returns within 30 days.',
+        korean: '회사는 30일 이내 반품에 관대한 정책을 가지고 있습니다.',
+      ),
+    ],
+    'lien': [
+      WordExample(
+        english: 'The bank placed a lien on the property until the loan is repaid.',
+        korean: '은행은 대출금이 상환될 때까지 그 부동산에 유치권을 설정했습니다.',
+      ),
+    ],
+    'lucid': [
+      WordExample(
+        english: 'The instructions were lucid and easy to follow.',
+        korean: '설명서는 명쾌하고 따라 하기 쉬웠습니다.',
+      ),
+    ],
+    'magnitude': [
+      WordExample(
+        english: 'We did not realize the magnitude of the problem at first.',
+        korean: '처음에는 문제의 심각성을 깨닫지 못했습니다.',
+      ),
+    ],
+    'meager': [
+      WordExample(
+        english: 'The startup survived its first year on a meager budget.',
+        korean: '그 스타트업은 빈약한 예산으로 첫해를 버텼습니다.',
+      ),
+    ],
+    'mediate': [
+      WordExample(
+        english: 'A neutral third party was hired to mediate the dispute.',
+        korean: '분쟁을 중재하기 위해 중립적인 제3자가 고용되었습니다.',
+      ),
+    ],
+    'mediation': [
+      WordExample(
+        english: 'The two companies agreed to resolve the conflict through mediation.',
+        korean: '두 회사는 중재를 통해 갈등을 해결하기로 합의했습니다.',
+      ),
+    ],
+    'memorandum': [
+      WordExample(
+        english: 'The two firms signed a memorandum of understanding last week.',
+        korean: '두 회사는 지난주 양해 각서에 서명했습니다.',
+      ),
+    ],
+    'misconduct': [
+      WordExample(
+        english: 'The employee was dismissed for serious misconduct.',
+        korean: '그 직원은 심각한 위법 행위로 해고되었습니다.',
+      ),
+    ],
+    'misrepresent': [
+      WordExample(
+        english: 'The advertisement misrepresented the features of the product.',
+        korean: '그 광고는 제품의 기능을 허위로 전달했습니다.',
+      ),
+    ],
+    'modify': [
+      WordExample(
+        english: 'You can modify your reservation online up to 24 hours in advance.',
+        korean: '예약은 24시간 전까지 온라인으로 변경할 수 있습니다.',
+      ),
+    ],
+    'nominal': [
+      WordExample(
+        english: 'Members can attend the workshop for a nominal fee.',
+        korean: '회원은 소정의 참가비로 워크숍에 참석할 수 있습니다.',
+      ),
+    ],
+    'notarize': [
+      WordExample(
+        english: 'The contract must be notarized before it can be submitted.',
+        korean: '계약서는 제출하기 전에 공증을 받아야 합니다.',
+      ),
+    ],
+    'novice': [
+      WordExample(
+        english: 'The course is designed for novices with no programming experience.',
+        korean: '이 강좌는 프로그래밍 경험이 없는 초보자를 위해 만들어졌습니다.',
+      ),
+    ],
+    'obligation': [
+      WordExample(
+        english: 'The seller has an obligation to deliver the goods on time.',
+        korean: '판매자는 상품을 제때 인도할 의무가 있습니다.',
+      ),
+    ],
+    'obstruct': [
+      WordExample(
+        english: 'Please do not obstruct the emergency exits with boxes.',
+        korean: '비상구를 상자로 막지 마세요.',
+      ),
+    ],
+    'omission': [
+      WordExample(
+        english: 'The omission of a single digit caused the payment error.',
+        korean: '숫자 하나가 누락되어 결제 오류가 발생했습니다.',
+      ),
+    ],
+    'onerous': [
+      WordExample(
+        english: 'Many small firms find the new reporting rules onerous.',
+        korean: '많은 소규모 회사가 새 보고 규정을 부담스럽게 여깁니다.',
+      ),
+    ],
+    'optimal': [
+      WordExample(
+        english: 'The optimal temperature for storing this product is 5 degrees.',
+        korean: '이 제품의 최적 보관 온도는 5도입니다.',
+      ),
+    ],
+    'ordinarily': [
+      WordExample(
+        english: 'Ordinarily, refunds are processed within five business days.',
+        korean: '보통 환불은 영업일 기준 5일 이내에 처리됩니다.',
+      ),
+    ],
+    'outlay': [
+      WordExample(
+        english: 'The initial outlay for the new equipment was quite high.',
+        korean: '새 장비에 대한 초기 지출이 꽤 컸습니다.',
+      ),
+    ],
+    'overrule': [
+      WordExample(
+        english: 'The director overruled the committee\'s recommendation.',
+        korean: '이사는 위원회의 권고를 기각했습니다.',
+      ),
+    ],
+    'overt': [
+      WordExample(
+        english: 'There was no overt opposition to the new policy.',
+        korean: '새 정책에 대한 공공연한 반대는 없었습니다.',
+      ),
+    ],
+    'partition': [
+      WordExample(
+        english: 'A glass partition separates the reception area from the offices.',
+        korean: '유리 칸막이가 접수처와 사무실을 나눕니다.',
+      ),
+    ],
+    'per annum': [
+      WordExample(
+        english: 'The account pays interest at a rate of 3 percent per annum.',
+        korean: '그 계좌는 연 3퍼센트의 이자를 지급합니다.',
+      ),
+    ],
+    'pertain': [
+      WordExample(
+        english: 'Please direct all questions that pertain to billing to the finance team.',
+        korean: '청구와 관련된 모든 질문은 재무팀으로 보내 주세요.',
+      ),
+    ],
+    'plausible': [
+      WordExample(
+        english: 'The consultant offered a plausible explanation for the decline.',
+        korean: '컨설턴트는 감소에 대해 그럴듯한 설명을 내놓았습니다.',
+      ),
+    ],
+    'plummet': [
+      WordExample(
+        english: 'Shares plummeted after the company reported a loss.',
+        korean: '회사가 손실을 발표한 후 주가가 급락했습니다.',
+      ),
+    ],
+    'pragmatic': [
+      WordExample(
+        english: 'We need a pragmatic approach to solving the budget problem.',
+        korean: '예산 문제를 해결하려면 실용적인 접근이 필요합니다.',
+      ),
+    ],
+    'precarious': [
+      WordExample(
+        english: 'The company\'s financial situation remains precarious.',
+        korean: '회사의 재정 상황은 여전히 불안정합니다.',
+      ),
+    ],
+    'preempt': [
+      WordExample(
+        english: 'The firm lowered its prices to preempt a move by its rival.',
+        korean: '그 회사는 경쟁사의 움직임에 선수를 치려고 가격을 내렸습니다.',
+      ),
+    ],
+    'prerogative': [
+      WordExample(
+        english: 'Setting the agenda is the chairperson\'s prerogative.',
+        korean: '안건 설정은 의장의 권한입니다.',
+      ),
+    ],
+    'prescribe': [
+      WordExample(
+        english: 'The regulations prescribe how hazardous waste must be stored.',
+        korean: '규정은 유해 폐기물의 보관 방법을 규정합니다.',
+      ),
+    ],
+    'presiding': [
+      WordExample(
+        english: 'The presiding judge postponed the hearing until next month.',
+        korean: '재판장은 심리를 다음 달로 연기했습니다.',
+      ),
+    ],
+    'prevail': [
+      WordExample(
+        english: 'We hope that common sense will prevail in the negotiations.',
+        korean: '협상에서 상식이 우세하기를 바랍니다.',
+      ),
+    ],
+    'proactive': [
+      WordExample(
+        english: 'Taking a proactive approach can prevent many customer complaints.',
+        korean: '사전에 대응하면 많은 고객 불만을 예방할 수 있습니다.',
+      ),
+    ],
+    'proceeds': [
+      WordExample(
+        english: 'All proceeds from the event will go to local charities.',
+        korean: '행사 수익금은 모두 지역 자선 단체에 기부됩니다.',
+      ),
+    ],
+    'proficiency': [
+      WordExample(
+        english: 'Proficiency in English is required for this position.',
+        korean: '이 직책에는 영어 능숙도가 요구됩니다.',
+      ),
+    ],
+    'prolong': [
+      WordExample(
+        english: 'Regular maintenance will prolong the life of the machine.',
+        korean: '정기적인 유지보수는 기계의 수명을 연장합니다.',
+      ),
+    ],
+    'prominent': [
+      WordExample(
+        english: 'A prominent economist will speak at the conference.',
+        korean: '저명한 경제학자가 학회에서 연설합니다.',
+      ),
+    ],
+    'propensity': [
+      WordExample(
+        english: 'Younger customers show a greater propensity to shop online.',
+        korean: '젊은 고객일수록 온라인 쇼핑 성향이 더 강합니다.',
+      ),
+    ],
+    'prorate': [
+      WordExample(
+        english: 'Your first month\'s rent will be prorated based on the move-in date.',
+        korean: '첫 달 임대료는 입주일 기준으로 일할 계산됩니다.',
+      ),
+    ],
+    'prudent': [
+      WordExample(
+        english: 'It would be prudent to review the contract before signing it.',
+        korean: '서명하기 전에 계약서를 검토하는 것이 신중할 것입니다.',
+      ),
+    ],
+    'punitive': [
+      WordExample(
+        english: 'The court ordered the company to pay punitive damages.',
+        korean: '법원은 회사에 징벌적 손해 배상을 명령했습니다.',
+      ),
+    ],
+    'purport': [
+      WordExample(
+        english: 'The document purports to be an official record.',
+        korean: '그 문서는 공식 기록이라고 주장합니다.',
+      ),
+    ],
+    'quantifiable': [
+      WordExample(
+        english: 'Each team must set quantifiable goals for the quarter.',
+        korean: '각 팀은 분기별로 측정 가능한 목표를 세워야 합니다.',
+      ),
+    ],
+    'rebuttal': [
+      WordExample(
+        english: 'The company issued a rebuttal to the claims in the article.',
+        korean: '회사는 기사 내용에 대한 반박문을 발표했습니다.',
+      ),
+    ],
+    'recapitulate': [
+      WordExample(
+        english: 'Let me recapitulate the main points of today\'s discussion.',
+        korean: '오늘 논의의 요점을 요약하겠습니다.',
+      ),
+    ],
+    'reconvene': [
+      WordExample(
+        english: 'The committee will reconvene after a short lunch break.',
+        korean: '위원회는 짧은 점심시간 후 다시 소집됩니다.',
+      ),
+    ],
   };
 }

@@ -1502,5 +1502,187 @@ class ToeicExamplesLevel1B {
         korean: '최초 계약은 1월에 체결되었으며, 이후 수정 사항이 3월에 추가되었습니다.',
       ),
     ],
+
+    // ── 추가 단어 (Additional Words) ─────────────────────────────
+    'schedule': [
+      WordExample(
+        english: 'Please check the schedule before booking the conference room.',
+        korean: '회의실을 예약하기 전에 일정을 확인해 주세요.',
+      ),
+    ],
+    'meeting': [
+      WordExample(
+        english: 'The weekly staff meeting has been moved to Thursday morning.',
+        korean: '주간 직원 회의가 목요일 오전으로 옮겨졌습니다.',
+      ),
+    ],
+    'office': [
+      WordExample(
+        english: 'Our main office is located on the fifth floor of the building.',
+        korean: '저희 본사 사무실은 건물 5층에 있습니다.',
+      ),
+    ],
+    'employee': [
+      WordExample(
+        english: 'Every new employee must attend the safety training session.',
+        korean: '모든 신입 직원은 안전 교육에 참석해야 합니다.',
+      ),
+    ],
+    'employer': [
+      WordExample(
+        english: 'Your employer will provide the necessary equipment for remote work.',
+        korean: '고용주가 재택근무에 필요한 장비를 제공할 것입니다.',
+      ),
+    ],
+    'manager': [
+      WordExample(
+        english: 'Please submit your vacation request to your manager by Friday.',
+        korean: '휴가 신청서를 금요일까지 관리자에게 제출해 주세요.',
+      ),
+    ],
+    'department': [
+      WordExample(
+        english: 'The marketing department is hiring two new designers this month.',
+        korean: '마케팅 부서는 이번 달에 디자이너 두 명을 새로 채용합니다.',
+      ),
+    ],
+    'company': [
+      WordExample(
+        english: 'The company celebrated its twentieth anniversary last week.',
+        korean: '회사는 지난주 창립 20주년을 기념했습니다.',
+      ),
+    ],
+    'contract': [
+      WordExample(
+        english: 'Both parties signed the contract after reviewing the final terms.',
+        korean: '양측은 최종 조건을 검토한 후 계약서에 서명했습니다.',
+      ),
+    ],
+    'receive': [
+      WordExample(
+        english: 'You will receive a confirmation e-mail within 24 hours.',
+        korean: '24시간 이내에 확인 이메일을 받으실 것입니다.',
+      ),
+    ],
+    'send': [
+      WordExample(
+        english: 'Could you send me the updated price list this afternoon?',
+        korean: '오늘 오후에 업데이트된 가격표를 보내 주시겠어요?',
+      ),
+    ],
+    'report': [
+      WordExample(
+        english: 'The quarterly sales report is due at the end of the month.',
+        korean: '분기 판매 보고서는 월말까지 제출해야 합니다.',
+      ),
+    ],
+    'reply': [
+      WordExample(
+        english: 'Please reply to this e-mail to confirm your attendance.',
+        korean: '참석 여부를 확인하시려면 이 이메일에 회신해 주세요.',
+      ),
+    ],
+    'book': [
+      WordExample(
+        english: 'I would like to book a table for four at seven o\'clock.',
+        korean: '7시에 4명 자리를 예약하고 싶습니다.',
+      ),
+    ],
+    'store': [
+      WordExample(
+        english: 'All confidential files should be stored in a locked cabinet.',
+        korean: '모든 기밀 파일은 잠긴 캐비닛에 보관해야 합니다.',
+      ),
+    ],
+    'visitor': [
+      WordExample(
+        english: 'All visitors must sign in at the front desk.',
+        korean: '모든 방문객은 안내 데스크에서 서명해야 합니다.',
+      ),
+    ],
+    'coworker': [
+      WordExample(
+        english: 'My coworker helped me finish the presentation on time.',
+        korean: '동료가 발표 자료를 제때 끝내도록 도와주었습니다.',
+      ),
+    ],
+    'staff': [
+      WordExample(
+        english: 'The hotel staff were very friendly and helpful.',
+        korean: '호텔 직원들은 매우 친절하고 도움이 되었습니다.',
+      ),
+    ],
+    'memo': [
+      WordExample(
+        english: 'A memo about the new dress code was sent to all employees.',
+        korean: '새 복장 규정에 관한 메모가 전 직원에게 발송되었습니다.',
+      ),
+    ],
+    'document': [
+      WordExample(
+        english: 'Please bring a copy of your identification document to the interview.',
+        korean: '면접에 신분증 사본을 지참해 주세요.',
+      ),
+    ],
+    'copy': [
+      WordExample(
+        english: 'Make ten copies of the agenda for tomorrow\'s meeting.',
+        korean: '내일 회의 안건을 10부 복사해 주세요.',
+      ),
+    ],
+    'print': [
+      WordExample(
+        english: 'You can print your boarding pass at home before the flight.',
+        korean: '비행 전에 집에서 탑승권을 인쇄할 수 있습니다.',
+      ),
+    ],
+    'printer': [
+      WordExample(
+        english: 'The printer on the second floor is out of paper.',
+        korean: '2층 프린터에 용지가 떨어졌습니다.',
+      ),
+    ],
+    'photocopier': [
+      WordExample(
+        english: 'A technician is coming to repair the photocopier this afternoon.',
+        korean: '오늘 오후에 기술자가 복사기를 수리하러 옵니다.',
+      ),
+    ],
+    'cabinet': [
+      WordExample(
+        english: 'The contracts are kept in the filing cabinet next to my desk.',
+        korean: '계약서는 제 책상 옆 서류 캐비닛에 보관되어 있습니다.',
+      ),
+    ],
+    'desk': [
+      WordExample(
+        english: 'Please leave the package on my desk if I am not in the office.',
+        korean: '제가 사무실에 없으면 소포를 제 책상 위에 두세요.',
+      ),
+    ],
+    'lunch break': [
+      WordExample(
+        english: 'The store closes for a one-hour lunch break at noon.',
+        korean: '가게는 정오에 한 시간 동안 점심시간으로 문을 닫습니다.',
+      ),
+    ],
+    'vacation': [
+      WordExample(
+        english: 'Ms. Lee will be on vacation until the end of next week.',
+        korean: '이 씨는 다음 주 말까지 휴가 중입니다.',
+      ),
+    ],
+    'holiday': [
+      WordExample(
+        english: 'The office will be closed on Monday for the national holiday.',
+        korean: '월요일은 국경일이라 사무실이 휴무입니다.',
+      ),
+    ],
+    'sick leave': [
+      WordExample(
+        english: 'Employees who take sick leave must notify their supervisor in advance.',
+        korean: '병가를 내는 직원은 사전에 상사에게 알려야 합니다.',
+      ),
+    ],
   };
 }

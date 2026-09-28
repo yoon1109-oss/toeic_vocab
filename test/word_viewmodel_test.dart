@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toeic_vocab/data/word_data.dart';
 import 'package:toeic_vocab/viewmodels/word_viewmodel.dart';
 
 void main() {
@@ -53,5 +54,69 @@ void main() {
     expect(vm2.currentWordIndex, savedIdx);
     // 핵심: 셔플 시드가 복원되어 같은 순서 → 같은 단어를 가리킨다
     expect(vm2.currentWord!.english, savedWord);
+  });
+
+  test('TOEIC 레벨마다 중복 없는 500단어', () {
+    final all = <String>[];
+    for (final level in [1, 2, 3]) {
+      final words = WordData.words[level]!;
+      expect(words.length, 500, reason: 'level $level');
+      all.addAll(words.map((w) => w.english.toLowerCase()));
+    }
+    expect(all.toSet().length, all.length);
+  });
+
+  test('레벨을 바꿨다 돌아오면 이전 위치에서 이어진다', () async {
+    final vm = WordViewModel();
+    await settle();
+    vm.nextWord();
+    vm.nextWord();
+    final word = vm.currentWord!.english;
+
+    vm.selectLevel(3);
+    expect(vm.currentWordIndex, 0);
+
+    vm.selectLevel(1);
+    expect(vm.currentWordIndex, 2);
+    expect(vm.currentWord!.english, word);
+  });
+
+  test('모드를 바꿨다 돌아오면 마지막 레벨과 위치가 복원된다', () async {
+    final vm = WordViewModel();
+    await settle();
+    vm.selectLevel(2);
+    vm.nextWord();
+    final word = vm.currentWord!.english;
+    await settle();
+
+    vm.setMode(VocabMode.opic);
+    expect(vm.currentLevel, 1);
+    vm.setMode(VocabMode.toeic);
+    expect(vm.currentLevel, 2);
+    expect(vm.currentWord!.english, word);
+  });
+
+  test('퀴즈는 TOEIC·OPIc 모든 레벨에 적용된다', () async {
+    final vm = WordViewModel();
+    await settle();
+    for (final mode in [VocabMode.toeic, VocabMode.opic]) {
+      vm.setMode(mode);
+      for (final level in [1, 2, 3]) {
+        vm.selectLevel(level);
+        expect(vm.isQuizScope, isTrue, reason: '$mode level $level');
+      }
+    }
+    vm.setMode(VocabMode.opicPhrase);
+    expect(vm.isQuizScope, isFalse);
+  });
+
+  test('TOEIC 세트를 마치면 퀴즈가 시작된다', () async {
+    final vm = WordViewModel();
+    await settle();
+    for (var i = 0; i < WordViewModel.wordsPerSet; i++) {
+      vm.nextWord();
+    }
+    expect(vm.showQuiz, isTrue);
+    expect(vm.quizController!.total, WordViewModel.wordsPerSet);
   });
 }
