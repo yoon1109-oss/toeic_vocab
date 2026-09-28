@@ -11,6 +11,7 @@ import 'completion_view.dart';
 import 'quiz_screen.dart';
 import 'app_drawer.dart';
 import 'navigation_buttons.dart';
+import 'sliding_card_switcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +24,19 @@ class _HomeScreenState extends State<HomeScreen> {
   final WordViewModel _viewModel = WordViewModel();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ExamplesRepository _examples = const ExamplesRepository();
+
+  // 카드 전환 애니메이션 방향: 1 = 다음, -1 = 이전
+  int _slideDirection = 1;
+
+  void _goNext() {
+    _slideDirection = 1;
+    _isPhraseMode ? _viewModel.nextPhrase() : _viewModel.nextWord();
+  }
+
+  void _goPrevious() {
+    _slideDirection = -1;
+    _isPhraseMode ? _viewModel.previousPhrase() : _viewModel.previousWord();
+  }
 
   @override
   void initState() {
@@ -294,20 +308,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                       final velocity =
                                           details.primaryVelocity ?? 0;
                                       if (velocity < -300) {
-                                        _viewModel.nextPhrase();
+                                        _goNext();
                                       } else if (velocity > 300 &&
                                           !_viewModel.isFirstPhrase) {
-                                        _viewModel.previousPhrase();
+                                        _goPrevious();
                                       }
                                     },
-                                    child: PhraseCardView(
-                                      phrase: _viewModel.currentPhrase!,
-                                      phraseNumber:
-                                          _viewModel.currentPhraseNumber,
-                                      totalPhrases:
-                                          _viewModel.totalPhrasesInTopic,
-                                      onSpeak: () => _viewModel.speak(
-                                          _viewModel.currentPhrase!.english),
+                                    child: SlidingCardSwitcher(
+                                      cardId: _viewModel.currentPhrase!.english,
+                                      direction: _slideDirection,
+                                      child: PhraseCardView(
+                                        phrase: _viewModel.currentPhrase!,
+                                        phraseNumber:
+                                            _viewModel.currentPhraseNumber,
+                                        totalPhrases:
+                                            _viewModel.totalPhrasesInTopic,
+                                        onSpeak: () => _viewModel.speak(
+                                            _viewModel.currentPhrase!.english),
+                                      ),
                                     ),
                                   )
                                 : const SizedBox.shrink())
@@ -363,30 +381,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                           final velocity =
                                               details.primaryVelocity ?? 0;
                                           if (velocity < -300) {
-                                            _viewModel.nextWord();
+                                            _goNext();
                                           } else if (velocity > 300 &&
                                               !_viewModel.isFirstWord) {
-                                            _viewModel.previousWord();
+                                            _goPrevious();
                                           }
                                         },
-                                        child: WordCardView(
-                                          word: _viewModel.currentWord!,
-                                          wordNumberInSet:
-                                              _viewModel.currentWordNumberInSet,
-                                          totalInSet:
-                                              _viewModel.currentSet.length,
-                                          onSpeak: () => _viewModel.speak(
-                                            _viewModel.currentWord!.english,
-                                            phonetic: _viewModel
-                                                .currentWord!.phonetic,
+                                        child: SlidingCardSwitcher(
+                                          cardId:
+                                              '${_viewModel.currentSetIndex}:'
+                                              '${_viewModel.currentWord!.english}',
+                                          direction: _slideDirection,
+                                          child: WordCardView(
+                                            word: _viewModel.currentWord!,
+                                            wordNumberInSet: _viewModel
+                                                .currentWordNumberInSet,
+                                            totalInSet:
+                                                _viewModel.currentSet.length,
+                                            onSpeak: () => _viewModel.speak(
+                                              _viewModel.currentWord!.english,
+                                              phonetic: _viewModel
+                                                  .currentWord!.phonetic,
+                                            ),
+                                            isFavorite: _viewModel.isFavorite(
+                                                _viewModel
+                                                    .currentWord!.english),
+                                            onToggleFavorite: () => _viewModel
+                                                .toggleFavorite(_viewModel
+                                                    .currentWord!.english),
+                                            examples: _getExamples(_viewModel
+                                                .currentWord!.english),
                                           ),
-                                          isFavorite: _viewModel.isFavorite(
-                                              _viewModel.currentWord!.english),
-                                          onToggleFavorite: () => _viewModel
-                                              .toggleFavorite(_viewModel
-                                                  .currentWord!.english),
-                                          examples: _getExamples(
-                                              _viewModel.currentWord!.english),
                                         ),
                                       )
                                     : const SizedBox.shrink(),
@@ -408,12 +433,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     isFirstWord: _isPhraseMode
                         ? _viewModel.isFirstPhrase
                         : _viewModel.isFirstWord,
-                    onPrevious: _isPhraseMode
-                        ? () => _viewModel.previousPhrase()
-                        : () => _viewModel.previousWord(),
-                    onNext: _isPhraseMode
-                        ? () => _viewModel.nextPhrase()
-                        : () => _viewModel.nextWord(),
+                    onPrevious: _goPrevious,
+                    onNext: _goNext,
                   ),
                 ),
               ),
