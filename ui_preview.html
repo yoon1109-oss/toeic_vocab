@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI 프리뷰 — Before / After</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 32px 16px;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .phone-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+  }
+
+  /* ── 폰 쉘 ── */
+  .phone {
+    width: 360px;
+    height: 780px;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 2px #ccc;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .notch {
+    width: 120px; height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto;
+  }
+
+  /* ── 공통 앱바 ── */
+  .appbar {
+    display: flex; align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+  .appbar .icon { font-size: 22px; cursor: pointer; }
+  .appbar .title { font-size: 17px; font-weight: 700; flex: 1; }
+
+  /* ══════════════════════════════
+     BEFORE
+  ══════════════════════════════ */
+  .before { background: #f8f9ff; }
+
+  .before .tabs {
+    margin: 0 16px 8px;
+    background: #eef0f4;
+    border-radius: 14px;
+    display: flex;
+    padding: 4px;
+  }
+  .before .tab {
+    flex: 1; text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px; font-weight: 600;
+    color: #888;
+    cursor: pointer;
+  }
+  .before .tab.active {
+    background: #2196F3; color: #fff;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.35);
+  }
+
+  .before .progress-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 24px 8px;
+    font-size: 13px; color: #888;
+  }
+
+  /* 빈 공간 (문제점) */
+  .before .spacer-top { flex: 1; }
+
+  .before .card {
+    margin: 0 24px;
+    background: #fff;
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0;
+  }
+
+  .before .dots { display: flex; gap: 4px; margin-bottom: 32px; }
+  .before .dot {
+    width: 8px; height: 8px;
+    border-radius: 4px;
+    background: #dde;
+  }
+  .before .dot.active { width: 20px; background: #2196F3; }
+
+  .before .word-en { font-size: 38px; font-weight: 800; color: #1a1a2e; }
+  .before .phonetic { font-size: 18px; color: #888; margin-top: 10px; }
+  .before .divider { width: 56px; height: 2px; background: #e0e0e8; margin: 18px 0; border-radius: 1px; }
+  .before .word-ko { font-size: 24px; color: #2a2a3e; font-weight: 500; margin-bottom: 24px; }
+  .before .speaker-btn {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: #e8eeff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; cursor: pointer;
+  }
+  .before .star-btn {
+    position: absolute; right: 40px; bottom: 216px;
+    font-size: 28px; cursor: pointer; color: #ccc;
+  }
+
+  .before .spacer-bottom { flex: 1; }
+
+  .before .nav-btns {
+    display: flex; gap: 20px;
+    justify-content: center;
+    padding: 0 0 40px;
+  }
+  .before .btn-prev {
+    width: 136px; height: 52px;
+    border: 2px solid #2196F3;
+    border-radius: 26px;
+    background: transparent;
+    color: #2196F3;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .before .btn-next {
+    width: 136px; height: 52px;
+    background: #2c4fa3;
+    border-radius: 26px; border: none;
+    color: #fff;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+
+  /* ══════════════════════════════
+     AFTER
+  ══════════════════════════════ */
+  .after { background: #f8f9ff; }
+
+  .after .tabs {
+    margin: 0 16px 4px;
+    background: #eef0f4;
+    border-radius: 14px;
+    display: flex; padding: 4px;
+  }
+  .after .tab {
+    flex: 1; text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px; font-weight: 600; color: #888;
+    cursor: pointer;
+  }
+  .after .tab.active {
+    background: #2196F3; color: #fff;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.35);
+  }
+
+  .after .progress-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 24px 6px;
+    font-size: 13px; color: #888;
+  }
+
+  /* ★ 추가: 진행률 바 */
+  .after .progress-bar-wrap {
+    margin: 0 24px 8px;
+    height: 5px;
+    background: #e4e6f0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .after .progress-bar-fill {
+    height: 100%; width: 10%;
+    background: linear-gradient(90deg, #2196F3, #42a5f5);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  /* ★ 카드가 화면 꽉 채움 */
+  .after .card {
+    margin: 0 16px;
+    flex: 1;
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px 32px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+    display: flex; flex-direction: column; align-items: center;
+    border-top: 4px solid #2196F3; /* ★ 레벨 컬러 강조 */
+    position: relative;
+  }
+
+  .after .dots { display: flex; gap: 4px; margin-bottom: 0; }
+  .after .dot { width: 8px; height: 8px; border-radius: 4px; background: #dde; }
+  .after .dot.active { width: 20px; background: #2196F3; }
+
+  .after .card-content {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .after .word-en { font-size: 40px; font-weight: 800; color: #1a1a2e; letter-spacing: -0.5px; }
+  .after .phonetic { font-size: 18px; color: #888; margin-top: 10px; }
+  .after .divider { width: 56px; height: 2px; background: #e0e0e8; margin: 16px 0; border-radius: 1px; }
+  .after .word-ko { font-size: 26px; color: #2a2a3e; font-weight: 500; }
+
+  /* ★ 하단 액션 영역 */
+  .after .card-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f8;
+    margin-top: 16px;
+  }
+  .after .speaker-btn {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #e8eeff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; cursor: pointer;
+  }
+  .after .word-count { font-size: 13px; color: #aaa; font-weight: 600; }
+  .after .star-btn { font-size: 28px; cursor: pointer; color: #ccc; }
+
+  /* ★ 버튼이 카드 바로 아래 */
+  .after .nav-btns {
+    display: flex; gap: 16px;
+    justify-content: center;
+    padding: 12px 16px 36px;
+  }
+  .after .btn-prev {
+    width: 140px; height: 52px;
+    border: 2px solid #2196F3;
+    border-radius: 26px;
+    background: transparent;
+    color: #2196F3;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .after .btn-next {
+    width: 140px; height: 52px;
+    background: #2c4fa3;
+    border-radius: 26px; border: none;
+    color: #fff;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+
+  /* 변경 사항 요약 */
+  .changes {
+    width: 360px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .changes h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #333; }
+  .changes ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .changes li { font-size: 13px; color: #555; display: flex; gap: 8px; align-items: flex-start; }
+  .changes .tag-before {
+    background: #fee; color: #c44; border-radius: 4px;
+    font-size: 11px; font-weight: 700; padding: 1px 6px; white-space: nowrap; margin-top: 1px;
+  }
+  .changes .tag-after {
+    background: #e8f4ff; color: #1976d2; border-radius: 4px;
+    font-size: 11px; font-weight: 700; padding: 1px 6px; white-space: nowrap; margin-top: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- BEFORE -->
+<div class="phone-wrapper">
+  <div class="label">⬅ 현재 (Before)</div>
+  <div class="phone before">
+    <div class="notch"></div>
+    <div class="appbar">
+      <span class="icon">☰</span>
+      <span class="title">TOEIC 단어</span>
+    </div>
+    <div class="tabs">
+      <div class="tab active">Lv.1</div>
+      <div class="tab">Lv.2</div>
+      <div class="tab">Lv.3</div>
+    </div>
+    <div class="progress-row">
+      <span>세트 1 / 50</span>
+      <span>1 / 500</span>
+    </div>
+
+    <!-- 문제: 빈 공간 -->
+    <div class="spacer-top"></div>
+
+    <div class="card" style="position:relative">
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="word-en">install</div>
+      <div class="phonetic">/ɪnˈstɔːl/</div>
+      <div class="divider"></div>
+      <div class="word-ko">설치하다</div>
+      <div class="speaker-btn">🔊</div>
+      <div style="position:absolute; right:12px; bottom:12px; font-size:28px; color:#ccc; cursor:pointer">☆</div>
+    </div>
+
+    <!-- 문제: 빈 공간 -->
+    <div class="spacer-bottom"></div>
+
+    <div class="nav-btns">
+      <button class="btn-prev">‹ 이전</button>
+      <button class="btn-next">다음 ›</button>
+    </div>
+  </div>
+</div>
+
+<!-- AFTER -->
+<div class="phone-wrapper">
+  <div class="label">개선 후 (After) ✨</div>
+  <div class="phone after">
+    <div class="notch"></div>
+    <div class="appbar">
+      <span class="icon">☰</span>
+      <span class="title">TOEIC 단어</span>
+    </div>
+    <div class="tabs">
+      <div class="tab active">Lv.1</div>
+      <div class="tab">Lv.2</div>
+      <div class="tab">Lv.3</div>
+    </div>
+    <div class="progress-row">
+      <span>세트 1 / 50</span>
+      <span>1 / 500</span>
+    </div>
+
+    <!-- ★ 진행률 바 -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill"></div>
+    </div>
+
+    <!-- ★ 카드가 남은 공간을 모두 차지 -->
+    <div class="card">
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="card-content">
+        <div class="word-en">install</div>
+        <div class="phonetic">/ɪnˈstɔːl/</div>
+        <div class="divider"></div>
+        <div class="word-ko">설치하다</div>
+      </div>
+      <!-- ★ 스피커 + 번호 + 별표를 카드 하단에 통합 -->
+      <div class="card-actions">
+        <div class="speaker-btn">🔊</div>
+        <div class="word-count">1 / 10</div>
+        <div class="star-btn">☆</div>
+      </div>
+    </div>
+
+    <!-- ★ 버튼이 카드 바로 아래 -->
+    <div class="nav-btns">
+      <button class="btn-prev">‹ 이전</button>
+      <button class="btn-next">다음 ›</button>
+    </div>
+  </div>
+</div>
+
+<!-- 변경 요약 -->
+<div class="phone-wrapper">
+  <div class="label">변경 사항 요약</div>
+  <div class="changes">
+    <h3>📋 A안 — 현재 구조 개선 상세</h3>
+    <ul>
+      <li>
+        <span class="tag-before">제거</span>
+        카드 위·아래 빈 공간 → 카드가 화면 꽉 채우도록 flex:1 적용
+      </li>
+      <li>
+        <span class="tag-after">추가</span>
+        레벨별 카드 상단 컬러 보더 (Lv.1 파랑 / Lv.2 주황 / Lv.3 빨강)
+      </li>
+      <li>
+        <span class="tag-after">추가</span>
+        전체 진행률 바 (세트 진행 상황을 한눈에)
+      </li>
+      <li>
+        <span class="tag-after">개선</span>
+        스피커 + 1/10 번호 + 별표 → 카드 하단 액션 바로 통합
+      </li>
+      <li>
+        <span class="tag-after">개선</span>
+        이전/다음 버튼이 카드 바로 아래 붙어서 빈공간 없음
+      </li>
+      <li>
+        <span class="tag-after">유지</span>
+        전체 레이아웃 구조, 컬러 시스템, 폰트 크기 — 큰 구조 변경 없음
+      </li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

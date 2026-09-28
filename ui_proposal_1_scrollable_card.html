@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Proposal 1 — 카드 내부 스크롤 + 즐겨찾기 인라인</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+  }
+
+  .phone-frame {
+    width: 375px;
+    height: 812px;
+    background: #f5f5f7;
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 0 0 2px #333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 375px;
+  }
+  .sub-label {
+    color: #aaa;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 16px;
+    width: 375px;
+    line-height: 1.5;
+  }
+
+  /* ── Status Bar ── */
+  .status-bar {
+    background: #fff;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .status-time { font-size: 15px; font-weight: 600; }
+  .status-icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+
+  /* ── App Bar ── */
+  .app-bar {
+    background: #fff;
+    padding: 8px 16px 8px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .menu-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .menu-btn svg { width: 22px; height: 22px; }
+  .app-title { font-size: 18px; font-weight: 700; margin-left: 4px; }
+
+  /* ── Level Tabs ── */
+  .level-tabs {
+    background: #fff;
+    padding: 4px 16px 12px;
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .tab {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  .tab.active { background: #6750A4; color: #fff; }
+  .tab.inactive { background: #f0edf6; color: #6750A4; }
+
+  /* ── Progress ── */
+  .progress-area {
+    padding: 4px 24px 10px;
+    background: #f5f5f7;
+    flex-shrink: 0;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 5px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #6750A4;
+    border-radius: 3px;
+    width: 40%;
+  }
+
+  /* ── Card Area (KEY: Expanded + scrollable) ── */
+  .card-area {
+    flex: 1;
+    overflow: hidden;
+    padding: 4px 24px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .word-card {
+    background: #fff;
+    border-radius: 24px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* KEY */
+  }
+
+  /* 상단 헤더: 즐겨찾기 + 점 진행표시 인라인 */
+  .card-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .dot-progress {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 4px;
+    background: #e0e0e0;
+  }
+  .dot.active { width: 20px; background: #6750A4; }
+  .dot.done { background: #6750A4; }
+
+  .fav-btn {
+    width: 36px; height: 36px;
+    border: none; background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* 단어 정보: flex-shrink: 0 → 항상 보임 */
+  .word-info {
+    padding: 16px 24px 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .word-english { font-size: 38px; font-weight: 700; color: #1c1b1f; letter-spacing: -0.5px; }
+  .word-phonetic { font-size: 18px; color: #7a7a8c; margin-top: 8px; }
+  .word-meaning { font-size: 22px; color: #1c1b1f; margin-top: 28px; line-height: 1.4; }
+  .speak-btn {
+    margin-top: 20px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #ede7f6;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: auto; margin-right: auto;
+  }
+  .speak-btn svg { width: 28px; height: 28px; fill: #6750A4; }
+
+  /* 구분선 */
+  .divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 0 20px;
+    flex-shrink: 0;
+  }
+
+  /* 예문 섹션: flex: 1 + overflow scroll → 남은 공간 채우며 스크롤 */
+  .examples-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 24px 16px;
+    min-height: 0; /* KEY: flex child scrollable */
+  }
+  .examples-section::-webkit-scrollbar { width: 3px; }
+  .examples-section::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+
+  .examples-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #6750A4;
+    margin-bottom: 12px;
+  }
+  .example-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 13px;
+  }
+  .example-badge {
+    width: 22px; height: 22px;
+    background: #ede7f6;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #6750A4;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .example-text { flex: 1; }
+  .example-en { font-size: 13px; font-weight: 600; color: #1c1b1f; line-height: 1.5; }
+  .example-ko { font-size: 12px; color: #7a56c8; line-height: 1.5; margin-top: 2px; }
+
+  /* 스크롤 힌트 그라데이션 */
+  .scroll-hint {
+    position: relative;
+  }
+  .scroll-hint::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 24px;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
+  }
+
+  /* ── 네비게이션 버튼 (항상 고정) ── */
+  .nav-buttons {
+    flex-shrink: 0;
+    padding: 12px 24px 36px;
+    display: flex;
+    gap: 16px;
+    background: #f5f5f7;
+  }
+  .btn-prev {
+    flex: 1; height: 52px;
+    border-radius: 26px;
+    border: 2px solid #6750A4;
+    background: transparent;
+    color: #6750A4;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .btn-next {
+    flex: 1; height: 52px;
+    border-radius: 26px;
+    border: none;
+    background: #6750A4;
+    color: white;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+
+  /* ── 배지 (변경 포인트 설명) ── */
+  .badge-list {
+    margin-top: 12px;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .badge {
+    background: rgba(103,80,164,0.15);
+    border: 1px solid rgba(103,80,164,0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #c9b8ff;
+    line-height: 1.5;
+  }
+  .badge strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div style="display:flex;flex-direction:column;align-items:center;">
+  <div class="label">제안 1 — 카드 내부 스크롤</div>
+  <div class="sub-label">예문이 길어지면 카드 안에서 스크롤<br>하단 버튼은 항상 고정</div>
+
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <div class="status-icons">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="#333"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0.5" width="3" height="11.5" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity=".3"/></svg>
+        <svg width="16" height="12" viewBox="0 0 24 18" fill="#333"><path d="M12 4C8.5 4 5.4 5.4 3.1 7.7L1 5.6C3.9 2.6 7.8 1 12 1s8.1 1.6 11 4.6L20.9 7.7C18.6 5.4 15.5 4 12 4zM12 10c-1.9 0-3.6.7-4.9 1.9L5.2 10C6.9 8.4 9.3 7.5 12 7.5s5.1.9 6.8 2.5l-1.9 1.9C15.6 10.7 13.9 10 12 10zM12 16c-.9 0-1.7-.4-2.3-1L12 12.8l2.3 2.2c-.6.6-1.4 1-2.3 1z"/></svg>
+        <span style="font-size:13px;font-weight:600;">100%</span>
+      </div>
+    </div>
+
+    <!-- App Bar -->
+    <div class="app-bar">
+      <button class="menu-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <span class="app-title" style="margin-left:8px;">OPIc 단어</span>
+    </div>
+
+    <!-- Level Tabs -->
+    <div class="level-tabs">
+      <button class="tab active">Beginner A</button>
+      <button class="tab inactive">Beginner B</button>
+      <button class="tab inactive">Intermediate</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-area">
+      <div class="progress-row">
+        <span>세트 2 / 10</span>
+        <span>8 / 50</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- Card Area -->
+    <div class="card-area">
+      <div class="word-card">
+
+        <!-- 헤더: 진행 점 + 즐겨찾기 (인라인 배치) -->
+        <div class="card-header">
+          <div class="dot-progress">
+            <div class="dot done"></div>
+            <div class="dot done"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <!-- ★ 즐겨찾기 버튼을 우측 상단으로 이동 → 예문과 겹침 없음 -->
+          <button class="fav-btn">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="#FFD700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+
+        <!-- 단어 정보 (고정 영역) -->
+        <div class="word-info">
+          <div class="word-english">accomplish</div>
+          <div class="word-phonetic">/əˈkɒmplɪʃ/</div>
+          <div class="word-meaning">성취하다, 이루다</div>
+          <button class="speak-btn">
+            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          </button>
+        </div>
+
+        <!-- 구분선 -->
+        <div class="divider"></div>
+
+        <!-- 예문 (스크롤 영역) — flex:1 + overflow-y:auto -->
+        <div class="examples-section">
+          <div class="examples-label">EXAMPLES</div>
+
+          <div class="example-item">
+            <div class="example-badge">1</div>
+            <div class="example-text">
+              <div class="example-en">She accomplished her goal of running a marathon.</div>
+              <div class="example-ko">그녀는 마라톤 완주라는 목표를 성취했다.</div>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="example-badge">2</div>
+            <div class="example-text">
+              <div class="example-en">The team accomplished the project ahead of schedule.</div>
+              <div class="example-ko">팀은 일정보다 일찍 프로젝트를 완수했다.</div>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="example-badge">3</div>
+            <div class="example-text">
+              <div class="example-en">It's hard to accomplish anything without focus.</div>
+              <div class="example-ko">집중력 없이는 무엇이든 이루기 어렵다.</div>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="example-badge">4</div>
+            <div class="example-text">
+              <div class="example-en">He accomplished a lot in just one year.</div>
+              <div class="example-ko">그는 단 1년 만에 많은 것을 이뤄냈다.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 네비게이션 버튼 (항상 고정, 카드와 겹치지 않음) -->
+    <div class="nav-buttons">
+      <button class="btn-prev">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        이전
+      </button>
+      <button class="btn-next">
+        다음
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="badge-list">
+    <div class="badge"><strong>✅ 핵심 변경:</strong> 카드가 flex:1로 남은 공간 채움. 예문 영역은 overflow-y:scroll로 카드 안에서 스크롤.</div>
+    <div class="badge"><strong>✅ 즐겨찾기:</strong> Positioned → 카드 헤더 우측 상단 인라인 배치로 겹침 완전 해소.</div>
+    <div class="badge"><strong>✅ 하단 버튼:</strong> flex-shrink:0으로 항상 고정. 카드 높이와 무관하게 겹침 없음.</div>
+  </div>
+</div>
+
+</body>
+</html>

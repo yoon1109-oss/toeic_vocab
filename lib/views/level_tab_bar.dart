@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
+import '../viewmodels/word_viewmodel.dart';
 
+/// 컬러 헤더 위에 올라가는 레벨 탭바.
+/// 선택된 탭은 onPrimary(흰색) 알약, 나머지는 반투명 텍스트.
 class LevelTabBar extends StatelessWidget {
   final int selectedLevel;
   final ValueChanged<int> onSelectLevel;
+  final VocabMode mode;
 
   const LevelTabBar({
     super.key,
     required this.selectedLevel,
     required this.onSelectLevel,
+    this.mode = VocabMode.toeic,
   });
 
-  static const List<Color> levelColors = [
-    Color(0xFF2196F3), // Level 1 - Blue
-    Color(0xFFFF9800), // Level 2 - Orange
-    Color(0xFFF44336), // Level 3 - Red
-  ];
+  List<String> get _labels {
+    if (mode == VocabMode.toeic) return ['Lv.1', 'Lv.2', 'Lv.3'];
+    if (mode == VocabMode.opicPhrase) return ['1단계', '2단계', '3단계'];
+    return ['초급', '중급', '고급'];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final onHeader = colorScheme.onPrimary;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
-          borderRadius: BorderRadius.circular(16),
+          color: onHeader.withValues(alpha: 0.15),
+          borderRadius: BorderRadius.circular(999),
         ),
         padding: const EdgeInsets.all(4),
         child: Row(
           children: List.generate(3, (index) {
             final level = index + 1;
             final isSelected = selectedLevel == level;
-            final color = levelColors[index];
 
             return Expanded(
               child: GestureDetector(
@@ -38,30 +45,21 @@ class LevelTabBar extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeInOut,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 9),
                   decoration: BoxDecoration(
-                    color: isSelected ? color : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: isSelected
-                        ? [
-                            BoxShadow(
-                              color: color.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            )
-                          ]
-                        : null,
+                    color: isSelected ? onHeader : Colors.transparent,
+                    borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
-                    'Lv.$level',
+                    _labels[index],
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight:
                           isSelected ? FontWeight.bold : FontWeight.w500,
                       color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                          ? colorScheme.primary
+                          : onHeader.withValues(alpha: 0.8),
                     ),
                   ),
                 ),

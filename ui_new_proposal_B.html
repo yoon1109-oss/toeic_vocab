@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시안 B — 2단 분리 레이아웃 + 전체 예문 표시</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f0f1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, 'Noto Sans KR', 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+  }
+
+  .phone-frame {
+    width: 375px;
+    height: 812px;
+    border-radius: 48px;
+    overflow: hidden;
+    box-shadow:
+      0 50px 100px rgba(0,0,0,0.6),
+      inset 0 0 0 2px #2a2a3a,
+      inset 0 0 0 4px #111;
+    display: flex;
+    flex-direction: column;
+    background: #FAFAF8;
+  }
+
+  /* ── TOP ZONE (Word) ── */
+  .top-zone {
+    background: #0E1B3D;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Status Bar */
+  .status-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    justify-content: space-between;
+  }
+  .s-time { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.9); }
+  .s-icons { display: flex; gap: 5px; align-items: center; }
+
+  /* App Bar */
+  .app-bar {
+    padding: 4px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .app-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; }
+  .icon-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Level Tabs */
+  .level-tabs {
+    padding: 0 20px 18px;
+    display: flex;
+    gap: 8px;
+  }
+  .tab {
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+  .tab.active { background: #3D8EFF; color: #fff; }
+  .tab.inactive { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+
+  /* Progress */
+  .progress-area {
+    padding: 0 20px 20px;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #3D8EFF;
+    border-radius: 2px;
+    width: 22%;
+  }
+
+  /* ── WORD BLOCK — 최우선 정보 ── */
+  .word-block {
+    padding: 8px 24px 32px;
+  }
+  /* 발음기호: 단어와 가깝고 작게 — 시각 무게 최소 */
+  .word-ph {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  /* 영단어: 화면 장악 */
+  .word-en {
+    font-size: 58px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  /* 의미: 색상 강조 — 2순위 정보 */
+  .meaning-row {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .meaning-pill {
+    background: #3D8EFF;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 30px;
+    letter-spacing: -0.3px;
+  }
+  .tts-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: auto;
+  }
+  .tts-btn svg { width: 20px; height: 20px; fill: rgba(255,255,255,0.7); }
+
+  /* Fav + Card nav inline */
+  .card-controls {
+    padding: 0 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dot-nav { display: flex; gap: 5px; align-items: center; }
+  .d { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .d.on { width: 20px; border-radius: 3px; background: #3D8EFF; }
+  .fav-btn {
+    border: none; background: transparent; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px; font-weight: 600;
+  }
+
+  /* ── BOTTOM ZONE (Examples) ── */
+  .bottom-zone {
+    flex: 1;
+    background: #FAFAF8;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* Section Header */
+  .section-header {
+    padding: 20px 24px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #3D8EFF;
+  }
+  .section-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #C0C0C0;
+  }
+
+  /* Example List — 잘림 없이 전체 표시 */
+  .example-list {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .ex-item {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 18px;
+    border-left: 3px solid #3D8EFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ex-item.dim {
+    border-left-color: #E0E0E0;
+    opacity: 0.7;
+  }
+  .ex-num {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #3D8EFF;
+  }
+  .ex-item.dim .ex-num { color: #C0C0C0; }
+  .ex-en {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A1A2E;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+  .ex-highlight { color: #3D8EFF; }
+  .ex-ko {
+    font-size: 12px;
+    color: #8888A8;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  /* Bottom fade hint for more content */
+  .fade-hint {
+    flex-shrink: 0;
+    height: 32px;
+    background: linear-gradient(to bottom, transparent, #FAFAF8);
+    margin-top: -10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Nav Buttons */
+  .nav-buttons {
+    flex-shrink: 0;
+    padding: 8px 16px 28px;
+    display: flex;
+    gap: 12px;
+    background: #FAFAF8;
+  }
+  .btn-prev {
+    flex: 1; height: 52px;
+    border-radius: 26px;
+    border: 1.5px solid #E4E4E4;
+    background: #fff;
+    color: #666;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .btn-next {
+    flex: 2; height: 52px;
+    border-radius: 26px;
+    border: none;
+    background: #0E1B3D;
+    color: white;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+
+  <!-- ── TOP ZONE ── -->
+  <div class="top-zone">
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span class="s-time">9:41</span>
+      <div class="s-icons">
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="rgba(255,255,255,0.8)">
+          <rect x="0" y="4" width="3" height="7" rx="1"/>
+          <rect x="4" y="2.5" width="3" height="8.5" rx="1"/>
+          <rect x="8" y="0.5" width="3" height="10.5" rx="1"/>
+          <rect x="12" y="0" width="3" height="11" rx="1" opacity=".3"/>
+        </svg>
+        <svg width="15" height="11" viewBox="0 0 24 17" fill="rgba(255,255,255,0.8)">
+          <path d="M12 3.5C8.7 3.5 5.7 4.8 3.5 6.9L1.5 4.9C4.2 2.2 7.9.5 12 .5s7.8 1.7 10.5 4.4l-2 2C18.3 4.8 15.3 3.5 12 3.5zM12 9c-2 0-3.8.8-5.1 2.1L5 9.3C6.7 7.5 9.2 6.5 12 6.5s5.3 1 7 2.8l-1.9 1.8C15.8 9.8 14 9 12 9zM12 14.5c-1 0-1.9-.4-2.5-1.1L12 11l2.5 2.4c-.6.7-1.5 1.1-2.5 1.1z"/>
+        </svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+          <rect x="0" y="1" width="21" height="10" rx="3" stroke="rgba(255,255,255,0.8)" stroke-width="1.2"/>
+          <rect x="1.2" y="2.2" width="17" height="7.6" rx="2" fill="rgba(255,255,255,0.8)"/>
+          <path d="M22.5 4.5v3a1.5 1.5 0 0 0 0-3z" fill="rgba(255,255,255,0.8)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- App Bar -->
+    <div class="app-bar">
+      <button class="icon-btn">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round">
+          <line x1="0" y1="1" x2="18" y2="1"/>
+          <line x1="0" y1="6" x2="12" y2="6"/>
+          <line x1="0" y1="11" x2="18" y2="11"/>
+        </svg>
+      </button>
+      <span class="app-title">TOEIC 단어</span>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Level Tabs -->
+    <div class="level-tabs">
+      <button class="tab inactive">Lv.1</button>
+      <button class="tab active">Lv.2</button>
+      <button class="tab inactive">Lv.3</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-area">
+      <div class="progress-row">
+        <span>세트 1 / 50</span>
+        <span>11 / 500</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- Word Block -->
+    <div class="word-block">
+      <div class="word-ph">/læps/</div>
+      <div class="word-en">lapse</div>
+      <div class="meaning-row">
+        <div class="meaning-pill">만료, 실효; 경과하다</div>
+        <button class="tts-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Controls -->
+    <div class="card-controls">
+      <div class="dot-nav">
+        <div class="d on"></div>
+        <div class="d"></div>
+        <div class="d"></div>
+        <div class="d"></div>
+        <div class="d"></div>
+        <div class="d"></div>
+      </div>
+      <button class="fav-btn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        즐겨찾기
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ── BOTTOM ZONE ── -->
+  <div class="bottom-zone">
+
+    <div class="section-header">
+      <span class="section-title">EXAMPLES</span>
+      <span class="section-count">예문 3개</span>
+    </div>
+
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-num">01</div>
+        <div class="ex-en">The contract will <span class="ex-highlight">lapse</span> if not renewed before the deadline.</div>
+        <div class="ex-ko">계약이 만료 전 갱신되지 않으면 효력을 잃습니다.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-num">02</div>
+        <div class="ex-en">Don't let your subscription <span class="ex-highlight">lapse</span> — renew it today.</div>
+        <div class="ex-ko">구독이 만료되지 않도록 오늘 갱신하세요.</div>
+      </div>
+      <div class="ex-item dim">
+        <div class="ex-num">03</div>
+        <div class="ex-en">Several years <span class="ex-highlight">lapsed</span> before they met again.</div>
+        <div class="ex-ko">그들이 다시 만나기까지 몇 년이 경과했다.</div>
+      </div>
+    </div>
+
+    <div class="fade-hint"></div>
+
+    <!-- Nav Buttons -->
+    <div class="nav-buttons">
+      <button class="btn-prev">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#666"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        이전
+      </button>
+      <button class="btn-next">
+        다음
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

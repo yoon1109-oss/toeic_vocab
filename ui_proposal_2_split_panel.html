@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Proposal 2 — 카드 + 예문 분리 패널</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+  }
+
+  .phone-frame {
+    width: 375px;
+    height: 812px;
+    background: #f0edf6;
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 0 0 2px #333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 375px;
+  }
+  .sub-label {
+    color: #aaa;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 16px;
+    width: 375px;
+    line-height: 1.5;
+  }
+
+  /* ── Status Bar ── */
+  .status-bar {
+    background: #f0edf6;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .status-time { font-size: 15px; font-weight: 600; color: #333; }
+  .status-icons { display: flex; gap: 6px; align-items: center; }
+
+  /* ── App Bar ── */
+  .app-bar {
+    padding: 6px 16px 10px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .menu-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .app-title { font-size: 18px; font-weight: 700; color: #1c1b1f; margin-left: 4px; }
+
+  /* ── Level Tabs ── */
+  .level-tabs {
+    padding: 0 16px 10px;
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .tab {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  .tab.active { background: #6750A4; color: #fff; }
+  .tab.inactive { background: rgba(103,80,164,0.12); color: #6750A4; }
+
+  /* ── Progress ── */
+  .progress-area {
+    padding: 0 24px 12px;
+    flex-shrink: 0;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 5px;
+    background: rgba(103,80,164,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #6750A4;
+    border-radius: 3px;
+    width: 40%;
+  }
+
+  /* ── 단어 카드 (항상 컴팩트, 고정 크기) ── */
+  .word-card {
+    margin: 0 20px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(103,80,164,0.12);
+    flex-shrink: 0;
+  }
+
+  .card-top {
+    padding: 16px 20px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-main { flex: 1; text-align: center; }
+
+  .dot-progress {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 4px; background: #e0e0e0; }
+  .dot.active { width: 20px; background: #6750A4; }
+  .dot.done { background: #6750A4; }
+
+  .word-english { font-size: 36px; font-weight: 700; color: #1c1b1f; letter-spacing: -0.5px; }
+  .word-phonetic { font-size: 17px; color: #9e9eb8; margin-top: 6px; }
+  .word-meaning { font-size: 21px; color: #1c1b1f; margin-top: 14px; line-height: 1.4; }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 18px;
+  }
+  .speak-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #ede7f6;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .speak-btn svg { width: 26px; height: 26px; fill: #6750A4; }
+  .fav-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #fff8e1;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fav-btn svg { width: 26px; height: 26px; }
+
+  /* ── 예문 패널 (카드 아래 별도 공간, 스크롤) ── */
+  .examples-panel {
+    flex: 1;
+    min-height: 0;
+    margin: 10px 20px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .examples-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    flex-shrink: 0;
+  }
+  .examples-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .examples-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: #6750A4;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .examples-icon svg { width: 16px; height: 16px; fill: white; }
+  .examples-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4a3f6b;
+    letter-spacing: 0.5px;
+  }
+  .examples-count {
+    font-size: 12px;
+    color: #fff;
+    background: #6750A4;
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-weight: 600;
+  }
+
+  .examples-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 4px 8px;
+  }
+  .examples-scroll::-webkit-scrollbar { width: 3px; }
+  .examples-scroll::-webkit-scrollbar-thumb { background: #c4b5e8; border-radius: 2px; }
+
+  /* 예문 카드 스타일 (각 예문이 작은 카드) */
+  .example-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(103,80,164,0.07);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .example-badge {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, #7c4dbd, #6750A4);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .example-body { flex: 1; }
+  .example-en {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1c1b1f;
+    line-height: 1.5;
+  }
+  .example-en strong {
+    color: #6750A4;
+    background: #ede7f6;
+    border-radius: 3px;
+    padding: 0 2px;
+  }
+  .example-ko {
+    font-size: 12px;
+    color: #7a7a8c;
+    line-height: 1.5;
+    margin-top: 3px;
+  }
+
+  /* ── 네비게이션 버튼 ── */
+  .nav-buttons {
+    flex-shrink: 0;
+    padding: 8px 20px 32px;
+    display: flex;
+    gap: 12px;
+  }
+  .btn-prev {
+    flex: 1; height: 50px;
+    border-radius: 25px;
+    border: 2px solid #6750A4;
+    background: transparent;
+    color: #6750A4;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .btn-next {
+    flex: 1.6; height: 50px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #7c4dbd, #6750A4);
+    color: white;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    box-shadow: 0 4px 12px rgba(103,80,164,0.35);
+  }
+
+  /* 배지 */
+  .badge-list {
+    margin-top: 12px;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .badge {
+    background: rgba(103,80,164,0.15);
+    border: 1px solid rgba(103,80,164,0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #c9b8ff;
+    line-height: 1.5;
+  }
+  .badge strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div style="display:flex;flex-direction:column;align-items:center;">
+  <div class="label">제안 2 — 카드 + 예문 분리 패널</div>
+  <div class="sub-label">단어 카드는 항상 컴팩트하게 고정<br>예문은 카드 아래 독립 패널에서 스크롤</div>
+
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <div class="status-icons">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="#555"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0.5" width="3" height="11.5" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity=".3"/></svg>
+        <svg width="16" height="12" viewBox="0 0 24 18" fill="#555"><path d="M12 4C8.5 4 5.4 5.4 3.1 7.7L1 5.6C3.9 2.6 7.8 1 12 1s8.1 1.6 11 4.6L20.9 7.7C18.6 5.4 15.5 4 12 4zM12 10c-1.9 0-3.6.7-4.9 1.9L5.2 10C6.9 8.4 9.3 7.5 12 7.5s5.1.9 6.8 2.5l-1.9 1.9C15.6 10.7 13.9 10 12 10zM12 16c-.9 0-1.7-.4-2.3-1L12 12.8l2.3 2.2c-.6.6-1.4 1-2.3 1z"/></svg>
+        <span style="font-size:13px;font-weight:600;color:#333;">100%</span>
+      </div>
+    </div>
+
+    <!-- App Bar -->
+    <div class="app-bar">
+      <button class="menu-btn">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <span class="app-title" style="margin-left:8px;">OPIc 단어</span>
+    </div>
+
+    <!-- Level Tabs -->
+    <div class="level-tabs">
+      <button class="tab active">Beginner A</button>
+      <button class="tab inactive">Beginner B</button>
+      <button class="tab inactive">Intermediate</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-area">
+      <div class="progress-row">
+        <span>세트 2 / 10</span>
+        <span>8 / 50</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- ★ 단어 카드: 항상 컴팩트 고정 (예문 없음) -->
+    <div class="word-card">
+      <div class="card-top">
+        <div class="card-main">
+          <div class="dot-progress">
+            <div class="dot done"></div>
+            <div class="dot done"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="word-english">accomplish</div>
+          <div class="word-phonetic">/əˈkɒmplɪʃ/</div>
+          <div class="word-meaning">성취하다, 이루다</div>
+        </div>
+      </div>
+      <!-- 발음 + 즐겨찾기 버튼 나란히 (카드 하단 고정) -->
+      <div class="card-actions">
+        <button class="speak-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </button>
+        <button class="fav-btn">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="#FFD700"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ★ 예문 패널: 카드 아래 독립 영역, 스크롤 가능 -->
+    <div class="examples-panel">
+      <div class="examples-header">
+        <div class="examples-title">
+          <div class="examples-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <span class="examples-label">예문</span>
+        </div>
+        <span class="examples-count">4개</span>
+      </div>
+
+      <div class="examples-scroll">
+        <div class="example-card">
+          <div class="example-badge">1</div>
+          <div class="example-body">
+            <div class="example-en">She <strong>accomplished</strong> her goal of running a marathon.</div>
+            <div class="example-ko">그녀는 마라톤 완주라는 목표를 성취했다.</div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-badge">2</div>
+          <div class="example-body">
+            <div class="example-en">The team <strong>accomplished</strong> the project ahead of schedule.</div>
+            <div class="example-ko">팀은 일정보다 일찍 프로젝트를 완수했다.</div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-badge">3</div>
+          <div class="example-body">
+            <div class="example-en">It's hard to <strong>accomplish</strong> anything without focus.</div>
+            <div class="example-ko">집중력 없이는 무엇이든 이루기 어렵다.</div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-badge">4</div>
+          <div class="example-body">
+            <div class="example-en">He <strong>accomplished</strong> a lot in just one year.</div>
+            <div class="example-ko">그는 단 1년 만에 많은 것을 이뤄냈다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네비게이션 버튼 (항상 고정) -->
+    <div class="nav-buttons">
+      <button class="btn-prev">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        이전
+      </button>
+      <button class="btn-next">
+        다음
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="badge-list">
+    <div class="badge"><strong>✅ 핵심 변경:</strong> 단어 카드는 항상 컴팩트 고정. 예문은 카드 아래 별도 패널로 완전 분리.</div>
+    <div class="badge"><strong>✅ 즐겨찾기:</strong> 카드 하단에 발음 버튼과 나란히 배치 → 겹침 없음.</div>
+    <div class="badge"><strong>✅ 예문 강조:</strong> 문장 내 핵심 단어 하이라이트, 각 예문이 카드 형태로 시각적 구분.</div>
+    <div class="badge"><strong>✅ 하단 버튼:</strong> flex-shrink:0 고정. 예문 수에 관계없이 항상 같은 위치.</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=width=375">
+<title>시안 A — 예문 인라인 확장형</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #F2F0F4;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px;
+    gap: 32px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6750A4;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: #EAE0FF;
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+
+  /* ── 전체 카드 래퍼 (가로 24px 여백) ── */
+  .card-wrapper {
+    width: 375px;
+    padding: 0 24px;
+  }
+
+  /* ── 카드 본체 ── */
+  .card {
+    width: 100%;
+    background: #FFFBFE;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── 카드 상단: 기존 단어 영역 ── */
+  .card-top {
+    padding: 40px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* 진행 점 */
+  .dots {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 36px;
+  }
+  .dot {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(103,80,164,0.2);
+  }
+  .dot.active { width: 20px; background: #6750A4; }
+  .dot.done   { width: 8px;  background: #6750A4; }
+  .dot.todo   { width: 8px; }
+
+  /* 영어 단어 */
+  .word-en {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1C1B1F;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  /* 발음 기호 */
+  .phonetic {
+    font-size: 20px;
+    color: #49454F;
+    margin-bottom: 40px;
+  }
+
+  /* 한글 뜻 */
+  .word-ko {
+    font-size: 24px;
+    color: rgba(28,27,31,0.85);
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  /* 발음 버튼 */
+  .speak-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #EADDFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .speak-btn:hover { background: #D0BCFF; }
+  .speak-btn svg { color: #6750A4; }
+
+  /* ── 구분선 ── */
+  .divider {
+    height: 1px;
+    background: rgba(73,69,79,0.12);
+    margin: 0 24px;
+  }
+
+  /* ── 예문 섹션 ── */
+  .examples-section {
+    padding: 20px 28px 28px;
+  }
+
+  .examples-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #6750A4;
+    margin-bottom: 16px;
+  }
+
+  .example-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .example-item:last-child { margin-bottom: 0; }
+
+  .example-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6750A4;
+    background: #EAE0FF;
+    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .example-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ex-en {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1C1B1F;
+    line-height: 1.5;
+  }
+
+  .ex-ko {
+    font-size: 13px;
+    color: #6750A4;
+    line-height: 1.5;
+  }
+
+  /* 즐겨찾기 */
+  .fav-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 28px;
+    line-height: 1;
+    color: rgba(73,69,79,0.4);
+    transition: color 0.15s;
+  }
+  .fav-btn.active { color: #FFD700; }
+
+  /* ── 라벨 ── */
+  .design-label {
+    font-size: 12px;
+    color: #49454F;
+    text-align: center;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<h1>시안 A — 인라인 예문 (항상 표시)</h1>
+
+<!-- 카드 1: 기본 상태 -->
+<div class="card-wrapper">
+  <div class="design-label" style="margin-bottom:10px">단어 카드 — abroad (1/10)</div>
+  <div class="card">
+    <div class="card-top">
+
+      <!-- 진행 점 -->
+      <div class="dots">
+        <div class="dot done"></div>
+        <div class="dot active"></div>
+        <div class="dot todo"></div>
+        <div class="dot todo"></div>
+        <div class="dot todo"></div>
+      </div>
+
+      <!-- 영어 단어 -->
+      <div class="word-en">abroad</div>
+
+      <!-- 발음 -->
+      <div class="phonetic">əˈbrɔːd</div>
+
+      <!-- 한글 뜻 -->
+      <div class="word-ko">해외에, 외국에</div>
+
+      <!-- 발음 버튼 -->
+      <button class="speak-btn">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6750A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 구분선 -->
+    <div class="divider"></div>
+
+    <!-- 예문 섹션 -->
+    <div class="examples-section">
+      <div class="examples-label">예문</div>
+
+      <div class="example-item">
+        <div class="example-num">1</div>
+        <div class="example-text">
+          <div class="ex-en">She studied abroad for a year in Spain.</div>
+          <div class="ex-ko">그녀는 스페인에서 1년간 유학했어.</div>
+        </div>
+      </div>
+
+      <div class="example-item">
+        <div class="example-num">2</div>
+        <div class="example-text">
+          <div class="ex-en">Have you ever traveled abroad by yourself?</div>
+          <div class="ex-ko">혼자 해외여행 해본 적 있어?</div>
+        </div>
+      </div>
+
+      <div class="example-item">
+        <div class="example-num">3</div>
+        <div class="example-text">
+          <div class="ex-en">My brother lives abroad and we video call every week.</div>
+          <div class="ex-ko">내 남동생은 해외에 살고 우리는 매주 영상통화해.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 즐겨찾기 -->
+    <button class="fav-btn">☆</button>
+  </div>
+</div>
+
+<!-- 카드 2: 즐겨찾기 켜진 상태 — achieve -->
+<div class="card-wrapper">
+  <div class="design-label" style="margin-bottom:10px">단어 카드 — achieve (4/10) ★ 즐겨찾기</div>
+  <div class="card">
+    <div class="card-top">
+      <div class="dots">
+        <div class="dot done"></div>
+        <div class="dot done"></div>
+        <div class="dot done"></div>
+        <div class="dot active"></div>
+        <div class="dot todo"></div>
+      </div>
+      <div class="word-en">achieve</div>
+      <div class="phonetic">əˈtʃiːv</div>
+      <div class="word-ko">달성하다</div>
+      <button class="speak-btn">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6750A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+    </div>
+    <div class="divider"></div>
+    <div class="examples-section">
+      <div class="examples-label">예문</div>
+      <div class="example-item">
+        <div class="example-num">1</div>
+        <div class="example-text">
+          <div class="ex-en">She worked hard to achieve her dream of becoming a nurse.</div>
+          <div class="ex-ko">그녀는 간호사가 되겠다는 꿈을 이루기 위해 열심히 했어.</div>
+        </div>
+      </div>
+      <div class="example-item">
+        <div class="example-num">2</div>
+        <div class="example-text">
+          <div class="ex-en">You can achieve anything if you stay focused.</div>
+          <div class="ex-ko">집중만 하면 뭐든 이룰 수 있어.</div>
+        </div>
+      </div>
+      <div class="example-item">
+        <div class="example-num">3</div>
+        <div class="example-text">
+          <div class="ex-en">He finally achieved his goal of running a marathon.</div>
+          <div class="ex-ko">그는 드디어 마라톤 완주라는 목표를 달성했어.</div>
+        </div>
+      </div>
+    </div>
+    <button class="fav-btn active">★</button>
+  </div>
+</div>
+
+</body>
+</html>

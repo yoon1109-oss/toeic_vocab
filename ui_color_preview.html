@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>컬러 시스템 제안 — 2030 타겟</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    background: #f0ede8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px 60px;
+    gap: 48px;
+  }
+
+  h1 {
+    font-size: 15px; font-weight: 700;
+    color: #888; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .section-title {
+    font-size: 22px; font-weight: 800;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .section-sub {
+    font-size: 14px; color: #666; margin-top: 2px; text-align: center;
+  }
+
+  .phones-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .phone-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .screen-label { font-size: 12px; font-weight: 600; color: #888; letter-spacing: 0.5px; }
+
+  /* ── 폰 ── */
+  .phone {
+    width: 280px; height: 580px;
+    border-radius: 36px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15), 0 0 0 2px #bbb;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .notch {
+    width: 90px; height: 22px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 auto;
+  }
+  .appbar {
+    display: flex; align-items: center;
+    padding: 8px 14px; gap: 6px;
+  }
+  .appbar .icon { font-size: 18px; }
+  .appbar .title { font-size: 15px; font-weight: 700; flex: 1; }
+
+  /* ── 레벨탭 공통 ── */
+  .tabs {
+    margin: 0 12px 4px;
+    border-radius: 12px;
+    display: flex; padding: 3px;
+  }
+  .tab {
+    flex: 1; text-align: center;
+    padding: 8px 0;
+    border-radius: 9px;
+    font-size: 12px; font-weight: 600; color: #999;
+  }
+
+  .progress-row {
+    display: flex; justify-content: space-between;
+    padding: 3px 18px 4px;
+    font-size: 11px; color: #aaa;
+  }
+  .prog-bar-wrap {
+    margin: 0 18px 6px;
+    height: 4px; border-radius: 2px;
+    overflow: hidden;
+  }
+  .prog-bar-fill { height: 100%; width: 12%; border-radius: 2px; }
+
+  .card {
+    margin: 0 12px;
+    flex: 1;
+    border-radius: 20px;
+    padding: 18px 24px 14px;
+    display: flex; flex-direction: column; align-items: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    position: relative;
+    border-top-width: 4px;
+    border-top-style: solid;
+  }
+
+  .dots { display: flex; gap: 3px; margin-bottom: 0; }
+  .dot { width: 6px; height: 6px; border-radius: 3px; }
+  .dot.active { width: 16px; }
+
+  .card-content {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0; width: 100%;
+  }
+  .word-en { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; }
+  .phonetic { font-size: 14px; color: #aaa; margin-top: 8px; }
+  .divider { width: 44px; height: 2px; margin: 14px 0; border-radius: 1px; }
+  .word-ko { font-size: 20px; font-weight: 600; }
+
+  .card-actions {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: 12px;
+  }
+  .speaker-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; cursor: pointer;
+  }
+  .word-count { font-size: 12px; color: #bbb; font-weight: 600; }
+  .star-btn { font-size: 22px; cursor: pointer; }
+
+  .nav-btns {
+    display: flex; gap: 12px;
+    justify-content: center;
+    padding: 10px 12px 28px;
+  }
+  .btn-prev {
+    width: 112px; height: 44px;
+    border-radius: 22px;
+    background: transparent;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 3px;
+    border-width: 2px; border-style: solid;
+  }
+  .btn-next {
+    width: 112px; height: 44px;
+    border-radius: 22px; border: none;
+    color: #fff;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 3px;
+  }
+
+  /* 컬러 스와치 */
+  .color-palette {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    min-width: 200px;
+  }
+  .palette-title { font-size: 12px; font-weight: 700; color: #888; margin-bottom: 12px; letter-spacing: 0.5px; }
+  .swatches { display: flex; flex-direction: column; gap: 8px; }
+  .swatch { display: flex; align-items: center; gap: 10px; }
+  .swatch-color { width: 28px; height: 28px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+  .swatch-info { display: flex; flex-direction: column; gap: 1px; }
+  .swatch-name { font-size: 11px; font-weight: 700; color: #444; }
+  .swatch-hex { font-size: 10px; color: #aaa; font-family: monospace; }
+
+  .keyword-tags {
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+    margin-top: 2px;
+  }
+  .tag {
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 20px;
+  }
+
+  /* ══════════════════════
+     OPTION 1 — Coral Sunset
+  ══════════════════════ */
+
+  /* 배경 */
+  .o1-bg { background: #FFF6F3; }
+  .o1-notch { background: #1a1a1a; }
+  .o1-title { color: #2d1810; }
+  .o1-tabs { background: #FFE8E0; }
+  .o1-tab-active { background: #FF5C35; color: #fff; box-shadow: 0 2px 8px rgba(255,92,53,0.35); }
+  .o1-tab-inactive { color: #c07060; }
+  .o1-prog-bg { background: #FFD5C8; }
+  .o1-prog-fill { background: linear-gradient(90deg, #FF5C35, #FF8C6B); }
+  .o1-card { background: #fff; border-top-color: #FF5C35; }
+  .o1-dot { background: #FFD0C4; }
+  .o1-dot-active { background: #FF5C35; }
+  .o1-word { color: #2d1810; }
+  .o1-divider { background: #FFD0C4; }
+  .o1-meaning { color: #5a3028; }
+  .o1-speaker { background: #FFF0EC; }
+  .o1-star { color: #FFD0C4; }
+  .o1-btn-prev { border-color: #FF5C35; color: #FF5C35; }
+  .o1-btn-next { background: linear-gradient(135deg, #FF5C35, #FF8C6B); }
+
+  /* ══════════════════════
+     OPTION 2 — Golden Glow
+  ══════════════════════ */
+  .o2-bg { background: #FFFBF0; }
+  .o2-notch { background: #1a1a1a; }
+  .o2-title { color: #2d2010; }
+  .o2-tabs { background: #FFF0CC; }
+  .o2-tab-active { background: #F59E0B; color: #fff; box-shadow: 0 2px 8px rgba(245,158,11,0.35); }
+  .o2-tab-inactive { color: #b08030; }
+  .o2-prog-bg { background: #FFE4A0; }
+  .o2-prog-fill { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+  .o2-card { background: #fff; border-top-color: #F59E0B; }
+  .o2-dot { background: #FFE4A0; }
+  .o2-dot-active { background: #F59E0B; }
+  .o2-word { color: #2d2010; }
+  .o2-divider { background: #FFE4A0; }
+  .o2-meaning { color: #5a4010; }
+  .o2-speaker { background: #FFF8E0; }
+  .o2-star { color: #FFE4A0; }
+  .o2-btn-prev { border-color: #F59E0B; color: #F59E0B; }
+  .o2-btn-next { background: linear-gradient(135deg, #F59E0B, #FCD34D); color: #2d2010 !important; }
+
+  /* 구분선 */
+  .divider-line {
+    width: 100%; max-width: 900px;
+    height: 1px; background: rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body>
+
+<h1>컬러 시스템 제안 — 2030 타겟 · 따뜻한 느낌</h1>
+
+<!-- ══════════ OPTION 1 ══════════ -->
+<div class="section">
+  <div style="text-align:center">
+    <div class="section-title">
+      <span>🌅</span>
+      <span style="color:#FF5C35">Option 1 — Coral Sunset</span>
+    </div>
+    <div class="section-sub">코랄 · 살몬 계열 / 에너제틱하고 트렌디한 따뜻함</div>
+    <div class="keyword-tags" style="margin-top:10px">
+      <span class="tag" style="background:#FFF0EC;color:#FF5C35"># 활기찬</span>
+      <span class="tag" style="background:#FFF0EC;color:#FF5C35"># 모던</span>
+      <span class="tag" style="background:#FFF0EC;color:#FF5C35"># 도전적</span>
+      <span class="tag" style="background:#FFF0EC;color:#FF5C35"># 인스타감성</span>
+    </div>
+  </div>
+
+  <div class="phones-row">
+    <!-- Lv.1 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.1 화면</div>
+      <div class="phone o1-bg">
+        <div class="notch o1-notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title o1-title">TOEIC 단어</span></div>
+        <div class="tabs o1-tabs">
+          <div class="tab o1-tab-active">Lv.1</div>
+          <div class="tab o1-tab-inactive">Lv.2</div>
+          <div class="tab o1-tab-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap o1-prog-bg"><div class="prog-bar-fill o1-prog-fill"></div></div>
+        <div class="card o1-card">
+          <div class="dots">
+            <div class="dot dot active o1-dot-active"></div>
+            <div class="dot o1-dot"></div><div class="dot o1-dot"></div><div class="dot o1-dot"></div>
+            <div class="dot o1-dot"></div><div class="dot o1-dot"></div>
+          </div>
+          <div class="card-content">
+            <div class="word-en o1-word">install</div>
+            <div class="phonetic">/ɪnˈstɔːl/</div>
+            <div class="divider o1-divider"></div>
+            <div class="word-ko o1-meaning">설치하다</div>
+          </div>
+          <div class="card-actions">
+            <div class="speaker-btn o1-speaker">🔊</div>
+            <div class="word-count">1 / 10</div>
+            <div class="star-btn o1-star">☆</div>
+          </div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn-prev o1-btn-prev">‹ 이전</button>
+          <button class="btn-next o1-btn-next">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lv.2 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.2 화면 (레벨별 컬러 유지)</div>
+      <div class="phone o1-bg">
+        <div class="notch o1-notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title o1-title">TOEIC 단어</span></div>
+        <div class="tabs o1-tabs">
+          <div class="tab o1-tab-inactive">Lv.1</div>
+          <div class="tab" style="background:#FF8C6B;color:#fff;border-radius:9px;padding:8px 0;font-size:12px;font-weight:600;box-shadow:0 2px 8px rgba(255,140,107,0.35)">Lv.2</div>
+          <div class="tab o1-tab-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap o1-prog-bg"><div class="prog-bar-fill" style="background:linear-gradient(90deg,#FF8C6B,#FFB08C);width:30%"></div></div>
+        <div class="card" style="background:#fff;border-top:4px solid #FF8C6B;border-radius:20px;padding:18px 24px 14px;flex:1;margin:0 12px;display:flex;flex-direction:column;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,0.08)">
+          <div class="dots">
+            <div class="dot" style="background:#FF8C6B;width:16px;border-radius:3px;height:6px"></div>
+            <div class="dot" style="background:#FFD0C4;width:6px;height:6px;border-radius:3px"></div>
+            <div class="dot" style="background:#FFD0C4;width:6px;height:6px;border-radius:3px"></div>
+          </div>
+          <div class="card-content">
+            <div class="word-en" style="color:#2d1810;font-size:28px;font-weight:800">merchandise</div>
+            <div class="phonetic">/ˈmɜːrtʃəndaɪz/</div>
+            <div class="divider" style="background:#FFD0C4;width:44px;height:2px;margin:14px 0;border-radius:1px"></div>
+            <div class="word-ko" style="color:#5a3028;font-size:18px;font-weight:600">상품, 판매 물품</div>
+          </div>
+          <div class="card-actions">
+            <div class="speaker-btn" style="background:#FFF0EC;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🔊</div>
+            <div class="word-count">3 / 10</div>
+            <div class="star-btn" style="color:#FFD0C4;font-size:22px">☆</div>
+          </div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn-prev" style="border:2px solid #FF8C6B;color:#FF8C6B;width:112px;height:44px;border-radius:22px;background:transparent;font-size:14px;font-weight:600;cursor:pointer">‹ 이전</button>
+          <button class="btn-next" style="background:linear-gradient(135deg,#FF8C6B,#FFB08C);width:112px;height:44px;border-radius:22px;border:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palette -->
+    <div class="phone-col" style="justify-content:center">
+      <div class="color-palette">
+        <div class="palette-title">CORAL SUNSET 팔레트</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF5C35"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#FF5C35</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF8C6B"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary Light</div><div class="swatch-hex">#FF8C6B</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF3B1A"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary Dark (Lv.3)</div><div class="swatch-hex">#FF3B1A</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFF6F3"></div>
+            <div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#FFF6F3</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFE8E0;border:1px solid #eee"></div>
+            <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FFE8E0</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#2d1810"></div>
+            <div class="swatch-info"><div class="swatch-name">On Surface</div><div class="swatch-hex">#2D1810</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ══════════ OPTION 2 ══════════ -->
+<div class="section">
+  <div style="text-align:center">
+    <div class="section-title">
+      <span>✨</span>
+      <span style="color:#D97706">Option 2 — Golden Glow</span>
+    </div>
+    <div class="section-sub">앰버 · 골든 계열 / 프리미엄하고 포근한 따뜻함</div>
+    <div class="keyword-tags" style="margin-top:10px">
+      <span class="tag" style="background:#FFF8E0;color:#D97706"># 프리미엄</span>
+      <span class="tag" style="background:#FFF8E0;color:#D97706"># 포근함</span>
+      <span class="tag" style="background:#FFF8E0;color:#D97706"># 집중력</span>
+      <span class="tag" style="background:#FFF8E0;color:#D97706"># 카페감성</span>
+    </div>
+  </div>
+
+  <div class="phones-row">
+    <!-- Lv.1 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.1 화면</div>
+      <div class="phone o2-bg">
+        <div class="notch o2-notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title o2-title">TOEIC 단어</span></div>
+        <div class="tabs o2-tabs">
+          <div class="tab o2-tab-active">Lv.1</div>
+          <div class="tab o2-tab-inactive">Lv.2</div>
+          <div class="tab o2-tab-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap o2-prog-bg"><div class="prog-bar-fill o2-prog-fill"></div></div>
+        <div class="card o2-card">
+          <div class="dots">
+            <div class="dot dot active o2-dot-active" style="width:16px;height:6px;border-radius:3px;background:#F59E0B"></div>
+            <div class="dot o2-dot" style="width:6px;height:6px;border-radius:3px;background:#FFE4A0"></div>
+            <div class="dot o2-dot" style="width:6px;height:6px;border-radius:3px;background:#FFE4A0"></div>
+            <div class="dot o2-dot" style="width:6px;height:6px;border-radius:3px;background:#FFE4A0"></div>
+            <div class="dot o2-dot" style="width:6px;height:6px;border-radius:3px;background:#FFE4A0"></div>
+            <div class="dot o2-dot" style="width:6px;height:6px;border-radius:3px;background:#FFE4A0"></div>
+          </div>
+          <div class="card-content">
+            <div class="word-en o2-word">install</div>
+            <div class="phonetic">/ɪnˈstɔːl/</div>
+            <div class="divider o2-divider"></div>
+            <div class="word-ko o2-meaning">설치하다</div>
+          </div>
+          <div class="card-actions">
+            <div class="speaker-btn o2-speaker">🔊</div>
+            <div class="word-count">1 / 10</div>
+            <div class="star-btn o2-star">☆</div>
+          </div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn-prev o2-btn-prev">‹ 이전</button>
+          <button class="btn-next o2-btn-next" style="color:#2d2010">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lv.2 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.2 화면 (레벨별 컬러 유지)</div>
+      <div class="phone o2-bg">
+        <div class="notch o2-notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title o2-title">TOEIC 단어</span></div>
+        <div class="tabs o2-tabs">
+          <div class="tab o2-tab-inactive">Lv.1</div>
+          <div class="tab" style="background:#E07B00;color:#fff;border-radius:9px;padding:8px 0;font-size:12px;font-weight:600;box-shadow:0 2px 8px rgba(224,123,0,0.35)">Lv.2</div>
+          <div class="tab o2-tab-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap o2-prog-bg"><div class="prog-bar-fill" style="background:linear-gradient(90deg,#E07B00,#F59E0B);width:30%"></div></div>
+        <div class="card" style="background:#fff;border-top:4px solid #E07B00;border-radius:20px;padding:18px 24px 14px;flex:1;margin:0 12px;display:flex;flex-direction:column;align-items:center;box-shadow:0 4px 18px rgba(0,0,0,0.08)">
+          <div class="dots">
+            <div class="dot" style="background:#E07B00;width:16px;border-radius:3px;height:6px"></div>
+            <div class="dot" style="background:#FFE4A0;width:6px;height:6px;border-radius:3px"></div>
+            <div class="dot" style="background:#FFE4A0;width:6px;height:6px;border-radius:3px"></div>
+          </div>
+          <div class="card-content">
+            <div class="word-en" style="color:#2d2010;font-size:28px;font-weight:800">merchandise</div>
+            <div class="phonetic">/ˈmɜːrtʃəndaɪz/</div>
+            <div class="divider" style="background:#FFE4A0;width:44px;height:2px;margin:14px 0;border-radius:1px"></div>
+            <div class="word-ko" style="color:#5a4010;font-size:18px;font-weight:600">상품, 판매 물품</div>
+          </div>
+          <div class="card-actions">
+            <div class="speaker-btn" style="background:#FFF8E0;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🔊</div>
+            <div class="word-count">3 / 10</div>
+            <div class="star-btn" style="color:#FFE4A0;font-size:22px">☆</div>
+          </div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn-prev" style="border:2px solid #E07B00;color:#E07B00;width:112px;height:44px;border-radius:22px;background:transparent;font-size:14px;font-weight:600;cursor:pointer">‹ 이전</button>
+          <button class="btn-next" style="background:linear-gradient(135deg,#E07B00,#F59E0B);width:112px;height:44px;border-radius:22px;border:none;color:#2d2010;font-size:14px;font-weight:600;cursor:pointer">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palette -->
+    <div class="phone-col" style="justify-content:center">
+      <div class="color-palette">
+        <div class="palette-title">GOLDEN GLOW 팔레트</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F59E0B"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#F59E0B</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FCD34D"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary Light</div><div class="swatch-hex">#FCD34D</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#E07B00"></div>
+            <div class="swatch-info"><div class="swatch-name">Primary Dark (Lv.2)</div><div class="swatch-hex">#E07B00</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFFBF0;border:1px solid #eee"></div>
+            <div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#FFFBF0</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFF0CC;border:1px solid #eee"></div>
+            <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FFF0CC</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#2d2010"></div>
+            <div class="swatch-info"><div class="swatch-name">On Surface</div><div class="swatch-hex">#2D2010</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시안 A — 예문 1개씩 페이저 + 계층 간격</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f0f1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, 'Noto Sans KR', 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+  }
+
+  .phone-frame {
+    width: 375px;
+    height: 812px;
+    background: #F4F2FF;
+    border-radius: 48px;
+    overflow: hidden;
+    box-shadow:
+      0 50px 100px rgba(0,0,0,0.6),
+      inset 0 0 0 2px #2a2a3a,
+      inset 0 0 0 4px #111;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Status Bar */
+  .status-bar {
+    background: #F4F2FF;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .s-time { font-size: 15px; font-weight: 700; color: #111; }
+  .s-icons { display: flex; gap: 5px; align-items: center; }
+
+  /* App Bar */
+  .app-bar {
+    background: #F4F2FF;
+    padding: 2px 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .app-title { font-size: 20px; font-weight: 800; color: #1A0E4E; letter-spacing: -0.3px; }
+  .icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(79,61,195,0.1);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Level Tabs */
+  .level-tabs {
+    background: #F4F2FF;
+    padding: 0 20px 14px;
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .tab {
+    padding: 7px 20px;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab.active { background: #4F3DC3; color: #fff; box-shadow: 0 4px 12px rgba(79,61,195,0.4); }
+  .tab.inactive { background: rgba(79,61,195,0.08); color: #7B6CC4; }
+
+  /* Progress */
+  .progress-area {
+    padding: 0 20px 14px;
+    background: #F4F2FF;
+    flex-shrink: 0;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9B94C8;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: rgba(79,61,195,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4F3DC3, #7B5CF0);
+    border-radius: 2px;
+    width: 22%;
+  }
+
+  /* Card Wrapper — 남은 공간 차지하며 카드를 수직 중앙 정렬 */
+  .card-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    min-height: 0;
+  }
+
+  /* Main Card — 콘텐츠 높이에 맞게 */
+  .word-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 8px 32px rgba(79,61,195,0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Card Top: dot nav centered */
+  .card-top {
+    padding: 16px 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #E4E0F5;
+  }
+  .dot.current { width: 22px; border-radius: 4px; background: #4F3DC3; }
+  /* ── WORD SECTION — 최우선 정보 ── */
+  .word-section {
+    padding: 28px 28px 0;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .word-en {
+    font-size: 52px;
+    font-weight: 800;
+    color: #1A0E4E;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  /* 발음기호: 시각적 무게 최소화 — 작고 흐리게 */
+  .word-ph {
+    font-size: 14px;
+    color: #B0AACC;
+    margin-top: 8px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── MEANING SECTION — 2순위, 충분한 여백으로 분리 ── */
+  .meaning-section {
+    padding: 28px 28px 0;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .word-ko {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A0E4E;
+    line-height: 1.3;
+  }
+
+  /* TTS + 구분 */
+  .tts-row {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .tts-btn {
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    background: rgba(79,61,195,0.08);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tts-btn svg { width: 16px; height: 16px; fill: #4F3DC3; }
+  .fav {
+    position: absolute;
+    right: 28px;
+    width: 36px; height: 36px;
+    border: none; background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Divider */
+  .divider {
+    margin: 14px 24px 0;
+    height: 1px;
+    background: #F0EEF9;
+    flex-shrink: 0;
+  }
+
+  /* ── EXAMPLE PAGER — 잘림 없이 1개씩 완전 표시 ── */
+  .example-pager {
+    padding: 10px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .ex-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+  .ex-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #4F3DC3;
+  }
+  .ex-counter {
+    font-size: 12px;
+    font-weight: 700;
+    color: #B0AACC;
+  }
+
+  /* 예문 카드: 전체 표시 보장 */
+  .example-card {
+    flex: none;
+    background: #F7F5FF;
+    border-radius: 18px;
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-left: 4px solid #4F3DC3;
+    min-height: 0;
+  }
+  .ex-en {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A0E4E;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+  .ex-highlight {
+    color: #4F3DC3;
+    font-weight: 800;
+  }
+  .ex-ko {
+    font-size: 13px;
+    color: #7B6CC4;
+    margin-top: 10px;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  /* 예문 페이저 화살표 */
+  .ex-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    flex-shrink: 0;
+  }
+  .ex-arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid #E4E0F5;
+    background: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ex-arrow svg { width: 16px; height: 16px; fill: #4F3DC3; }
+  .ex-dots {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .ex-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #E4E0F5;
+  }
+  .ex-dot.on { background: #4F3DC3; width: 18px; border-radius: 3px; }
+
+  /* Nav Buttons */
+  .nav-buttons {
+    flex-shrink: 0;
+    padding: 14px 16px 28px;
+    display: flex;
+    gap: 12px;
+    background: #F4F2FF;
+  }
+  .btn-prev {
+    flex: 1; height: 52px;
+    border-radius: 26px;
+    border: 2px solid #D4CFEE;
+    background: #fff;
+    color: #4F3DC3;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .btn-next {
+    flex: 1; height: 52px;
+    border-radius: 26px;
+    border: none;
+    background: linear-gradient(135deg, #4F3DC3, #7B5CF0);
+    color: white;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(79,61,195,0.35);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="s-time">9:41</span>
+    <div class="s-icons">
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="#1A0E4E">
+        <rect x="0" y="4" width="3" height="7" rx="1"/>
+        <rect x="4" y="2.5" width="3" height="8.5" rx="1"/>
+        <rect x="8" y="0.5" width="3" height="10.5" rx="1"/>
+        <rect x="12" y="0" width="3" height="11" rx="1" opacity=".25"/>
+      </svg>
+      <svg width="15" height="11" viewBox="0 0 24 17" fill="#1A0E4E">
+        <path d="M12 3.5C8.7 3.5 5.7 4.8 3.5 6.9L1.5 4.9C4.2 2.2 7.9.5 12 .5s7.8 1.7 10.5 4.4l-2 2C18.3 4.8 15.3 3.5 12 3.5zM12 9c-2 0-3.8.8-5.1 2.1L5 9.3C6.7 7.5 9.2 6.5 12 6.5s5.3 1 7 2.8l-1.9 1.8C15.8 9.8 14 9 12 9zM12 14.5c-1 0-1.9-.4-2.5-1.1L12 11l2.5 2.4c-.6.7-1.5 1.1-2.5 1.1z"/>
+      </svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+        <rect x="0" y="1" width="21" height="10" rx="3" stroke="#1A0E4E" stroke-width="1.2"/>
+        <rect x="1.2" y="2.2" width="17" height="7.6" rx="2" fill="#1A0E4E"/>
+        <path d="M22.5 4.5v3a1.5 1.5 0 0 0 0-3z" fill="#1A0E4E"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- App Bar -->
+  <div class="app-bar">
+    <button class="icon-btn">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#4F3DC3" stroke-width="2" stroke-linecap="round">
+        <line x1="0" y1="1" x2="20" y2="1"/>
+        <line x1="0" y1="7" x2="14" y2="7"/>
+        <line x1="0" y1="13" x2="20" y2="13"/>
+      </svg>
+    </button>
+    <span class="app-title">TOEIC 단어</span>
+    <button class="icon-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F3DC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Level Tabs -->
+  <div class="level-tabs">
+    <button class="tab inactive">Lv.1</button>
+    <button class="tab active">Lv.2</button>
+    <button class="tab inactive">Lv.3</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-area">
+    <div class="progress-row">
+      <span>세트 1 / 50</span>
+      <span>11 / 500</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+  </div>
+
+  <!-- Card Wrapper -->
+  <div class="card-wrapper">
+  <!-- Word Card -->
+  <div class="word-card">
+
+    <!-- Top: dots only -->
+    <div class="card-top">
+      <div class="dots">
+        <div class="dot current"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Word Section -->
+    <div class="word-section">
+      <div class="word-en">lapse</div>
+      <div class="word-ph">/læps/</div>
+    </div>
+
+    <!-- Meaning Section -->
+    <div class="meaning-section">
+      <div class="word-ko">만료, 실효<br>경과하다</div>
+    </div>
+
+    <!-- TTS + Fav -->
+    <div class="tts-row">
+      <button class="tts-btn">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
+      <button class="fav">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#D4CFEE" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Example Pager -->
+    <div class="example-pager">
+      <div class="ex-header">
+        <span class="ex-label">EXAMPLE</span>
+        <span class="ex-counter">1 / 3</span>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-en">The insurance policy will <span class="ex-highlight">lapse</span> if you miss the payment deadline this month.</div>
+        <div class="ex-ko">이번 달 납부 기한을 놓치면 보험 증권이 만료됩니다.</div>
+      </div>
+
+    </div>
+
+  </div>
+  </div><!-- /card-wrapper -->
+
+  <!-- Nav Buttons -->
+  <div class="nav-buttons">
+    <button class="btn-prev">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4F3DC3"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      이전
+    </button>
+    <button class="btn-next">
+      다음
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const el = document.querySelector('.word-en');
+    const len = el.textContent.trim().length;
+    if      (len <= 7)  el.style.fontSize = '52px';
+    else if (len <= 9)  el.style.fontSize = '44px';
+    else if (len <= 12) el.style.fontSize = '36px';
+    else if (len <= 15) el.style.fontSize = '28px';
+    else                el.style.fontSize = '22px';
+  })();
+</script>
+</body>
+</html>

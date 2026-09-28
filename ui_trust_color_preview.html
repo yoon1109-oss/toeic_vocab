@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신뢰감 컬러 제안</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    background: #ECEFF4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px 60px;
+    gap: 52px;
+  }
+
+  h1 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1px; text-transform: uppercase; }
+
+  .section { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 960px; }
+  .section-header { text-align: center; }
+  .section-title { font-size: 22px; font-weight: 800; display: flex; gap: 10px; align-items: center; justify-content: center; }
+  .section-sub { font-size: 13px; color: #666; margin-top: 4px; }
+  .keyword-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+  .tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+
+  .phones-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .phone-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .screen-label { font-size: 11px; font-weight: 600; color: #999; letter-spacing: 0.5px; }
+
+  /* ── 폰 쉘 ── */
+  .phone {
+    width: 280px; height: 600px;
+    border-radius: 36px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15), 0 0 0 2px #bbb;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .notch { width: 90px; height: 22px; background: #1a1a1a; border-radius: 0 0 14px 14px; margin: 0 auto; }
+
+  .appbar { display: flex; align-items: center; padding: 8px 14px; gap: 6px; }
+  .appbar .icon { font-size: 18px; }
+  .appbar .title { font-size: 15px; font-weight: 700; flex: 1; }
+
+  /* 탭 */
+  .tabs { margin: 0 12px 4px; border-radius: 12px; display: flex; padding: 3px; }
+  .tab { flex: 1; text-align: center; padding: 8px 0; border-radius: 9px; font-size: 12px; font-weight: 600; }
+
+  /* 진행 정보 */
+  .progress-row { display: flex; justify-content: space-between; padding: 3px 18px 5px; font-size: 11px; color: #aaa; }
+
+  /* ★ 진행률 바만 추가 */
+  .prog-bar-wrap { margin: 0 18px 8px; height: 4px; border-radius: 2px; overflow: hidden; }
+  .prog-bar-fill { height: 100%; width: 10%; border-radius: 2px; }
+
+  /* 원래 UI — 카드 중앙 고정 */
+  .spacer { flex: 1; }
+
+  .card {
+    margin: 0 18px;
+    background: #fff;
+    border-radius: 22px;
+    padding: 28px 28px 24px;
+    display: flex; flex-direction: column; align-items: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    position: relative;
+  }
+
+  .dots { display: flex; gap: 3px; margin-bottom: 28px; }
+  .dot { width: 6px; height: 6px; border-radius: 3px; }
+  .dot.active { width: 16px; }
+
+  .word-en { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+  .phonetic { font-size: 14px; color: #aaa; margin-top: 8px; }
+  .divider-line { width: 48px; height: 2px; margin: 14px 0; border-radius: 1px; }
+  .word-ko { font-size: 21px; font-weight: 500; margin-bottom: 22px; }
+  .speaker-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; }
+  .star-pos { position: absolute; right: 10px; bottom: 10px; font-size: 24px; }
+
+  .nav-btns { display: flex; gap: 14px; justify-content: center; padding: 0 0 36px; }
+  .btn-prev { width: 114px; height: 46px; border-radius: 23px; background: transparent; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 3px; border-width: 2px; border-style: solid; cursor: pointer; }
+  .btn-next { width: 114px; height: 46px; border-radius: 23px; border: none; color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 3px; cursor: pointer; }
+
+  /* 팔레트 카드 */
+  .palette-card {
+    background: #fff; border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    min-width: 190px;
+  }
+  .palette-title { font-size: 11px; font-weight: 700; color: #999; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .swatches { display: flex; flex-direction: column; gap: 8px; }
+  .swatch { display: flex; align-items: center; gap: 10px; }
+  .sw-color { width: 28px; height: 28px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); flex-shrink: 0; }
+  .sw-name { font-size: 11px; font-weight: 700; color: #444; }
+  .sw-hex { font-size: 10px; color: #bbb; font-family: monospace; }
+
+  .divider-hr { width: 100%; max-width: 960px; height: 1px; background: rgba(0,0,0,0.1); }
+
+  /* ══════════ OPTION 3 — Indigo Trust ══════════ */
+  .i-bg   { background: #F5F5FF; }
+  .i-tabs { background: #E8E8FF; }
+  .i-active { background: #4F46E5; color: #fff; box-shadow: 0 2px 8px rgba(79,70,229,0.35); }
+  .i-inactive { color: #9490C8; }
+  .i-prog-bg   { background: #DDDDFB; }
+  .i-prog-fill { background: linear-gradient(90deg, #4F46E5, #818CF8); }
+  .i-dot-on  { background: #4F46E5; }
+  .i-dot-off { background: #DDDDFB; }
+  .i-word    { color: #1E1B4B; }
+  .i-divider { background: #DDDDFB; }
+  .i-meaning { color: #3730A3; }
+  .i-speaker { background: #EEF2FF; }
+  .i-star    { color: #C7D2FE; }
+  .i-prev    { border-color: #4F46E5; color: #4F46E5; }
+  .i-next    { background: linear-gradient(135deg, #4F46E5, #6D63F5); }
+
+  /* Lv2 accent for indigo */
+  .i-lv2-active { background: #6D63F5; color: #fff; box-shadow: 0 2px 8px rgba(109,99,245,0.35); }
+  .i-lv2-prog   { background: linear-gradient(90deg, #6D63F5, #A78BFA); }
+  .i-lv2-dot    { background: #6D63F5; }
+  .i-lv2-border { border-top: 4px solid #6D63F5 !important; }
+  .i-lv2-prev   { border-color: #6D63F5; color: #6D63F5; }
+  .i-lv2-next   { background: linear-gradient(135deg, #6D63F5, #A78BFA); }
+
+  /* ══════════ OPTION 4 — Deep Teal ══════════ */
+  .t-bg   { background: #F0FAFA; }
+  .t-tabs { background: #D8F2F0; }
+  .t-active { background: #0D9488; color: #fff; box-shadow: 0 2px 8px rgba(13,148,136,0.35); }
+  .t-inactive { color: #5BA49E; }
+  .t-prog-bg   { background: #B2E4E0; }
+  .t-prog-fill { background: linear-gradient(90deg, #0D9488, #2DD4BF); }
+  .t-dot-on  { background: #0D9488; }
+  .t-dot-off { background: #B2E4E0; }
+  .t-word    { color: #134E4A; }
+  .t-divider { background: #B2E4E0; }
+  .t-meaning { color: #115E59; }
+  .t-speaker { background: #CCFBF1; }
+  .t-star    { color: #99F6E4; }
+  .t-prev    { border-color: #0D9488; color: #0D9488; }
+  .t-next    { background: linear-gradient(135deg, #0D9488, #14B8A6); }
+</style>
+</head>
+<body>
+
+<h1>신뢰감 컬러 제안 — 2030 타겟 · 원래 UI + 진행률 바</h1>
+
+<!-- ══════════ OPTION 3 ══════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title" style="color:#4F46E5">
+      <span>🔷</span> Option 3 — Indigo Trust
+    </div>
+    <div class="section-sub">인디고 / 퍼플 계열 · 지적이고 신뢰감 있는 현대적 느낌</div>
+    <div class="keyword-tags">
+      <span class="tag" style="background:#EEF2FF;color:#4F46E5"># 지적인</span>
+      <span class="tag" style="background:#EEF2FF;color:#4F46E5"># 신뢰감</span>
+      <span class="tag" style="background:#EEF2FF;color:#4F46E5"># 테크감성</span>
+      <span class="tag" style="background:#EEF2FF;color:#4F46E5"># Notion · Linear</span>
+    </div>
+  </div>
+
+  <div class="phones-row">
+
+    <!-- Lv.1 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.1</div>
+      <div class="phone i-bg">
+        <div class="notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title i-word">TOEIC 단어</span></div>
+        <div class="tabs i-tabs">
+          <div class="tab i-active">Lv.1</div>
+          <div class="tab i-inactive">Lv.2</div>
+          <div class="tab i-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap i-prog-bg"><div class="prog-bar-fill i-prog-fill"></div></div>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="dots">
+            <div class="dot active i-dot-on" style="width:16px;height:6px;border-radius:3px"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div>
+          </div>
+          <div class="word-en i-word">install</div>
+          <div class="phonetic">/ɪnˈstɔːl/</div>
+          <div class="divider-line i-divider"></div>
+          <div class="word-ko i-meaning">설치하다</div>
+          <div class="speaker-btn i-speaker">🔊</div>
+          <div class="star-pos i-star">☆</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav-btns">
+          <button class="btn-prev i-prev">‹ 이전</button>
+          <button class="btn-next i-next">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lv.2 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.2</div>
+      <div class="phone i-bg">
+        <div class="notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title i-word">TOEIC 단어</span></div>
+        <div class="tabs i-tabs">
+          <div class="tab i-inactive">Lv.1</div>
+          <div class="tab i-lv2-active">Lv.2</div>
+          <div class="tab i-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>5 / 500</span></div>
+        <div class="prog-bar-wrap i-prog-bg"><div class="prog-bar-fill" style="background:linear-gradient(90deg,#6D63F5,#A78BFA);width:32%"></div></div>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="dots">
+            <div class="dot" style="background:#6D63F5;width:16px;height:6px;border-radius:3px"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div><div class="dot i-dot-off"></div>
+            <div class="dot i-dot-off"></div>
+          </div>
+          <div class="word-en i-word" style="font-size:24px">merchandise</div>
+          <div class="phonetic">/ˈmɜːrtʃəndaɪz/</div>
+          <div class="divider-line i-divider"></div>
+          <div class="word-ko" style="color:#4C1D95;font-size:19px;font-weight:500;margin-bottom:22px">상품, 판매 물품</div>
+          <div class="speaker-btn" style="background:#EDE9FE">🔊</div>
+          <div class="star-pos i-star">☆</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav-btns">
+          <button class="btn-prev i-lv2-prev">‹ 이전</button>
+          <button class="btn-next i-lv2-next">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palette -->
+    <div class="phone-col" style="justify-content:center">
+      <div class="palette-card">
+        <div class="palette-title">Indigo Trust 팔레트</div>
+        <div class="swatches">
+          <div class="swatch"><div class="sw-color" style="background:#4F46E5"></div><div><div class="sw-name">Primary</div><div class="sw-hex">#4F46E5</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#6D63F5"></div><div><div class="sw-name">Primary Mid (Lv.2)</div><div class="sw-hex">#6D63F5</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#818CF8"></div><div><div class="sw-name">Primary Light</div><div class="sw-hex">#818CF8</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#F5F5FF;border:1px solid #eee"></div><div><div class="sw-name">Background</div><div class="sw-hex">#F5F5FF</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#EEF2FF;border:1px solid #eee"></div><div><div class="sw-name">Surface</div><div class="sw-hex">#EEF2FF</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#1E1B4B"></div><div><div class="sw-name">On Surface</div><div class="sw-hex">#1E1B4B</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider-hr"></div>
+
+<!-- ══════════ OPTION 4 ══════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title" style="color:#0D9488">
+      <span>🌿</span> Option 4 — Deep Teal
+    </div>
+    <div class="section-sub">딥 틸 / 에메랄드 계열 · 차분하고 집중되는 신뢰감</div>
+    <div class="keyword-tags">
+      <span class="tag" style="background:#CCFBF1;color:#0F766E"># 안정감</span>
+      <span class="tag" style="background:#CCFBF1;color:#0F766E"># 집중력</span>
+      <span class="tag" style="background:#CCFBF1;color:#0F766E"># 차분함</span>
+      <span class="tag" style="background:#CCFBF1;color:#0F766E"># 자연·학습</span>
+    </div>
+  </div>
+
+  <div class="phones-row">
+
+    <!-- Lv.1 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.1</div>
+      <div class="phone t-bg">
+        <div class="notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title t-word">TOEIC 단어</span></div>
+        <div class="tabs t-tabs">
+          <div class="tab t-active">Lv.1</div>
+          <div class="tab t-inactive">Lv.2</div>
+          <div class="tab t-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>1 / 500</span></div>
+        <div class="prog-bar-wrap t-prog-bg"><div class="prog-bar-fill t-prog-fill"></div></div>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="dots">
+            <div class="dot active t-dot-on" style="width:16px;height:6px;border-radius:3px"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div>
+          </div>
+          <div class="word-en t-word">install</div>
+          <div class="phonetic">/ɪnˈstɔːl/</div>
+          <div class="divider-line t-divider"></div>
+          <div class="word-ko t-meaning">설치하다</div>
+          <div class="speaker-btn t-speaker">🔊</div>
+          <div class="star-pos t-star">☆</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav-btns">
+          <button class="btn-prev t-prev">‹ 이전</button>
+          <button class="btn-next t-next">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lv.2 -->
+    <div class="phone-col">
+      <div class="screen-label">Lv.2</div>
+      <div class="phone t-bg">
+        <div class="notch"></div>
+        <div class="appbar"><span class="icon">☰</span><span class="title t-word">TOEIC 단어</span></div>
+        <div class="tabs t-tabs">
+          <div class="tab t-inactive">Lv.1</div>
+          <div class="tab" style="background:#0F766E;color:#fff;border-radius:9px;padding:8px 0;font-size:12px;font-weight:600;box-shadow:0 2px 8px rgba(15,118,110,0.35)">Lv.2</div>
+          <div class="tab t-inactive">Lv.3</div>
+        </div>
+        <div class="progress-row"><span>세트 1 / 50</span><span>5 / 500</span></div>
+        <div class="prog-bar-wrap t-prog-bg"><div class="prog-bar-fill" style="background:linear-gradient(90deg,#0F766E,#0D9488);width:32%"></div></div>
+        <div class="spacer"></div>
+        <div class="card">
+          <div class="dots">
+            <div class="dot" style="background:#0F766E;width:16px;height:6px;border-radius:3px"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div><div class="dot t-dot-off"></div>
+            <div class="dot t-dot-off"></div>
+          </div>
+          <div class="word-en" style="color:#134E4A;font-size:24px;font-weight:800;letter-spacing:-0.5px">merchandise</div>
+          <div class="phonetic">/ˈmɜːrtʃəndaɪz/</div>
+          <div class="divider-line t-divider"></div>
+          <div class="word-ko" style="color:#115E59;font-size:19px;font-weight:500;margin-bottom:22px">상품, 판매 물품</div>
+          <div class="speaker-btn" style="background:#99F6E4">🔊</div>
+          <div class="star-pos t-star">☆</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav-btns">
+          <button class="btn-prev" style="border:2px solid #0F766E;color:#0F766E;width:114px;height:46px;border-radius:23px;background:transparent;font-size:14px;font-weight:600;cursor:pointer">‹ 이전</button>
+          <button class="btn-next" style="background:linear-gradient(135deg,#0F766E,#0D9488);width:114px;height:46px;border-radius:23px;border:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer">다음 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palette -->
+    <div class="phone-col" style="justify-content:center">
+      <div class="palette-card">
+        <div class="palette-title">Deep Teal 팔레트</div>
+        <div class="swatches">
+          <div class="swatch"><div class="sw-color" style="background:#0D9488"></div><div><div class="sw-name">Primary</div><div class="sw-hex">#0D9488</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#0F766E"></div><div><div class="sw-name">Primary Dark (Lv.2)</div><div class="sw-hex">#0F766E</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#2DD4BF"></div><div><div class="sw-name">Primary Light</div><div class="sw-hex">#2DD4BF</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#F0FAFA;border:1px solid #eee"></div><div><div class="sw-name">Background</div><div class="sw-hex">#F0FAFA</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#CCFBF1;border:1px solid #eee"></div><div><div class="sw-name">Surface</div><div class="sw-hex">#CCFBF1</div></div></div>
+          <div class="swatch"><div class="sw-color" style="background:#134E4A"></div><div><div class="sw-name">On Surface</div><div class="sw-hex">#134E4A</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>최종 시안 — 현재 앱 + 예문 (시안A 스타일)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #CBD5E1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .phone-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ── 기기 프레임 ── */
+  .phone-frame {
+    width: 375px;
+    background: #F0F9FF;
+    border-radius: 40px;
+    box-shadow:
+      0 0 0 10px #1E293B,
+      0 0 0 12px #334155,
+      0 24px 48px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+
+  .notch {
+    width: 120px;
+    height: 28px;
+    background: #1E293B;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto;
+  }
+
+  .app {
+    background: #F0F9FF;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── AppBar ── */
+  .app-bar {
+    display: flex;
+    align-items: center;
+    padding: 12px 8px 8px;
+  }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 20px;
+    border: none; background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .app-bar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0C4A6E;
+    margin-left: 4px;
+  }
+
+  /* ── Level Tabs ── */
+  .level-tabs {
+    margin: 4px 16px 0;
+    background: #E0F2FE;
+    border-radius: 16px;
+    padding: 4px;
+    display: flex;
+  }
+  .tab {
+    flex: 1; padding: 11px 0;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px; font-weight: 500;
+    color: #475569;
+    border: none; background: transparent; cursor: pointer;
+  }
+  .tab.active {
+    background: #0EA5E9;
+    color: white; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(14,165,233,0.3);
+  }
+
+  /* ── Progress ── */
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 24px 6px;
+    font-size: 14px;
+    color: #38BDF8;
+  }
+  .progress-bar-wrap {
+    margin: 0 24px 8px;
+    background: #E0F2FE;
+    border-radius: 3px; height: 5px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: #0284C7;
+  }
+
+  /* ── Card area ── */
+  .card-area {
+    padding: 6px 24px;
+  }
+
+  /* ── Word Card ── */
+  .word-card {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(12,74,110,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 카드 상단 (기존 영역) */
+  .card-top {
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 진행 점 */
+  .dots {
+    display: flex; gap: 4px;
+    margin-bottom: 28px;
+  }
+  .dot {
+    height: 8px; border-radius: 4px;
+    background: rgba(56,189,248,0.2); width: 8px;
+  }
+  .dot.active { width: 20px; background: #0284C7; }
+  .dot.done   { background: #0284C7; }
+
+  .word-en {
+    font-size: 40px; font-weight: 700;
+    color: #0C4A6E; letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .phonetic {
+    font-size: 19px; color: #475569;
+    margin-bottom: 28px;
+  }
+  .word-ko {
+    font-size: 24px;
+    color: rgba(12,74,110,0.85);
+    line-height: 1.4; text-align: center;
+    margin-bottom: 22px;
+  }
+  .speak-btn {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: #E0F2FE;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── 구분선 ── */
+  .divider {
+    height: 1px;
+    background: rgba(14,165,233,0.15);
+    margin: 0 20px;
+  }
+
+  /* ── 예문 섹션 (시안A 스타일 · 블루) ── */
+  .examples-section {
+    padding: 16px 24px 24px;
+  }
+
+  .examples-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #0284C7;
+    margin-bottom: 14px;
+  }
+
+  .example-item {
+    display: flex;
+    gap: 11px;
+    margin-bottom: 13px;
+    align-items: flex-start;
+  }
+  .example-item:last-child { margin-bottom: 0; }
+
+  /* 번호 배지 */
+  .ex-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0284C7;
+    background: #E0F2FE;
+    border-radius: 6px;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .ex-text { display: flex; flex-direction: column; gap: 3px; }
+
+  .ex-en {
+    font-size: 13px; font-weight: 600;
+    color: #0C4A6E; line-height: 1.5;
+  }
+  .ex-ko {
+    font-size: 12px;
+    color: #0369A1;
+    line-height: 1.5;
+  }
+
+  /* 즐겨찾기 */
+  .fav-btn {
+    position: absolute;
+    bottom: 6px; right: 6px;
+    background: none; border: none;
+    font-size: 28px; line-height: 1;
+    cursor: pointer; padding: 8px;
+    color: rgba(56,189,248,0.35);
+  }
+  .fav-btn.active { color: #FFD700; }
+
+  /* ── Nav Buttons ── */
+  .nav-btns {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 14px 24px 36px;
+  }
+  .btn-prev {
+    width: 140px; height: 52px;
+    border-radius: 26px;
+    border: 1.5px solid #0284C7;
+    background: transparent;
+    color: #0284C7; font-size: 17px; font-weight: 500;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .btn-prev.disabled {
+    border-color: rgba(56,189,248,0.2);
+    color: rgba(56,189,248,0.35);
+  }
+  .btn-next {
+    width: 140px; height: 52px;
+    border-radius: 26px;
+    border: none; background: #0284C7;
+    color: white; font-size: 17px; font-weight: 500;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+
+  .home-indicator {
+    height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    background: #F0F9FF;
+  }
+  .home-bar {
+    width: 120px; height: 5px;
+    background: #0C4A6E; border-radius: 3px; opacity: 0.15;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ 카드 1: abroad — 첫 번째 단어 (이전 비활성) ══ -->
+<div>
+  <div class="phone-label">예문 적용 시안 — abroad (1번째)</div>
+  <div class="phone-frame">
+    <div class="notch"></div>
+    <div class="app">
+
+      <div class="app-bar">
+        <button class="icon-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0C4A6E" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="app-bar-title" style="margin-left:4px">OPIc 단어</div>
+      </div>
+
+      <div class="level-tabs">
+        <button class="tab active">초급</button>
+        <button class="tab">중급</button>
+        <button class="tab">고급</button>
+      </div>
+
+      <div class="progress-info">
+        <span>세트 1 / 25</span>
+        <span>1 / 250</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width:0.4%"></div>
+      </div>
+
+      <div class="card-area">
+        <div class="word-card">
+
+          <div class="card-top">
+            <div class="dots">
+              <div class="dot active"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="word-en">abroad</div>
+            <div class="phonetic">əˈbrɔːd</div>
+            <div class="word-ko">해외에, 외국에</div>
+            <button class="speak-btn">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="examples-section">
+            <div class="examples-label">예문</div>
+
+            <div class="example-item">
+              <div class="ex-num">1</div>
+              <div class="ex-text">
+                <div class="ex-en">She studied abroad for a year in Spain.</div>
+                <div class="ex-ko">그녀는 스페인에서 1년간 유학했어.</div>
+              </div>
+            </div>
+
+            <div class="example-item">
+              <div class="ex-num">2</div>
+              <div class="ex-text">
+                <div class="ex-en">Have you ever traveled abroad by yourself?</div>
+                <div class="ex-ko">혼자 해외여행 해본 적 있어?</div>
+              </div>
+            </div>
+
+            <div class="example-item">
+              <div class="ex-num">3</div>
+              <div class="ex-text">
+                <div class="ex-en">My brother lives abroad and we video call every week.</div>
+                <div class="ex-ko">내 남동생은 해외에 살고 우리는 매주 영상통화해.</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="fav-btn">☆</button>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-prev disabled">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          이전
+        </button>
+        <button class="btn-next">
+          다음
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 카드 2: advice — 즐겨찾기 ON ══ -->
+<div>
+  <div class="phone-label">예문 적용 시안 — advice ★ (12번째)</div>
+  <div class="phone-frame">
+    <div class="notch"></div>
+    <div class="app">
+
+      <div class="app-bar">
+        <button class="icon-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0C4A6E" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="app-bar-title" style="margin-left:4px">OPIc 단어</div>
+      </div>
+
+      <div class="level-tabs">
+        <button class="tab active">초급</button>
+        <button class="tab">중급</button>
+        <button class="tab">고급</button>
+      </div>
+
+      <div class="progress-info">
+        <span>세트 2 / 25</span>
+        <span>12 / 250</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" style="width:4.8%"></div>
+      </div>
+
+      <div class="card-area">
+        <div class="word-card">
+
+          <div class="card-top">
+            <div class="dots">
+              <div class="dot done"></div><div class="dot done"></div>
+              <div class="dot active"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div><div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="word-en">advice</div>
+            <div class="phonetic">ədˈvaɪs</div>
+            <div class="word-ko">충고, 조언</div>
+            <button class="speak-btn">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="examples-section">
+            <div class="examples-label">예문</div>
+
+            <div class="example-item">
+              <div class="ex-num">1</div>
+              <div class="ex-text">
+                <div class="ex-en">Can I ask for your advice on something?</div>
+                <div class="ex-ko">뭔가 조언 좀 구해도 될까?</div>
+              </div>
+            </div>
+
+            <div class="example-item">
+              <div class="ex-num">2</div>
+              <div class="ex-text">
+                <div class="ex-en">My dad always gives me great life advice.</div>
+                <div class="ex-ko">우리 아빠는 항상 좋은 인생 조언을 해줘.</div>
+              </div>
+            </div>
+
+            <div class="example-item">
+              <div class="ex-num">3</div>
+              <div class="ex-text">
+                <div class="ex-en">Taking her advice turned out to be a really good idea.</div>
+                <div class="ex-ko">그녀의 조언을 따른 게 결국 정말 좋은 선택이었어.</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="fav-btn active">★</button>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-prev">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          이전
+        </button>
+        <button class="btn-next">
+          다음
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

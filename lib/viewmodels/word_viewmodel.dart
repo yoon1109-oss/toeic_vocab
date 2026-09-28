@@ -1,85 +1,236 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/word.dart';
+import '../models/opic_phrase.dart';
 import '../data/word_data.dart';
+import '../data/opic_data.dart';
+import '../data/opic_phrases_data.dart';
+import '../services/favorite_service.dart';
+import '../services/quiz_generator.dart';
+import 'quiz_controller.dart';
+
+enum VocabMode { toeic, opic, opicPhrase }
 
 class WordViewModel extends ChangeNotifier {
+  VocabMode _mode = VocabMode.toeic;
   int _currentLevel = 1;
   int _currentSetIndex = 0;
   int _currentWordIndex = 0;
   bool _showCompletion = false;
+  bool _autoSpeak = false;
   List<Word> _shuffledWords = [];
 
   final FlutterTts _tts = FlutterTts();
+  final FavoriteService _favoriteService = FavoriteService();
+  final QuizGenerator _quizGenerator = const QuizGenerator();
   static const int wordsPerSet = 10;
+
+  // 퀴즈: 현재는 OPIc 중급(레벨 2)에만 적용한다.
+  static const VocabMode quizMode = VocabMode.opic;
+  static const int quizLevel = 2;
+
+  bool _quizModeEnabled = true;
+  bool _showQuiz = false;
+  QuizController? _quizController;
+
+  // 셔플 시드: 진도 복원 시 동일한 카드 순서를 재현하기 위해 저장
+  int _shuffleSeed = DateTime.now().microsecondsSinceEpoch & 0x7fffffff;
+
+  bool _isFavoriteMode = false;
+  List<Word> _favoriteWords = [];
+
+  // OPIc 실전 문장 상태
+  int _currentTopicIndex = 0;
+  int _currentPhraseIndex = 0;
+  int _currentPhraseLevel = 1;
+  bool _showPhraseCompletion = false;
+
+  // 즐겨찾기 모드 진입 전 상태 저장
+  int _savedLevel = 1;
+  int _savedSetIndex = 0;
+  int _savedWordIndex = 0;
+  VocabMode _savedMode = VocabMode.toeic;
+
+  static const String _kMode = 'prog_mode';
+  static const String _kLevel = 'prog_level';
+  static const String _kSetIndex = 'prog_set_index';
+  static const String _kWordIndex = 'prog_word_index';
+  static const String _kSeed = 'prog_shuffle_seed';
+  static const String _kTopicIndex = 'phrase_topic_index';
+  static const String _kPhraseIndex = 'phrase_phrase_index';
+  static const String _kPhraseLevel = 'phrase_level';
+  static const String _kQuizMode = 'quiz_mode_enabled';
 
   WordViewModel() {
     _initTts();
     _shuffleLevel();
+    _initFavorites();
+    _loadProgress();
+  }
+
+  Future<void> _saveProgress() async {
+    if (_isFavoriteMode) return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_kMode, _mode.name);
+    if (_mode == VocabMode.opicPhrase) {
+      await prefs.setInt(_kTopicIndex, _currentTopicIndex);
+      await prefs.setInt(_kPhraseIndex, _currentPhraseIndex);
+      await prefs.setInt(_kPhraseLevel, _currentPhraseLevel);
+    } else {
+      await prefs.setInt(_kLevel, _currentLevel);
+      await prefs.setInt(_kSetIndex, _currentSetIndex);
+      await prefs.setInt(_kWordIndex, _currentWordIndex);
+      await prefs.setInt(_kSeed, _shuffleSeed);
+    }
+  }
+
+  Future<void> _loadProgress() async {
+    final prefs = await SharedPreferences.getInstance();
+    // 퀴즈 모드 설정은 진도와 별개로 항상 복원한다 (기본값 켜짐).
+    _quizModeEnabled = prefs.getBool(_kQuizMode) ?? true;
+    final modeStr = prefs.getString(_kMode);
+    if (modeStr == null) {
+      notifyListeners();
+      return; // 저장된 진도 없음 (첫 실행)
+    }
+    _mode = VocabMode.values.firstWhere(
+      (e) => e.name == modeStr,
+      orElse: () => VocabMode.toeic,
+    );
+    if (_mode == VocabMode.opicPhrase) {
+      _currentTopicIndex = prefs.getInt(_kTopicIndex) ?? 0;
+      _currentPhraseIndex = prefs.getInt(_kPhraseIndex) ?? 0;
+      _currentPhraseLevel = prefs.getInt(_kPhraseLevel) ?? 1;
+    } else {
+      _currentLevel = prefs.getInt(_kLevel) ?? 1;
+      _currentSetIndex = prefs.getInt(_kSetIndex) ?? 0;
+      _currentWordIndex = prefs.getInt(_kWordIndex) ?? 0;
+      _shuffleSeed = prefs.getInt(_kSeed) ?? _shuffleSeed;
+      // 저장된 시드로 동일 순서 재현 → 복원된 인덱스가 정확히 일치
+      _shuffleLevel(regenerateSeed: false);
+    }
+    notifyListeners();
+  }
+
+  Future<void> _initFavorites() async {
+    await _favoriteService.init();
+    notifyListeners();
   }
 
   Future<void> _initTts() async {
-    await _tts.setLanguage('en-US');
+    try {
+      await _tts.setLanguage('en-US');
+      await _tts.setSpeechRate(kIsWeb ? 0.9 : 0.5);
+      await _tts.setPitch(1.0);
+      await _tts.setVolume(1.0);
 
-    // Try to select a natural-sounding English voice on Android.
-    if (!kIsWeb) {
-      try {
-        final voices = await _tts.getVoices;
-        if (voices != null) {
-          final voiceList = List<Map<Object?, Object?>>.from(voices);
-
-          // Prefer en-US voices; filter by locale.
-          final enVoices = voiceList.where((v) {
-            final locale = (v['locale'] ?? '').toString().toLowerCase();
-            return locale.startsWith('en-us') || locale.startsWith('en_us');
-          }).toList();
-
-          // Among en-US voices, prefer high-quality / non-network voices
-          // that are typically installed by Google TTS.
-          Map<Object?, Object?>? bestVoice;
-          for (final v in enVoices) {
-            final name = (v['name'] ?? '').toString().toLowerCase();
-            // Google's high-quality voices contain these keywords.
-            if (name.contains('en-us-x-') ||
-                name.contains('en-us-language') ||
-                name.contains('english') ||
-                name.contains('google')) {
-              bestVoice = v;
-              break;
-            }
-          }
-          // Fall back to any en-US voice if no preferred one found.
-          bestVoice ??= enVoices.isNotEmpty ? enVoices.first : null;
-
-          if (bestVoice != null) {
-            await _tts.setVoice({
-              'name': bestVoice['name'].toString(),
-              'locale': bestVoice['locale'].toString(),
-            });
+      // Google TTS 엔진 우선 사용 (삼성 TTS는 영어 발음이 부정확)
+      if (!kIsWeb) {
+        final engines = await _tts.getEngines;
+        if (engines != null) {
+          final engineList = (engines as List).map((e) => e.toString()).toList();
+          if (engineList.contains('com.google.android.tts')) {
+            await _tts.setEngine('com.google.android.tts');
+            await _tts.setLanguage('en-US'); // 엔진 변경 후 재설정
           }
         }
-      } catch (_) {
-        // Voice selection failed; fall back to default engine voice.
       }
+    } catch (e) {
+      debugPrint('TTS init error (non-fatal): $e');
     }
-
-    // Web Speech API: 1.0 = normal speed. Native: 0.5 = normal.
-    final rate = kIsWeb ? 0.9 : 0.5;
-    await _tts.setSpeechRate(rate);
-    await _tts.setPitch(1.0);
-    await _tts.setVolume(1.0);
   }
 
+  VocabMode get mode => _mode;
+  bool get autoSpeak => _autoSpeak;
   int get currentLevel => _currentLevel;
   int get currentSetIndex => _currentSetIndex;
   int get currentWordIndex => _currentWordIndex;
   bool get showCompletion => _showCompletion;
+  bool get isFavoriteMode => _isFavoriteMode;
 
-  List<Word> get currentLevelWords => _shuffledWords;
+  // ── 퀴즈 ──────────────────────────────────────────────────
 
-  void _shuffleLevel() {
-    _shuffledWords = List<Word>.from(WordData.words[_currentLevel] ?? [])
-      ..shuffle();
+  bool get quizModeEnabled => _quizModeEnabled;
+  bool get showQuiz => _showQuiz;
+  QuizController? get quizController => _quizController;
+
+  /// 퀴즈가 적용되는 범위인지. 현재는 OPIc 중급만.
+  bool get isQuizScope =>
+      !_isFavoriteMode && _mode == quizMode && _currentLevel == quizLevel;
+
+  void toggleQuizMode() {
+    _quizModeEnabled = !_quizModeEnabled;
+    notifyListeners();
+    _saveQuizMode();
+  }
+
+  Future<void> _saveQuizMode() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_kQuizMode, _quizModeEnabled);
+  }
+
+  /// 문항 생성에 성공하면 퀴즈로 진입하고 true를 반환한다.
+  bool _startQuiz() {
+    final questions = _quizGenerator.generate(
+      targets: currentSet,
+      pool: _wordSource[_currentLevel] ?? const [],
+    );
+    if (questions.isEmpty) return false;
+
+    _disposeQuiz();
+    _quizController = QuizController(
+      questions: questions,
+      onWrongAnswer: (word) => _favoriteService.add(word.english),
+    )..addListener(notifyListeners);
+    _showQuiz = true;
+    return true;
+  }
+
+  /// 퀴즈를 닫고 기존 세트 완료 화면으로 돌아간다.
+  void exitQuiz() {
+    _disposeQuiz();
+    _showQuiz = false;
+    _showCompletion = true;
+    notifyListeners();
+  }
+
+  void _disposeQuiz() {
+    _quizController?.removeListener(notifyListeners);
+    _quizController?.dispose();
+    _quizController = null;
+  }
+
+  /// 모드·레벨·세트가 바뀌면 진행 중인 퀴즈는 무효가 된다.
+  void _resetQuiz() {
+    _disposeQuiz();
+    _showQuiz = false;
+  }
+
+  /// 결과 화면에서 '다음 세트로'.
+  void finishQuizAndGoNext() {
+    _disposeQuiz();
+    _showQuiz = false;
+    goToNextSet();
+  }
+
+  // ─────────────────────────────────────────────────────────
+
+  Map<int, List<Word>> get _wordSource =>
+      _mode == VocabMode.toeic ? WordData.words : OPIcData.words;
+
+  List<Word> get currentLevelWords =>
+      _isFavoriteMode ? _favoriteWords : _shuffledWords;
+
+  void _shuffleLevel({bool regenerateSeed = true}) {
+    if (_mode == VocabMode.opicPhrase) return;
+    if (regenerateSeed) {
+      _shuffleSeed = DateTime.now().microsecondsSinceEpoch & 0x7fffffff;
+    }
+    _shuffledWords = List<Word>.from(_wordSource[_currentLevel] ?? [])
+      ..shuffle(Random(_shuffleSeed));
   }
 
   int get totalSets {
@@ -100,50 +251,243 @@ class WordViewModel extends ChangeNotifier {
   }
 
   int get currentSetNumber => _currentSetIndex + 1;
-
   int get currentWordNumberInSet => _currentWordIndex + 1;
-
   int get currentWordNumberTotal =>
       _currentSetIndex * wordsPerSet + _currentWordIndex + 1;
-
   int get totalWordsInLevel => currentLevelWords.length;
-
   bool get isFirstWord => _currentWordIndex == 0;
-
   bool get isLastWord => _currentWordIndex == currentSet.length - 1;
 
+  // 모드 전환
+  void setMode(VocabMode mode) {
+    if (_mode == mode) return;
+    if (_isFavoriteMode) exitFavoriteMode();
+    _resetQuiz();
+    _mode = mode;
+    if (mode == VocabMode.opicPhrase) {
+      _currentTopicIndex = 0;
+      _currentPhraseIndex = 0;
+      _currentPhraseLevel = 1;
+      _showPhraseCompletion = false;
+    } else {
+      _currentLevel = 1;
+      _currentSetIndex = 0;
+      _currentWordIndex = 0;
+      _showCompletion = false;
+      _shuffleLevel();
+    }
+    notifyListeners();
+    _saveProgress();
+  }
+
+  // 자동 발음
+  void toggleAutoSpeak() {
+    _autoSpeak = !_autoSpeak;
+    notifyListeners();
+    if (_autoSpeak && currentWord != null) {
+      speak(currentWord!.english, phonetic: currentWord!.phonetic);
+    }
+  }
+
+  void _autoSpeakIfEnabled() {
+    if (_autoSpeak && currentWord != null && !_showCompletion && !_showQuiz) {
+      speak(currentWord!.english, phonetic: currentWord!.phonetic);
+    }
+  }
+
+  // 즐겨찾기 관련 메서드
+  void toggleFavorite(String english) {
+    _favoriteService.toggle(english);
+    if (_isFavoriteMode) {
+      _buildFavoriteWords();
+      if (_currentWordIndex >= currentSet.length && currentSet.isNotEmpty) {
+        _currentWordIndex = currentSet.length - 1;
+      }
+      if (currentLevelWords.isEmpty) {
+        _showCompletion = false;
+      }
+    }
+    notifyListeners();
+  }
+
+  bool isFavorite(String english) => _favoriteService.isFavorite(english);
+
+  void enterFavoriteMode() {
+    _resetQuiz();
+    _savedLevel = _currentLevel;
+    _savedSetIndex = _currentSetIndex;
+    _savedWordIndex = _currentWordIndex;
+    _savedMode = _mode;
+
+    _isFavoriteMode = true;
+    _currentSetIndex = 0;
+    _currentWordIndex = 0;
+    _showCompletion = false;
+    // opicPhrase 모드에서는 단어 카드가 없으므로 toeic 모드로 임시 전환
+    if (_mode == VocabMode.opicPhrase) {
+      _mode = VocabMode.toeic;
+    }
+    _buildFavoriteWords();
+    notifyListeners();
+  }
+
+  void exitFavoriteMode() {
+    _resetQuiz();
+    _isFavoriteMode = false;
+    _mode = _savedMode;
+    _currentLevel = _savedLevel;
+    _currentSetIndex = _savedSetIndex;
+    _currentWordIndex = _savedWordIndex;
+    _showCompletion = false;
+    // 즐겨찾기 진입 전과 동일한 순서 유지 → 저장된 위치가 그대로 유효
+    _shuffleLevel(regenerateSeed: false);
+    notifyListeners();
+  }
+
+  // ── OPIc 실전 문장 ────────────────────────────────────────
+
+  int get currentTopicIndex => _currentTopicIndex;
+  int get currentPhraseLevel => _currentPhraseLevel;
+  bool get showPhraseCompletion => _showPhraseCompletion;
+
+  List<OPIcPhrase> get _currentTopicPhrases {
+    final levelData = OPIcPhrasesData.dataForLevel(_currentPhraseLevel);
+    return levelData[OPIcPhrasesData.topics[_currentTopicIndex]] ?? [];
+  }
+
+  void selectPhraseLevel(int level) {
+    if (_currentPhraseLevel == level) return;
+    _currentPhraseLevel = level;
+    _currentPhraseIndex = 0;
+    _showPhraseCompletion = false;
+    notifyListeners();
+    _saveProgress();
+  }
+
+  OPIcPhrase? get currentPhrase {
+    final phrases = _currentTopicPhrases;
+    if (_currentPhraseIndex >= phrases.length) return null;
+    return phrases[_currentPhraseIndex];
+  }
+
+  int get totalTopics => OPIcPhrasesData.topics.length;
+  int get totalPhrasesInTopic => _currentTopicPhrases.length;
+  int get currentPhraseNumber => _currentPhraseIndex + 1;
+  bool get isFirstPhrase => _currentPhraseIndex == 0;
+
+  void selectTopic(int index) {
+    if (index == _currentTopicIndex && !_showPhraseCompletion) return;
+    _currentTopicIndex = index;
+    _currentPhraseIndex = 0;
+    _showPhraseCompletion = false;
+    notifyListeners();
+    _saveProgress();
+  }
+
+  void nextPhrase() {
+    final phrases = _currentTopicPhrases;
+    if (_currentPhraseIndex < phrases.length - 1) {
+      _currentPhraseIndex++;
+    } else {
+      _showPhraseCompletion = true;
+    }
+    notifyListeners();
+    if (_autoSpeak && currentPhrase != null && !_showPhraseCompletion) {
+      speak(currentPhrase!.english);
+    }
+    _saveProgress();
+  }
+
+  void previousPhrase() {
+    if (_currentPhraseIndex > 0) {
+      _currentPhraseIndex--;
+      notifyListeners();
+      if (_autoSpeak && currentPhrase != null) {
+        speak(currentPhrase!.english);
+      }
+    }
+  }
+
+  void reviewCurrentTopic() {
+    _currentPhraseIndex = 0;
+    _showPhraseCompletion = false;
+    notifyListeners();
+  }
+
+  void goToNextTopic() {
+    if (_currentTopicIndex < totalTopics - 1) {
+      _currentTopicIndex++;
+    } else {
+      _currentTopicIndex = 0;
+    }
+    _currentPhraseIndex = 0;
+    _showPhraseCompletion = false;
+    notifyListeners();
+    _saveProgress();
+  }
+
+  // ─────────────────────────────────────────────────────────
+
+  void _buildFavoriteWords() {
+    final favorites = _favoriteService.getFavorites();
+    _favoriteWords = [];
+    final seenEnglish = <String>{};
+    // 모든 소스(TOEIC + OPIc)에서 즐겨찾기 단어 수집 (중복 제거)
+    for (final source in [WordData.words, OPIcData.words]) {
+      for (final level in [1, 2, 3]) {
+        final words = source[level] ?? [];
+        for (final word in words) {
+          if (favorites.contains(word.english) &&
+              seenEnglish.add(word.english)) {
+            _favoriteWords.add(word);
+          }
+        }
+      }
+    }
+  }
+
   void selectLevel(int level) {
+    if (_isFavoriteMode) return;
+    _resetQuiz();
     _currentLevel = level;
     _currentSetIndex = 0;
     _currentWordIndex = 0;
     _showCompletion = false;
     _shuffleLevel();
     notifyListeners();
+    _saveProgress();
   }
 
   void nextWord() {
     if (_currentWordIndex < currentSet.length - 1) {
       _currentWordIndex++;
     } else {
-      _showCompletion = true;
+      // 퀴즈 범위이고 문항 생성에 성공하면 퀴즈, 아니면 기존 완료 화면.
+      final enteredQuiz = _quizModeEnabled && isQuizScope && _startQuiz();
+      if (!enteredQuiz) _showCompletion = true;
     }
     notifyListeners();
+    _autoSpeakIfEnabled();
+    _saveProgress();
   }
 
   void previousWord() {
     if (_currentWordIndex > 0) {
       _currentWordIndex--;
       notifyListeners();
+      _autoSpeakIfEnabled();
     }
   }
 
   void reviewCurrentSet() {
+    _resetQuiz();
     _currentWordIndex = 0;
     _showCompletion = false;
     notifyListeners();
   }
 
   void goToNextSet() {
+    _resetQuiz();
     if (_currentSetIndex < totalSets - 1) {
       _currentSetIndex++;
     } else {
@@ -152,15 +496,22 @@ class WordViewModel extends ChangeNotifier {
     _currentWordIndex = 0;
     _showCompletion = false;
     notifyListeners();
+    _saveProgress();
   }
 
-  Future<void> speak(String text) async {
-    await _tts.stop();
-    await _tts.speak(text);
+  Future<void> speak(String text, {String? phonetic}) async {
+    // 기기 내장 TTS 사용 (초기화 시 Google TTS 엔진 우선 선택)
+    try {
+      await _tts.stop();
+      await _tts.speak(text);
+    } catch (e) {
+      debugPrint('Device TTS failed: $e');
+    }
   }
 
   @override
   void dispose() {
+    _disposeQuiz();
     _tts.stop();
     super.dispose();
   }
