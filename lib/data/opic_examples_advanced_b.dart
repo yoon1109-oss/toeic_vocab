@@ -758,5 +758,538 @@ class OPIcAdvancedBExamples {
     'reticent': [
       WordExample(english: 'She was reticent about sharing her personal life at work.', korean: '그녀는 직장에서 개인 생활을 공유하는 데 말이 없었어.'),
     ],
+
+    // ── 추가 단어 (Additional Words) ──
+    'aberration': [
+      WordExample(english: 'That bad grade was just an aberration, not a pattern.', korean: '그 나쁜 성적은 그냥 예외였지, 패턴은 아니었어.'),
+    ],
+    'abeyance': [
+      WordExample(english: 'Our travel plans are in abeyance until things calm down.', korean: '상황이 진정될 때까지 여행 계획은 보류 중이야.'),
+    ],
+    'acclimate': [
+      WordExample(english: 'It took me a month to acclimate to life in a new city.', korean: '새 도시 생활에 적응하는 데 한 달 걸렸어.'),
+    ],
+    'accolade': [
+      WordExample(english: 'The café has received accolades for its desserts.', korean: '그 카페는 디저트로 찬사를 받았어.'),
+    ],
+    'acquiesce': [
+      WordExample(english: 'I acquiesced to my friend\'s choice of restaurant.', korean: '식당은 그냥 친구가 고른 대로 따랐어.'),
+    ],
+    'adept': [
+      WordExample(english: 'My grandmother is adept at making kimchi.', korean: '할머니는 김치 담그는 데 능숙하셔.'),
+    ],
+    'admirable': [
+      WordExample(english: 'Her patience with the kids is truly admirable.', korean: '아이들을 대하는 그녀의 인내심은 정말 존경스러워.'),
+    ],
+    'affable': [
+      WordExample(english: 'Our new neighbor is an affable guy who loves to chat.', korean: '새 이웃은 수다 떠는 걸 좋아하는 상냥한 사람이야.'),
+    ],
+    'ambience': [
+      WordExample(english: 'I love the ambience of old bookstores.', korean: '나는 오래된 서점의 분위기를 좋아해.'),
+    ],
+    'amicable': [
+      WordExample(english: 'They had an amicable breakup and stayed friends.', korean: '그들은 좋게 헤어지고 친구로 남았어.'),
+    ],
+    'antidote': [
+      WordExample(english: 'Laughter is the best antidote to a bad day.', korean: '웃음은 힘든 하루에 가장 좋은 해독제야.'),
+    ],
+    'apprehend': [
+      WordExample(english: 'It took me a while to apprehend how serious the problem was.', korean: '문제가 얼마나 심각한지 파악하는 데 시간이 좀 걸렸어.'),
+    ],
+    'ardent': [
+      WordExample(english: 'My dad is an ardent baseball fan.', korean: '우리 아빠는 열혈 야구팬이셔.'),
+    ],
+    'assertive': [
+      WordExample(english: 'Being assertive helped me at my new job.', korean: '자기주장을 하는 게 새 직장에서 도움이 됐어.'),
+    ],
+    'auspicious': [
+      WordExample(english: 'It was an auspicious start to the new year.', korean: '새해의 좋은 출발이었어.'),
+    ],
+    'banal': [
+      WordExample(english: 'The movie\'s plot was pretty banal.', korean: '그 영화 줄거리는 꽤 진부했어.'),
+    ],
+    'bolster': [
+      WordExample(english: 'Getting good feedback bolstered my confidence.', korean: '좋은 피드백을 받고 자신감이 커졌어.'),
+    ],
+    'boisterous': [
+      WordExample(english: 'The kids at the party were really boisterous.', korean: '파티에 온 아이들이 정말 시끌벅적했어.'),
+    ],
+    'cathartic': [
+      WordExample(english: 'Crying at a sad movie can be cathartic.', korean: '슬픈 영화 보고 우는 건 속이 후련해질 수 있어.'),
+    ],
+    'chagrin': [
+      WordExample(english: 'To my chagrin, the store was already closed.', korean: '분하게도 가게가 이미 문을 닫았더라.'),
+    ],
+    'charismatic': [
+      WordExample(english: 'Our team leader is really charismatic.', korean: '우리 팀장님은 정말 카리스마가 있어.'),
+    ],
+    'cherish': [
+      WordExample(english: 'I cherish the time I spend with my family.', korean: '가족과 보내는 시간을 소중히 여겨.'),
+    ],
+    'coherence': [
+      WordExample(english: 'My essay lacked coherence, so I rewrote it.', korean: '에세이가 일관성이 없어서 다시 썼어.'),
+    ],
+    'commendable': [
+      WordExample(english: 'His effort to learn Korean is commendable.', korean: '한국어를 배우려는 그의 노력은 칭찬할 만해.'),
+    ],
+    'complacent': [
+      WordExample(english: 'I don\'t want to become complacent in my career.', korean: '나는 커리어에서 안주하고 싶지 않아.'),
+    ],
+    'comprise': [
+      WordExample(english: 'My daily routine comprises work, exercise, and reading.', korean: '내 일과는 일, 운동, 독서로 이루어져 있어.'),
+    ],
+    'concur': [
+      WordExample(english: 'I concur with you that the ending was too rushed.', korean: '결말이 너무 급했다는 네 말에 동의해.'),
+    ],
+    'contemplative': [
+      WordExample(english: 'I feel contemplative when I walk alone at night.', korean: '밤에 혼자 걸으면 사색에 잠기게 돼.'),
+    ],
+    'contempt': [
+      WordExample(english: 'He looked at the messy room with contempt.', korean: '그는 지저분한 방을 경멸하듯 바라봤어.'),
+    ],
+    'contentment': [
+      WordExample(english: 'I feel a sense of contentment on quiet Sunday mornings.', korean: '조용한 일요일 아침이면 만족감을 느껴.'),
+    ],
+    'cordial': [
+      WordExample(english: 'We had a cordial conversation with the landlord.', korean: '집주인과 정중하게 대화를 나눴어.'),
+    ],
+    'cumbersome': [
+      WordExample(english: 'The old booking system was really cumbersome.', korean: '예전 예약 시스템은 정말 번거로웠어.'),
+    ],
+    'debacle': [
+      WordExample(english: 'Our camping trip was a total debacle because of the rain.', korean: '비 때문에 캠핑 여행은 완전히 망했어.'),
+    ],
+    'decorum': [
+      WordExample(english: 'Please keep some decorum during the ceremony.', korean: '식 중에는 예의를 좀 지켜 줘.'),
+    ],
+    'defiant': [
+      WordExample(english: 'My little brother was defiant when he was a teenager.', korean: '남동생은 십대 때 반항적이었어.'),
+    ],
+    'dejected': [
+      WordExample(english: 'He looked dejected after losing the game.', korean: '그는 경기에 지고 나서 낙담한 표정이었어.'),
+    ],
+    'demeanor': [
+      WordExample(english: 'Her calm demeanor made everyone feel relaxed.', korean: '그녀의 차분한 태도가 모두를 편안하게 했어.'),
+    ],
+    'deplorable': [
+      WordExample(english: 'The condition of the old apartment was deplorable.', korean: '그 오래된 아파트 상태는 개탄스러웠어.'),
+    ],
+    'desolate': [
+      WordExample(english: 'The beach felt desolate in the middle of winter.', korean: '한겨울의 해변은 황량했어.'),
+    ],
+    'detrimental': [
+      WordExample(english: 'Staying up late is detrimental to your health.', korean: '늦게까지 깨어 있는 건 건강에 해로워.'),
+    ],
+    'devastated': [
+      WordExample(english: 'I was devastated when my dog passed away.', korean: '강아지가 떠났을 때 너무 상심했어.'),
+    ],
+    'dilapidated': [
+      WordExample(english: 'We stayed in a dilapidated old house in the countryside.', korean: '우리는 시골의 다 쓰러져 가는 옛집에서 지냈어.'),
+    ],
+    'discord': [
+      WordExample(english: 'There was some discord in our group about the plan.', korean: '계획을 두고 우리 모임에 약간의 불화가 있었어.'),
+    ],
+    'disheartened': [
+      WordExample(english: 'I felt disheartened after failing the test again.', korean: '시험에 또 떨어지고 나서 낙담했어.'),
+    ],
+    'dismal': [
+      WordExample(english: 'The weather was dismal all weekend.', korean: '주말 내내 날씨가 우중충했어.'),
+    ],
+    'disparate': [
+      WordExample(english: 'My friends come from very disparate backgrounds.', korean: '내 친구들은 배경이 정말 제각각이야.'),
+    ],
+    'dissuade': [
+      WordExample(english: 'My parents tried to dissuade me from quitting my job.', korean: '부모님은 내가 회사를 그만두지 못하게 말리셨어.'),
+    ],
+    'distraught': [
+      WordExample(english: 'She was distraught when she lost her passport abroad.', korean: '그녀는 해외에서 여권을 잃어버리고 몹시 당황했어.'),
+    ],
+    'dwindle': [
+      WordExample(english: 'My savings dwindled after the long trip.', korean: '긴 여행 후에 저축이 줄어들었어.'),
+    ],
+    'effervescent': [
+      WordExample(english: 'Her effervescent personality lights up the room.', korean: '그녀의 활기찬 성격이 분위기를 밝게 해.'),
+    ],
+    'elated': [
+      WordExample(english: 'I was elated when I got the job offer.', korean: '합격 연락을 받고 너무 기뻤어.'),
+    ],
+    'embark': [
+      WordExample(english: 'I\'m about to embark on a new chapter of my life.', korean: '이제 인생의 새로운 장을 시작하려고 해.'),
+    ],
+    'emulate': [
+      WordExample(english: 'I try to emulate my mentor\'s work ethic.', korean: '멘토의 직업의식을 본받으려고 노력해.'),
+    ],
+    'endearing': [
+      WordExample(english: 'My cat has a lot of endearing habits.', korean: '우리 고양이는 사랑스러운 버릇이 많아.'),
+    ],
+    'enthralling': [
+      WordExample(english: 'The novel was so enthralling that I read it in one night.', korean: '그 소설이 너무 흥미진진해서 하룻밤 만에 읽었어.'),
+    ],
+    'epitome': [
+      WordExample(english: 'That café is the epitome of a cozy hangout.', korean: '그 카페는 아늑한 아지트의 전형이야.'),
+    ],
+    'exasperated': [
+      WordExample(english: 'I was exasperated by the constant delays.', korean: '계속되는 지연에 너무 짜증이 났어.'),
+    ],
+    'exhilarating': [
+      WordExample(english: 'Skydiving was the most exhilarating thing I\'ve ever done.', korean: '스카이다이빙은 내가 해 본 것 중 가장 짜릿한 일이었어.'),
+    ],
+    'exuberant': [
+      WordExample(english: 'The crowd was exuberant after the team won.', korean: '팀이 이기자 관중들이 열광했어.'),
+    ],
+    'feeble': [
+      WordExample(english: 'He made a feeble excuse for being late.', korean: '그는 늦은 것에 대해 궁색한 변명을 했어.'),
+    ],
+    'fervor': [
+      WordExample(english: 'She talks about travel with real fervor.', korean: '그녀는 여행 얘기를 정말 열정적으로 해.'),
+    ],
+    'flabbergasted': [
+      WordExample(english: 'I was flabbergasted by how expensive the tickets were.', korean: '티켓이 너무 비싸서 기가 막혔어.'),
+    ],
+    'flourish': [
+      WordExample(english: 'The small bakery has flourished since it opened.', korean: '그 작은 빵집은 문을 연 이후로 번창했어.'),
+    ],
+    'forlorn': [
+      WordExample(english: 'The empty playground looked forlorn in the rain.', korean: '비 오는 텅 빈 놀이터가 쓸쓸해 보였어.'),
+    ],
+    'fortuitous': [
+      WordExample(english: 'Our meeting at the airport was completely fortuitous.', korean: '공항에서 만난 건 완전히 우연이었어.'),
+    ],
+    'frantic': [
+      WordExample(english: 'It was a frantic morning because I overslept.', korean: '늦잠을 자서 정신없는 아침이었어.'),
+    ],
+    'gratifying': [
+      WordExample(english: 'It\'s gratifying to see my students improve.', korean: '학생들이 나아지는 걸 보면 뿌듯해.'),
+    ],
+    'gregariousness': [
+      WordExample(english: 'Her gregariousness makes her great at parties.', korean: '그녀는 사교성이 좋아서 파티에서 인기가 많아.'),
+    ],
+    'hectic': [
+      WordExample(english: 'My schedule has been really hectic this month.', korean: '이번 달 일정이 정말 정신없었어.'),
+    ],
+    'hesitant': [
+      WordExample(english: 'I was hesitant to try skydiving at first.', korean: '처음엔 스카이다이빙 하기를 망설였어.'),
+    ],
+    'idyllic': [
+      WordExample(english: 'We spent an idyllic week in a small village by the sea.', korean: '바닷가 작은 마을에서 목가적인 일주일을 보냈어.'),
+    ],
+    'immaculate': [
+      WordExample(english: 'Her apartment is always immaculate.', korean: '그녀의 아파트는 항상 티 하나 없이 깨끗해.'),
+    ],
+    'impeccable': [
+      WordExample(english: 'The service at the hotel was impeccable.', korean: '호텔 서비스가 흠잡을 데가 없었어.'),
+    ],
+    'impulsive': [
+      WordExample(english: 'I made an impulsive decision to book the trip.', korean: '충동적으로 여행을 예약해 버렸어.'),
+    ],
+    'incessant': [
+      WordExample(english: 'The incessant noise from construction kept me awake.', korean: '끊임없는 공사 소음 때문에 잠을 못 잤어.'),
+    ],
+    'indulge': [
+      WordExample(english: 'I indulge in ice cream on hot summer days.', korean: '더운 여름날엔 아이스크림을 마음껏 먹어.'),
+    ],
+    'inquisitive': [
+      WordExample(english: 'My niece is very inquisitive and asks tons of questions.', korean: '조카는 호기심이 많아서 질문을 엄청 해.'),
+    ],
+    'insatiable': [
+      WordExample(english: 'He has an insatiable appetite for learning.', korean: '그는 배움에 대한 욕구가 끝이 없어.'),
+    ],
+    'intriguing': [
+      WordExample(english: 'The museum had an intriguing exhibit on ancient maps.', korean: '박물관에 고대 지도에 관한 흥미로운 전시가 있었어.'),
+    ],
+    'invigorating': [
+      WordExample(english: 'A cold shower in the morning is invigorating.', korean: '아침에 찬물로 샤워하면 기운이 나.'),
+    ],
+    'jubilant': [
+      WordExample(english: 'The fans were jubilant after the final match.', korean: '결승전 후 팬들은 환호했어.'),
+    ],
+    'lackluster': [
+      WordExample(english: 'The second season of the show was lackluster.', korean: '그 드라마 시즌 2는 좀 밋밋했어.'),
+    ],
+    'lavish': [
+      WordExample(english: 'They threw a lavish party for their anniversary.', korean: '그들은 기념일에 호화로운 파티를 열었어.'),
+    ],
+    'lenient': [
+      WordExample(english: 'My parents were lenient about my curfew.', korean: '부모님은 통금 시간에 관대하셨어.'),
+    ],
+    'linger': [
+      WordExample(english: 'The smell of fresh bread lingered in the kitchen.', korean: '갓 구운 빵 냄새가 부엌에 남아 있었어.'),
+    ],
+    'meander': [
+      WordExample(english: 'We meandered through the narrow streets of the old town.', korean: '우리는 구시가지의 좁은 골목을 거닐었어.'),
+    ],
+    'melancholy': [
+      WordExample(english: 'Rainy days always give me a sense of melancholy.', korean: '비 오는 날에는 늘 쓸쓸한 기분이 들어.'),
+    ],
+    'mesmerizing': [
+      WordExample(english: 'The sunset over the ocean was mesmerizing.', korean: '바다 위의 노을이 정말 매혹적이었어.'),
+    ],
+    'meticulously': [
+      WordExample(english: 'She planned the trip meticulously, down to every meal.', korean: '그녀는 끼니 하나까지 여행을 꼼꼼하게 계획했어.'),
+    ],
+    'mischievous': [
+      WordExample(english: 'My puppy is really mischievous and chews everything.', korean: '우리 강아지는 장난이 심해서 뭐든 씹어.'),
+    ],
+    'mundanity': [
+      WordExample(english: 'I needed a trip to escape the mundanity of daily life.', korean: '일상의 따분함에서 벗어나려고 여행이 필요했어.'),
+    ],
+    'nonchalantly': [
+      WordExample(english: 'He nonchalantly mentioned that he had won the contest.', korean: '그는 대회에서 우승했다고 태연하게 말했어.'),
+    ],
+    'nostalgic': [
+      WordExample(english: 'Old songs make me feel nostalgic.', korean: '옛날 노래를 들으면 향수에 젖어.'),
+    ],
+    'novice': [
+      WordExample(english: 'I\'m still a novice when it comes to cooking.', korean: '요리에 있어서는 나 아직 초보야.'),
+    ],
+    'obnoxious': [
+      WordExample(english: 'The guy next to me on the bus was really obnoxious.', korean: '버스에서 내 옆에 앉은 남자가 정말 불쾌했어.'),
+    ],
+    'onerous': [
+      WordExample(english: 'Planning the wedding felt like an onerous task.', korean: '결혼식 준비가 부담스러운 일처럼 느껴졌어.'),
+    ],
+    'optimism': [
+      WordExample(english: 'Her optimism helps me through tough times.', korean: '그녀의 낙관적인 태도가 힘든 시기를 버티게 해 줘.'),
+    ],
+    'outlandish': [
+      WordExample(english: 'He wore an outlandish costume to the party.', korean: '그는 파티에 기이한 의상을 입고 왔어.'),
+    ],
+    'overbearing': [
+      WordExample(english: 'My old boss was overbearing and never listened.', korean: '예전 상사는 고압적이고 남 말을 절대 안 들었어.'),
+    ],
+    'palatable': [
+      WordExample(english: 'Adding some spice made the soup more palatable.', korean: '양념을 좀 넣으니 국이 더 맛있어졌어.'),
+    ],
+    'paramount': [
+      WordExample(english: 'Safety is paramount when you go hiking alone.', korean: '혼자 등산할 때는 안전이 가장 중요해.'),
+    ],
+    'peculiar': [
+      WordExample(english: 'There was a peculiar smell in the old building.', korean: '그 오래된 건물에서 이상한 냄새가 났어.'),
+    ],
+    'perennial': [
+      WordExample(english: 'Traffic is a perennial problem in this city.', korean: '교통 체증은 이 도시의 고질적인 문제야.'),
+    ],
+    'perplexed': [
+      WordExample(english: 'I was perplexed by the confusing instructions.', korean: '헷갈리는 설명서 때문에 당혹스러웠어.'),
+    ],
+    'persevere': [
+      WordExample(english: 'If you persevere, your English will definitely improve.', korean: '꾸준히 버티면 영어 실력이 분명히 늘 거야.'),
+    ],
+    'picturesque': [
+      WordExample(english: 'We stayed in a picturesque village in the mountains.', korean: '우리는 산속의 그림 같은 마을에서 묵었어.'),
+    ],
+    'placid': [
+      WordExample(english: 'The lake was placid early in the morning.', korean: '이른 아침 호수는 잔잔했어.'),
+    ],
+    'poignant': [
+      WordExample(english: 'The movie had a poignant ending that made me cry.', korean: '그 영화는 가슴 아픈 결말이라 울었어.'),
+    ],
+    'precocious': [
+      WordExample(english: 'My nephew is precocious and reads adult novels.', korean: '조카는 조숙해서 어른 소설을 읽어.'),
+    ],
+    'predicament': [
+      WordExample(english: 'I was in a predicament when I missed the last bus.', korean: '막차를 놓쳐서 곤경에 처했어.'),
+    ],
+    'prestigious': [
+      WordExample(english: 'She got into a prestigious university.', korean: '그녀는 명문 대학에 들어갔어.'),
+    ],
+    'procrastination': [
+      WordExample(english: 'Procrastination is my biggest weakness.', korean: '미루는 버릇이 내 가장 큰 약점이야.'),
+    ],
+    'proficient': [
+      WordExample(english: 'I want to become proficient in English within two years.', korean: '2년 안에 영어에 능숙해지고 싶어.'),
+    ],
+    'prolific': [
+      WordExample(english: 'He is a prolific writer who publishes a book every year.', korean: '그는 매년 책을 내는 다작 작가야.'),
+    ],
+    'prosperous': [
+      WordExample(english: 'The town became prosperous after the new port opened.', korean: '새 항구가 생긴 후 그 마을은 번영했어.'),
+    ],
+    'quaint': [
+      WordExample(english: 'We found a quaint little inn by the river.', korean: '강가에서 예스럽고 아담한 여관을 찾았어.'),
+    ],
+    'rambunctious': [
+      WordExample(english: 'The rambunctious kids ran around the restaurant.', korean: '떠들썩한 아이들이 식당을 뛰어다녔어.'),
+    ],
+    'rapport': [
+      WordExample(english: 'I built a good rapport with my new teammates.', korean: '새 팀원들과 좋은 관계를 쌓았어.'),
+    ],
+    'rejuvenate': [
+      WordExample(english: 'A week at the beach really rejuvenated me.', korean: '바닷가에서 보낸 일주일로 정말 기운을 되찾았어.'),
+    ],
+    'relentless': [
+      WordExample(english: 'The relentless heat made it hard to sleep.', korean: '가차 없는 더위 때문에 잠들기 힘들었어.'),
+    ],
+    'reminisce': [
+      WordExample(english: 'We reminisced about our college days over dinner.', korean: '저녁을 먹으며 대학 시절을 추억했어.'),
+    ],
+    'remorse': [
+      WordExample(english: 'He felt remorse for yelling at his sister.', korean: '그는 여동생에게 소리친 걸 후회했어.'),
+    ],
+    'resentment': [
+      WordExample(english: 'Holding on to resentment only hurts yourself.', korean: '원망을 품고 있으면 너만 힘들어.'),
+    ],
+    'resourceful': [
+      WordExample(english: 'She\'s resourceful and always finds a way to solve problems.', korean: '그녀는 수완이 좋아서 항상 문제를 해결할 방법을 찾아.'),
+    ],
+    'restless': [
+      WordExample(english: 'I felt restless after staying inside all day.', korean: '하루 종일 집에만 있었더니 몸이 근질근질했어.'),
+    ],
+    'reverie': [
+      WordExample(english: 'I was lost in a reverie while looking out the window.', korean: '창밖을 보다가 공상에 빠졌어.'),
+    ],
+    'savor': [
+      WordExample(english: 'I like to savor my coffee slowly in the morning.', korean: '아침에 커피를 천천히 음미하는 걸 좋아해.'),
+    ],
+    'scrumptious': [
+      WordExample(english: 'The homemade pie was absolutely scrumptious.', korean: '직접 만든 파이가 정말 맛있었어.'),
+    ],
+    'secluded': [
+      WordExample(english: 'We found a secluded beach with no other tourists.', korean: '다른 관광객이 없는 한적한 해변을 찾았어.'),
+    ],
+    'serene': [
+      WordExample(english: 'The temple in the mountains was so serene.', korean: '산속 절은 정말 고요했어.'),
+    ],
+    'sluggish': [
+      WordExample(english: 'I feel sluggish if I eat too much at lunch.', korean: '점심을 너무 많이 먹으면 몸이 늘어져.'),
+    ],
+    'solace': [
+      WordExample(english: 'I find solace in music when I\'m sad.', korean: '슬플 때 음악에서 위안을 얻어.'),
+    ],
+    'spontaneity': [
+      WordExample(english: 'I love the spontaneity of unplanned road trips.', korean: '계획 없이 떠나는 자동차 여행의 즉흥성이 좋아.'),
+    ],
+    'squander': [
+      WordExample(english: 'I squandered my whole weekend playing games.', korean: '게임하면서 주말을 통째로 날렸어.'),
+    ],
+    'stamina': [
+      WordExample(english: 'Running every day has improved my stamina.', korean: '매일 달리면서 체력이 좋아졌어.'),
+    ],
+    'steadfastly': [
+      WordExample(english: 'She steadfastly refused to give up on her dream.', korean: '그녀는 꿈을 포기하기를 끝까지 거부했어.'),
+    ],
+    'strenuous': [
+      WordExample(english: 'The hike was more strenuous than we expected.', korean: '등산이 예상보다 훨씬 힘들었어.'),
+    ],
+    'sublime': [
+      WordExample(english: 'The view from the mountaintop was sublime.', korean: '산꼭대기에서 본 경치는 황홀했어.'),
+    ],
+    'tedious': [
+      WordExample(english: 'Filling out all these forms is so tedious.', korean: '이 서류들을 다 작성하는 건 너무 지루해.'),
+    ],
+    'tenacity': [
+      WordExample(english: 'Her tenacity helped her pass the exam on the third try.', korean: '그녀는 끈기 덕분에 세 번째 도전에서 시험에 붙었어.'),
+    ],
+    'tranquil': [
+      WordExample(english: 'I spent a tranquil afternoon reading in the garden.', korean: '정원에서 책을 읽으며 고요한 오후를 보냈어.'),
+    ],
+    'trepidatious': [
+      WordExample(english: 'I was trepidatious about moving to a new country.', korean: '새로운 나라로 이사하는 게 두려웠어.'),
+    ],
+    'unassuming': [
+      WordExample(english: 'Despite his success, he remains unassuming.', korean: '성공했는데도 그는 여전히 겸손해.'),
+    ],
+    'uncanny': [
+      WordExample(english: 'She has an uncanny ability to remember faces.', korean: '그녀는 얼굴을 기억하는 묘한 능력이 있어.'),
+    ],
+    'unwavering': [
+      WordExample(english: 'My parents gave me unwavering support.', korean: '부모님은 나를 흔들림 없이 응원해 주셨어.'),
+    ],
+    'upbeat': [
+      WordExample(english: 'I listen to upbeat music when I work out.', korean: '운동할 때는 신나는 음악을 들어.'),
+    ],
+    'vehement': [
+      WordExample(english: 'She was vehement in her opposition to the plan.', korean: '그녀는 그 계획에 격렬하게 반대했어.'),
+    ],
+    'vibrant': [
+      WordExample(english: 'Seoul is a vibrant city that never sleeps.', korean: '서울은 잠들지 않는 활기찬 도시야.'),
+    ],
+    'vigilant': [
+      WordExample(english: 'Stay vigilant about your belongings in crowded places.', korean: '붐비는 곳에서는 소지품을 잘 챙겨.'),
+    ],
+    'vivacious': [
+      WordExample(english: 'My aunt is a vivacious woman who loves to dance.', korean: '이모는 춤추는 걸 좋아하는 쾌활한 분이야.'),
+    ],
+    'vivid': [
+      WordExample(english: 'I still have vivid memories of my first trip abroad.', korean: '첫 해외여행의 기억이 아직도 생생해.'),
+    ],
+    'wanderlust': [
+      WordExample(english: 'My wanderlust makes it hard to stay home for long.', korean: '여행 욕구 때문에 집에 오래 있기가 힘들어.'),
+    ],
+    'weary': [
+      WordExample(english: 'I was weary after the long flight.', korean: '긴 비행 후에 지쳐 있었어.'),
+    ],
+    'wholesome': [
+      WordExample(english: 'We had a wholesome family dinner on Sunday.', korean: '일요일에 건강한 가족 식사를 했어.'),
+    ],
+    'wistful': [
+      WordExample(english: 'She gave a wistful smile as she looked at old photos.', korean: '그녀는 옛날 사진을 보며 아련한 미소를 지었어.'),
+    ],
+    'yearn': [
+      WordExample(english: 'I yearn for a long vacation by the sea.', korean: '바닷가에서 긴 휴가를 보내고 싶어.'),
+    ],
+    'zest': [
+      WordExample(english: 'My grandfather still has a real zest for life.', korean: '할아버지는 아직도 삶에 대한 열정이 넘치셔.'),
+    ],
+    'acquaintance': [
+      WordExample(english: 'He\'s not a close friend, just an acquaintance from work.', korean: '그는 친한 친구가 아니라 그냥 직장에서 아는 사람이야.'),
+    ],
+    'aficionado': [
+      WordExample(english: 'My uncle is a coffee aficionado.', korean: '삼촌은 커피 애호가야.'),
+    ],
+    'amenity': [
+      WordExample(english: 'The hotel had great amenities, like a spa and a pool.', korean: '호텔에는 스파랑 수영장 같은 좋은 편의 시설이 있었어.'),
+    ],
+    'arduously': [
+      WordExample(english: 'We climbed arduously to the top of the mountain.', korean: '우리는 힘들게 산 정상까지 올라갔어.'),
+    ],
+    'avid reader': [
+      WordExample(english: 'I\'ve been an avid reader since I was a child.', korean: '나는 어릴 때부터 열렬한 독서가였어.'),
+    ],
+    'bittersweet': [
+      WordExample(english: 'Graduation was a bittersweet moment for me.', korean: '졸업은 나에게 시원섭섭한 순간이었어.'),
+    ],
+    'breathtaking': [
+      WordExample(english: 'The view of the Alps was absolutely breathtaking.', korean: '알프스 경치는 정말 숨이 멎을 듯했어.'),
+    ],
+    'camaraderie': [
+      WordExample(english: 'There\'s a strong sense of camaraderie on our team.', korean: '우리 팀에는 끈끈한 동료애가 있어.'),
+    ],
+    'captivating': [
+      WordExample(english: 'The singer\'s voice was captivating.', korean: '그 가수의 목소리는 매혹적이었어.'),
+    ],
+    'carefree': [
+      WordExample(english: 'I miss the carefree days of my childhood.', korean: '근심 없던 어린 시절이 그리워.'),
+    ],
+    'commotion': [
+      WordExample(english: 'There was a big commotion outside my apartment last night.', korean: '어젯밤 우리 아파트 밖에서 큰 소동이 있었어.'),
+    ],
+    'conundrum': [
+      WordExample(english: 'Choosing between the two job offers was a real conundrum.', korean: '두 회사 중 하나를 고르는 건 정말 어려운 문제였어.'),
+    ],
+    'daunt': [
+      WordExample(english: 'The size of the project didn\'t daunt her at all.', korean: '프로젝트 규모에도 그녀는 전혀 기죽지 않았어.'),
+    ],
+    'dexterous': [
+      WordExample(english: 'You need dexterous hands to make dumplings quickly.', korean: '만두를 빨리 빚으려면 손재주가 좋아야 해.'),
+    ],
+    'diversion': [
+      WordExample(english: 'Gardening is a nice diversion from work stress.', korean: '정원 가꾸기는 업무 스트레스에서 벗어나는 좋은 기분 전환이야.'),
+    ],
+    'enchanting': [
+      WordExample(english: 'The old town at night was enchanting.', korean: '밤의 구시가지는 황홀했어.'),
+    ],
+    'engrossed': [
+      WordExample(english: 'I was so engrossed in the book that I missed my stop.', korean: '책에 너무 빠져서 내릴 역을 지나쳤어.'),
+    ],
+    'fleeting': [
+      WordExample(english: 'Cherry blossom season is beautiful but fleeting.', korean: '벚꽃 시즌은 아름답지만 금방 지나가.'),
+    ],
+    'frugality': [
+      WordExample(english: 'My grandparents taught me the value of frugality.', korean: '조부모님이 검소함의 가치를 가르쳐 주셨어.'),
+    ],
+    'gratification': [
+      WordExample(english: 'Social media offers instant gratification.', korean: 'SNS는 즉각적인 만족감을 줘.'),
+    ],
   };
 }

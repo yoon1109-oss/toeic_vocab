@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toeic_vocab/data/opic_data.dart';
 import 'package:toeic_vocab/data/word_data.dart';
 import 'package:toeic_vocab/viewmodels/word_viewmodel.dart';
 
@@ -118,5 +119,15 @@ void main() {
     }
     expect(vm.showQuiz, isTrue);
     expect(vm.quizController!.total, WordViewModel.wordsPerSet);
+  });
+
+  test('OPIc 레벨마다 중복 없는 500단어', () {
+    final all = <String>[];
+    for (final level in [1, 2, 3]) {
+      final words = OPIcData.words[level]!;
+      expect(words.length, 500, reason: 'level $level');
+      all.addAll(words.map((w) => w.english.toLowerCase()));
+    }
+    expect(all.toSet().length, all.length);
   });
 }

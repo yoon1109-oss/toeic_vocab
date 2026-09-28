@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:toeic_vocab/data/opic_data.dart';
 import 'package:toeic_vocab/data/word_data.dart';
 import 'package:toeic_vocab/services/examples_repository.dart';
 import 'package:toeic_vocab/viewmodels/word_viewmodel.dart';
@@ -52,6 +53,19 @@ void main() {
           .where((w) => repo
               .examplesFor(
                   mode: VocabMode.toeic, level: level, english: w.english)
+              .isEmpty)
+          .map((w) => w.english)
+          .toList();
+      expect(missing, isEmpty, reason: 'level $level');
+    }
+  });
+
+  test('모든 OPIc 단어에 해당 레벨 예문이 있다', () {
+    for (final level in [1, 2, 3]) {
+      final missing = OPIcData.words[level]!
+          .where((w) => repo
+              .examplesFor(
+                  mode: VocabMode.opic, level: level, english: w.english)
               .isEmpty)
           .map((w) => w.english)
           .toList();

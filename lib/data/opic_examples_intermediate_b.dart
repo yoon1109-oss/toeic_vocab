@@ -1229,5 +1229,372 @@ class OPIcIntermediateBExamples {
       WordExample(english: 'To surpass the competition, focus less on what they are doing and more on what your customers truly need.', korean: '경쟁자를 뛰어넘으려면 그들이 무엇을 하고 있는지보다 고객이 진정으로 필요로 하는 것에 더 집중해.'),
       WordExample(english: 'When you surpass a milestone, celebrate it — then immediately set your sights on the next challenge.', korean: '마일스톤을 뛰어넘으면 축하해, 그런 다음 즉시 다음 도전으로 눈을 돌려.'),
     ],
+
+    // ── 추가 단어 (Additional Words) ──
+    'habit': [
+      WordExample(english: 'I have a habit of checking my phone first thing in the morning.', korean: '나는 아침에 일어나자마자 휴대폰을 확인하는 습관이 있어.'),
+      WordExample(english: 'Reading before bed is a good habit to build.', korean: '자기 전에 책 읽는 건 들이기 좋은 습관이야.'),
+      WordExample(english: 'It took me months to break the habit of snacking at night.', korean: '밤에 간식 먹는 습관을 고치는 데 몇 달이 걸렸어.'),
+    ],
+    'leisure': [
+      WordExample(english: 'In my leisure time, I usually go hiking with friends.', korean: '여가 시간에 나는 보통 친구들이랑 등산을 가.'),
+      WordExample(english: 'There are many leisure facilities near my apartment.', korean: '우리 아파트 근처에는 여가 시설이 많아.'),
+      WordExample(english: 'I don\'t have much leisure time these days because of work.', korean: '요즘은 일 때문에 여가 시간이 별로 없어.'),
+    ],
+    'relax': [
+      WordExample(english: 'I like to relax by listening to music after work.', korean: '퇴근 후에 음악을 들으면서 쉬는 걸 좋아해.'),
+      WordExample(english: 'It\'s hard to relax when you have a deadline coming up.', korean: '마감이 다가오면 편히 쉬기가 어려워.'),
+      WordExample(english: 'We went to the beach to relax for the weekend.', korean: '우리는 주말에 쉬려고 바닷가에 갔어.'),
+    ],
+    'recharge': [
+      WordExample(english: 'A short trip helps me recharge my energy.', korean: '짧은 여행이 내 에너지를 재충전하는 데 도움이 돼.'),
+      WordExample(english: 'I spend Sundays at home to recharge for the week.', korean: '한 주를 위해 재충전하려고 일요일은 집에서 보내.'),
+      WordExample(english: 'Sometimes you just need a day off to recharge.', korean: '가끔은 재충전을 위해 하루 쉬는 게 필요해.'),
+    ],
+    'unwind': [
+      WordExample(english: 'Taking a warm bath helps me unwind at night.', korean: '따뜻한 목욕은 밤에 긴장을 푸는 데 도움이 돼.'),
+      WordExample(english: 'After a long week, I unwind by watching movies.', korean: '긴 한 주가 끝나면 영화를 보면서 긴장을 풀어.'),
+      WordExample(english: 'My dad unwinds by working in his garden.', korean: '우리 아빠는 정원을 가꾸면서 긴장을 푸셔.'),
+    ],
+    'favorite': [
+      WordExample(english: 'My favorite place to visit is the park near the river.', korean: '내가 제일 좋아하는 장소는 강가 근처 공원이야.'),
+      WordExample(english: 'Kimchi stew is my favorite dish to cook at home.', korean: '김치찌개는 내가 집에서 제일 좋아하는 요리야.'),
+      WordExample(english: 'Who is your favorite singer these days?', korean: '요즘 제일 좋아하는 가수가 누구야?'),
+    ],
+    'souvenir': [
+      WordExample(english: 'I always buy a small souvenir when I travel.', korean: '나는 여행할 때 항상 작은 기념품을 사.'),
+      WordExample(english: 'This magnet is a souvenir from my trip to Japan.', korean: '이 자석은 일본 여행에서 산 기념품이야.'),
+      WordExample(english: 'The souvenir shops near the beach were really crowded.', korean: '해변 근처 기념품 가게들이 정말 붐볐어.'),
+    ],
+    'sightseeing': [
+      WordExample(english: 'We did a lot of sightseeing on our first day in Paris.', korean: '파리 첫날에 관광을 정말 많이 했어.'),
+      WordExample(english: 'I prefer relaxing over sightseeing when I go on vacation.', korean: '휴가 가면 관광보다 쉬는 걸 더 좋아해.'),
+      WordExample(english: 'The city bus is the easiest way to go sightseeing.', korean: '시티 버스가 관광하기에 제일 편한 방법이야.'),
+    ],
+    'luggage': [
+      WordExample(english: 'I always pack light so I don\'t carry heavy luggage.', korean: '무거운 짐을 들지 않으려고 항상 가볍게 싸.'),
+      WordExample(english: 'My luggage got lost at the airport last year.', korean: '작년에 공항에서 내 짐이 분실됐어.'),
+      WordExample(english: 'Please keep your luggage with you at all times.', korean: '짐은 항상 몸에 지니고 있어 줘.'),
+    ],
+    'appliance': [
+      WordExample(english: 'We bought new kitchen appliances when we moved in.', korean: '이사 올 때 새 주방 가전을 샀어.'),
+      WordExample(english: 'The most useful appliance in my house is the air fryer.', korean: '우리 집에서 가장 유용한 가전은 에어프라이어야.'),
+      WordExample(english: 'Old appliances use a lot more electricity.', korean: '오래된 가전제품은 전기를 훨씬 많이 써.'),
+    ],
+    'spacious': [
+      WordExample(english: 'My new apartment is much more spacious than the old one.', korean: '새 아파트가 예전 집보다 훨씬 넓어.'),
+      WordExample(english: 'The living room is bright and spacious.', korean: '거실이 밝고 넓어.'),
+      WordExample(english: 'I want a spacious kitchen where I can cook with friends.', korean: '친구들이랑 요리할 수 있는 넓은 주방을 갖고 싶어.'),
+    ],
+    'cozy': [
+      WordExample(english: 'My room is small but really cozy.', korean: '내 방은 작지만 정말 아늑해.'),
+      WordExample(english: 'We found a cozy little café near the station.', korean: '역 근처에서 아늑하고 작은 카페를 찾았어.'),
+      WordExample(english: 'I love staying in my cozy bed on rainy days.', korean: '비 오는 날에는 아늑한 침대에 있는 게 좋아.'),
+    ],
+    'tidy': [
+      WordExample(english: 'I try to keep my desk tidy so I can focus.', korean: '집중하려고 책상을 깔끔하게 유지하려고 해.'),
+      WordExample(english: 'I tidy up my room every Saturday morning.', korean: '토요일 아침마다 방을 정리해.'),
+      WordExample(english: 'My roommate is much tidier than I am.', korean: '룸메이트가 나보다 훨씬 깔끔해.'),
+    ],
+    'renovate': [
+      WordExample(english: 'We renovated the bathroom last summer.', korean: '작년 여름에 욕실을 리모델링했어.'),
+      WordExample(english: 'The old building was renovated into a library.', korean: '오래된 건물이 도서관으로 개조됐어.'),
+      WordExample(english: 'Renovating an apartment takes more time than you think.', korean: '아파트를 리모델링하는 건 생각보다 시간이 오래 걸려.'),
+    ],
+    'neighbor': [
+      WordExample(english: 'My neighbor always says hello when we meet in the elevator.', korean: '이웃이 엘리베이터에서 만나면 항상 인사해.'),
+      WordExample(english: 'We share vegetables with our neighbors.', korean: '우리는 이웃들과 채소를 나눠 먹어.'),
+      WordExample(english: 'The noise from my upstairs neighbor bothers me sometimes.', korean: '위층 이웃 소음이 가끔 신경 쓰여.'),
+    ],
+    'facility': [
+      WordExample(english: 'The park has great facilities, like a gym and a pool.', korean: '그 공원에는 헬스장이나 수영장 같은 좋은 시설이 있어.'),
+      WordExample(english: 'Our school built a new sports facility last year.', korean: '우리 학교는 작년에 새 체육 시설을 지었어.'),
+      WordExample(english: 'The facilities in this building are pretty old.', korean: '이 건물의 시설은 꽤 오래됐어.'),
+    ],
+    'convenience store': [
+      WordExample(english: 'There\'s a convenience store right in front of my building.', korean: '우리 건물 바로 앞에 편의점이 있어.'),
+      WordExample(english: 'I often grab a quick lunch at the convenience store.', korean: '편의점에서 간단히 점심을 자주 사 먹어.'),
+      WordExample(english: 'Convenience stores in Korea are open 24 hours.', korean: '한국 편의점은 24시간 열어.'),
+    ],
+    'grocery': [
+      WordExample(english: 'I go grocery shopping every Sunday.', korean: '나는 일요일마다 장을 봐.'),
+      WordExample(english: 'Grocery prices have gone up a lot lately.', korean: '요즘 식료품 가격이 많이 올랐어.'),
+      WordExample(english: 'I order groceries online when I\'m busy.', korean: '바쁠 때는 식료품을 온라인으로 주문해.'),
+    ],
+    'recipe': [
+      WordExample(english: 'I found a simple pasta recipe online.', korean: '인터넷에서 간단한 파스타 요리법을 찾았어.'),
+      WordExample(english: 'My mom never follows a recipe when she cooks.', korean: '엄마는 요리할 때 요리법을 전혀 안 보셔.'),
+      WordExample(english: 'Can you share the recipe for this cake?', korean: '이 케이크 레시피 공유해 줄 수 있어?'),
+    ],
+    'delicious': [
+      WordExample(english: 'The food at that restaurant was absolutely delicious.', korean: '그 식당 음식은 정말 맛있었어.'),
+      WordExample(english: 'My grandmother makes the most delicious dumplings.', korean: '할머니가 세상에서 제일 맛있는 만두를 만드셔.'),
+      WordExample(english: 'It smells delicious in here!', korean: '여기 냄새 정말 맛있다!'),
+    ],
+    'workout': [
+      WordExample(english: 'I do a 30-minute workout every morning.', korean: '나는 매일 아침 30분씩 운동해.'),
+      WordExample(english: 'After a hard workout, I feel refreshed.', korean: '힘든 운동을 하고 나면 개운해.'),
+      WordExample(english: 'My favorite workout is running along the river.', korean: '내가 제일 좋아하는 운동은 강변 달리기야.'),
+    ],
+    'stretch': [
+      WordExample(english: 'I always stretch before I go running.', korean: '나는 달리기 전에 항상 스트레칭을 해.'),
+      WordExample(english: 'Stretching helps me feel less stiff after sitting all day.', korean: '하루 종일 앉아 있다가 스트레칭하면 덜 뻐근해.'),
+      WordExample(english: 'Don\'t forget to stretch after your workout.', korean: '운동 끝나고 스트레칭하는 거 잊지 마.'),
+    ],
+    'sweat': [
+      WordExample(english: 'I was covered in sweat after playing basketball.', korean: '농구를 하고 나서 땀범벅이 됐어.'),
+      WordExample(english: 'I sweat a lot in the summer.', korean: '나는 여름에 땀을 많이 흘려.'),
+      WordExample(english: 'A good workout should make you sweat.', korean: '좋은 운동이라면 땀이 나야 해.'),
+    ],
+    'injury': [
+      WordExample(english: 'I had a knee injury, so I stopped running for a while.', korean: '무릎을 다쳐서 한동안 달리기를 쉬었어.'),
+      WordExample(english: 'Warming up can prevent injuries.', korean: '준비 운동을 하면 부상을 예방할 수 있어.'),
+      WordExample(english: 'He recovered quickly from his injury.', korean: '그는 부상에서 빨리 회복했어.'),
+    ],
+    'energetic': [
+      WordExample(english: 'I feel more energetic when I exercise in the morning.', korean: '아침에 운동하면 더 활기차.'),
+      WordExample(english: 'My younger sister is always energetic and cheerful.', korean: '내 여동생은 항상 활기차고 명랑해.'),
+      WordExample(english: 'The concert had a really energetic atmosphere.', korean: '그 콘서트는 분위기가 정말 활기찼어.'),
+    ],
+    'exhausted': [
+      WordExample(english: 'I was exhausted after working late all week.', korean: '일주일 내내 야근하고 나서 녹초가 됐어.'),
+      WordExample(english: 'After the long hike, everyone was exhausted.', korean: '긴 등산이 끝나고 다들 지쳐 있었어.'),
+      WordExample(english: 'I get exhausted easily when I don\'t sleep well.', korean: '잠을 잘 못 자면 쉽게 지쳐.'),
+    ],
+    'concert': [
+      WordExample(english: 'I went to my first concert when I was in high school.', korean: '고등학생 때 처음으로 콘서트에 갔어.'),
+      WordExample(english: 'The concert tickets sold out in five minutes.', korean: '콘서트 티켓이 5분 만에 매진됐어.'),
+      WordExample(english: 'We sang along with the crowd at the concert.', korean: '콘서트에서 관객들이랑 같이 노래를 따라 불렀어.'),
+    ],
+    'performance': [
+      WordExample(english: 'The dancers gave an amazing performance.', korean: '무용수들이 멋진 공연을 보여줬어.'),
+      WordExample(english: 'I was nervous before my piano performance.', korean: '피아노 공연 전에 긴장했어.'),
+      WordExample(english: 'The live performance was better than the recording.', korean: '라이브 공연이 녹음본보다 더 좋았어.'),
+    ],
+    'genre': [
+      WordExample(english: 'My favorite movie genre is science fiction.', korean: '내가 제일 좋아하는 영화 장르는 SF야.'),
+      WordExample(english: 'I listen to many different genres of music.', korean: '나는 여러 장르의 음악을 들어.'),
+      WordExample(english: 'Romance isn\'t really my genre.', korean: '로맨스는 내 취향이 아니야.'),
+    ],
+    'episode': [
+      WordExample(english: 'I watched five episodes of the drama in one night.', korean: '하룻밤에 드라마 다섯 편을 봤어.'),
+      WordExample(english: 'The last episode had a surprising ending.', korean: '마지막 회는 결말이 놀라웠어.'),
+      WordExample(english: 'That was a funny episode from my childhood.', korean: '그건 내 어린 시절의 재미있는 일화였어.'),
+    ],
+    'subscribe': [
+      WordExample(english: 'I subscribe to a few streaming services.', korean: '나는 스트리밍 서비스 몇 개를 구독하고 있어.'),
+      WordExample(english: 'Don\'t forget to subscribe to my channel!', korean: '내 채널 구독하는 거 잊지 마!'),
+      WordExample(english: 'I subscribed to a cooking magazine last year.', korean: '작년에 요리 잡지를 구독했어.'),
+    ],
+    'download': [
+      WordExample(english: 'I download podcasts to listen to on the subway.', korean: '지하철에서 들으려고 팟캐스트를 내려받아.'),
+      WordExample(english: 'The app takes a long time to download.', korean: '그 앱은 내려받는 데 시간이 오래 걸려.'),
+      WordExample(english: 'You can download the map before you travel.', korean: '여행 가기 전에 지도를 내려받아 둘 수 있어.'),
+    ],
+    'device': [
+      WordExample(english: 'I use three different devices every day.', korean: '나는 매일 세 가지 기기를 사용해.'),
+      WordExample(english: 'This device can control all the lights in the house.', korean: '이 기기로 집 안의 모든 조명을 조절할 수 있어.'),
+      WordExample(english: 'Please turn off your devices during the movie.', korean: '영화 보는 동안 기기를 꺼 줘.'),
+    ],
+    'battery': [
+      WordExample(english: 'My phone battery dies really quickly these days.', korean: '요즘 휴대폰 배터리가 정말 빨리 닳아.'),
+      WordExample(english: 'I always carry an extra battery when I travel.', korean: '여행할 때 항상 보조 배터리를 챙겨.'),
+      WordExample(english: 'Let me charge the battery before we go.', korean: '나가기 전에 배터리 좀 충전할게.'),
+    ],
+    'upgrade': [
+      WordExample(english: 'I upgraded my phone after using it for four years.', korean: '4년 동안 쓰고 휴대폰을 바꿨어.'),
+      WordExample(english: 'The hotel upgraded our room for free.', korean: '호텔이 무료로 방을 업그레이드해 줬어.'),
+      WordExample(english: 'I need to upgrade my laptop soon.', korean: '곧 노트북을 업그레이드해야 해.'),
+    ],
+    'inconvenient': [
+      WordExample(english: 'It\'s inconvenient that the store closes so early.', korean: '가게가 그렇게 일찍 문을 닫아서 불편해.'),
+      WordExample(english: 'Living far from the subway is really inconvenient.', korean: '지하철에서 멀리 사는 건 정말 불편해.'),
+      WordExample(english: 'Sorry, is this an inconvenient time to talk?', korean: '미안, 지금 통화하기 곤란한 시간이야?'),
+    ],
+    'traffic jam': [
+      WordExample(english: 'I was stuck in a traffic jam for an hour.', korean: '한 시간 동안 교통 체증에 갇혀 있었어.'),
+      WordExample(english: 'There\'s always a traffic jam on holiday weekends.', korean: '연휴 주말에는 항상 차가 막혀.'),
+      WordExample(english: 'I take the subway to avoid traffic jams.', korean: '차 막히는 걸 피하려고 지하철을 타.'),
+    ],
+    'public transportation': [
+      WordExample(english: 'Public transportation in Seoul is fast and cheap.', korean: '서울 대중교통은 빠르고 저렴해.'),
+      WordExample(english: 'I use public transportation instead of driving.', korean: '운전 대신 대중교통을 이용해.'),
+      WordExample(english: 'Public transportation makes it easy to travel around the city.', korean: '대중교통 덕분에 시내를 돌아다니기 쉬워.'),
+    ],
+    'weather': [
+      WordExample(english: 'The weather has been really nice this week.', korean: '이번 주 날씨가 정말 좋았어.'),
+      WordExample(english: 'I check the weather before I decide what to wear.', korean: '뭘 입을지 정하기 전에 날씨를 확인해.'),
+      WordExample(english: 'The weather in Korea changes a lot by season.', korean: '한국 날씨는 계절마다 많이 바뀌어.'),
+    ],
+    'humid': [
+      WordExample(english: 'Summers in Korea are very hot and humid.', korean: '한국 여름은 아주 덥고 습해.'),
+      WordExample(english: 'I don\'t like humid weather because my hair gets messy.', korean: '습한 날씨에는 머리가 엉망이 돼서 싫어.'),
+      WordExample(english: 'It\'s so humid today that my clothes feel wet.', korean: '오늘 너무 습해서 옷이 축축한 느낌이야.'),
+    ],
+    'chilly': [
+      WordExample(english: 'It gets chilly in the evening, so bring a jacket.', korean: '저녁엔 쌀쌀해지니까 재킷 챙겨.'),
+      WordExample(english: 'I love walking on chilly autumn mornings.', korean: '쌀쌀한 가을 아침에 걷는 걸 좋아해.'),
+      WordExample(english: 'The room felt a bit chilly without the heater.', korean: '난방을 안 켜니 방이 좀 쌀쌀했어.'),
+    ],
+    'forecast': [
+      WordExample(english: 'The forecast says it will rain tomorrow.', korean: '예보에서 내일 비가 온대.'),
+      WordExample(english: 'I always check the weather forecast before a trip.', korean: '여행 전에 항상 일기 예보를 확인해.'),
+      WordExample(english: 'The forecast was wrong, and it was sunny all day.', korean: '예보가 틀려서 하루 종일 맑았어.'),
+    ],
+    'season': [
+      WordExample(english: 'Autumn is my favorite season because of the colors.', korean: '단풍 색깔 때문에 가을이 제일 좋아하는 계절이야.'),
+      WordExample(english: 'Each season has its own special food.', korean: '계절마다 특별한 음식이 있어.'),
+      WordExample(english: 'The rainy season usually starts in late June.', korean: '장마는 보통 6월 말에 시작돼.'),
+    ],
+    'embarrassing': [
+      WordExample(english: 'It was embarrassing when I called my teacher "Mom."', korean: '선생님을 "엄마"라고 불렀을 때 너무 창피했어.'),
+      WordExample(english: 'I made an embarrassing mistake during my presentation.', korean: '발표 중에 창피한 실수를 했어.'),
+      WordExample(english: 'That was the most embarrassing moment of my life.', korean: '그게 내 인생에서 가장 민망한 순간이었어.'),
+    ],
+    'disappointed': [
+      WordExample(english: 'I was disappointed when the concert was canceled.', korean: '콘서트가 취소됐을 때 실망했어.'),
+      WordExample(english: 'My parents were disappointed with my grades.', korean: '부모님이 내 성적에 실망하셨어.'),
+      WordExample(english: 'Don\'t be disappointed; you did your best.', korean: '실망하지 마, 최선을 다했잖아.'),
+    ],
+    'relieved': [
+      WordExample(english: 'I was relieved when I found my lost wallet.', korean: '잃어버린 지갑을 찾았을 때 안도했어.'),
+      WordExample(english: 'We were relieved that no one was hurt.', korean: '아무도 다치지 않아서 다행이었어.'),
+      WordExample(english: 'I felt relieved after finishing the exam.', korean: '시험을 끝내고 나니 마음이 놓였어.'),
+    ],
+    'thrilled': [
+      WordExample(english: 'I was thrilled to get tickets to the final game.', korean: '결승전 티켓을 구해서 너무 신났어.'),
+      WordExample(english: 'She was thrilled when she heard the good news.', korean: '그녀는 좋은 소식을 듣고 정말 기뻐했어.'),
+      WordExample(english: 'The kids were thrilled to see the snow.', korean: '아이들은 눈을 보고 신이 났어.'),
+    ],
+    'curious': [
+      WordExample(english: 'I\'m curious about how other people spend their weekends.', korean: '다른 사람들이 주말을 어떻게 보내는지 궁금해.'),
+      WordExample(english: 'Kids are naturally curious about everything.', korean: '아이들은 원래 모든 것에 호기심이 많아.'),
+      WordExample(english: 'I was curious, so I tried the new restaurant.', korean: '궁금해서 새로 생긴 식당에 가 봤어.'),
+    ],
+    'confident': [
+      WordExample(english: 'I feel more confident when I speak English now.', korean: '이제 영어로 말할 때 더 자신감이 생겨.'),
+      WordExample(english: 'She gave a confident answer to the question.', korean: '그녀는 그 질문에 자신 있게 대답했어.'),
+      WordExample(english: 'Practice makes me confident before a presentation.', korean: '연습을 하면 발표 전에 자신감이 생겨.'),
+    ],
+    'patient': [
+      WordExample(english: 'You have to be patient when you teach children.', korean: '아이들을 가르칠 땐 참을성이 있어야 해.'),
+      WordExample(english: 'My grandfather is the most patient person I know.', korean: '할아버지는 내가 아는 가장 참을성 있는 분이야.'),
+      WordExample(english: 'Please be patient; the food will be ready soon.', korean: '조금만 기다려 줘, 음식 곧 나와.'),
+    ],
+    'responsible': [
+      WordExample(english: 'I\'m responsible for planning our team dinner.', korean: '팀 회식 준비는 내가 담당하고 있어.'),
+      WordExample(english: 'He is a very responsible and hard-working student.', korean: '그는 아주 책임감 있고 성실한 학생이야.'),
+      WordExample(english: 'Who is responsible for cleaning the kitchen this week?', korean: '이번 주 부엌 청소 담당이 누구야?'),
+    ],
+    'reliable': [
+      WordExample(english: 'My old car is still very reliable.', korean: '내 오래된 차는 아직도 아주 믿음직해.'),
+      WordExample(english: 'She is a reliable friend who always keeps her promises.', korean: '그녀는 항상 약속을 지키는 믿을 만한 친구야.'),
+      WordExample(english: 'I need a reliable internet connection for work.', korean: '일하려면 안정적인 인터넷 연결이 필요해.'),
+    ],
+    'sociable': [
+      WordExample(english: 'I\'m quite sociable and enjoy meeting new people.', korean: '나는 꽤 사교적이라 새로운 사람 만나는 걸 좋아해.'),
+      WordExample(english: 'My brother is less sociable than I am.', korean: '남동생은 나보다 덜 사교적이야.'),
+      WordExample(english: 'Being sociable helps a lot in a new job.', korean: '사교적이면 새 직장에서 많이 도움이 돼.'),
+    ],
+    'introverted': [
+      WordExample(english: 'I\'m a bit introverted, so I like quiet weekends.', korean: '나는 좀 내성적이라서 조용한 주말을 좋아해.'),
+      WordExample(english: 'Introverted people often need time alone to recharge.', korean: '내성적인 사람들은 재충전하려면 혼자만의 시간이 필요할 때가 많아.'),
+      WordExample(english: 'He seems introverted, but he\'s funny once you know him.', korean: '그는 내성적으로 보이지만 알고 나면 재밌어.'),
+    ],
+    'personality': [
+      WordExample(english: 'My best friend has a cheerful personality.', korean: '내 절친은 성격이 밝아.'),
+      WordExample(english: 'Our personalities are different, but we get along well.', korean: '우리는 성격이 다르지만 잘 지내.'),
+      WordExample(english: 'I think personality matters more than appearance.', korean: '나는 외모보다 성격이 더 중요하다고 생각해.'),
+    ],
+    'get along': [
+      WordExample(english: 'I get along well with my coworkers.', korean: '나는 동료들이랑 잘 지내.'),
+      WordExample(english: 'My sister and I didn\'t get along when we were young.', korean: '어릴 때 언니랑 나는 사이가 안 좋았어.'),
+      WordExample(english: 'It\'s important to get along with your roommates.', korean: '룸메이트랑 잘 지내는 게 중요해.'),
+    ],
+    'hang out': [
+      WordExample(english: 'I usually hang out with my friends on Friday nights.', korean: '금요일 밤에는 보통 친구들이랑 놀아.'),
+      WordExample(english: 'We used to hang out at the park after school.', korean: '방과 후에 공원에서 자주 놀았어.'),
+      WordExample(english: 'Do you want to hang out this weekend?', korean: '이번 주말에 같이 놀래?'),
+    ],
+    'catch up': [
+      WordExample(english: 'Let\'s meet for coffee and catch up.', korean: '커피 마시면서 근황 얘기하자.'),
+      WordExample(english: 'I need to catch up on my work this weekend.', korean: '이번 주말에 밀린 일을 해야 해.'),
+      WordExample(english: 'We talked for hours to catch up after a long time.', korean: '오랜만에 만나서 몇 시간 동안 수다 떨었어.'),
+    ],
+    'look forward to': [
+      WordExample(english: 'I\'m really looking forward to my summer vacation.', korean: '여름휴가가 정말 기대돼.'),
+      WordExample(english: 'We look forward to seeing you again.', korean: '다시 만나길 기대하고 있어.'),
+      WordExample(english: 'I always look forward to Friday evenings.', korean: '나는 항상 금요일 저녁이 기다려져.'),
+    ],
+    'figure out': [
+      WordExample(english: 'It took me a while to figure out how to use the app.', korean: '앱 사용법을 알아내는 데 시간이 좀 걸렸어.'),
+      WordExample(english: 'We need to figure out where to eat tonight.', korean: '오늘 밤 어디서 먹을지 정해야 해.'),
+      WordExample(english: 'Don\'t worry, we\'ll figure it out together.', korean: '걱정 마, 같이 해결해 보자.'),
+    ],
+    'put off': [
+      WordExample(english: 'I keep putting off cleaning my room.', korean: '방 청소를 계속 미루고 있어.'),
+      WordExample(english: 'We put off the trip until next month.', korean: '여행을 다음 달로 미뤘어.'),
+      WordExample(english: 'Don\'t put off going to the dentist.', korean: '치과 가는 걸 미루지 마.'),
+    ],
+    'end up': [
+      WordExample(english: 'We ended up staying at home because of the rain.', korean: '비 때문에 결국 집에 있었어.'),
+      WordExample(english: 'I ended up buying more than I planned.', korean: '계획보다 결국 더 많이 샀어.'),
+      WordExample(english: 'If you don\'t plan, you\'ll end up wasting time.', korean: '계획을 안 세우면 결국 시간을 낭비하게 돼.'),
+    ],
+    'turn out': [
+      WordExample(english: 'The movie turned out to be better than I expected.', korean: '그 영화는 생각보다 괜찮았어.'),
+      WordExample(english: 'It turned out that the store was closed.', korean: '알고 보니 가게가 문을 닫았더라.'),
+      WordExample(english: 'Everything turned out fine in the end.', korean: '결국 다 잘 됐어.'),
+    ],
+    'used to': [
+      WordExample(english: 'I used to play the piano when I was a kid.', korean: '어릴 때 피아노를 치곤 했어.'),
+      WordExample(english: 'We used to live near the beach.', korean: '예전에 우리는 바닷가 근처에 살았어.'),
+      WordExample(english: 'I used to hate vegetables, but now I love them.', korean: '예전엔 채소를 싫어했는데 지금은 좋아해.'),
+    ],
+    'errand': [
+      WordExample(english: 'I have a few errands to run this afternoon.', korean: '오늘 오후에 볼일이 몇 개 있어.'),
+      WordExample(english: 'My mom asked me to run an errand to the post office.', korean: '엄마가 우체국 심부름을 부탁하셨어.'),
+      WordExample(english: 'I usually do my errands on Saturday morning.', korean: '나는 보통 토요일 아침에 볼일을 봐.'),
+    ],
+    'chore': [
+      WordExample(english: 'Doing the laundry is my least favorite chore.', korean: '빨래는 내가 제일 싫어하는 집안일이야.'),
+      WordExample(english: 'We split the household chores between us.', korean: '우리는 집안일을 나눠서 해.'),
+      WordExample(english: 'I finished all my chores before lunch.', korean: '점심 전에 집안일을 다 끝냈어.'),
+    ],
+    'laundry': [
+      WordExample(english: 'I do the laundry twice a week.', korean: '나는 일주일에 두 번 빨래를 해.'),
+      WordExample(english: 'There\'s a laundry room in the basement.', korean: '지하에 세탁실이 있어.'),
+      WordExample(english: 'I forgot to take the laundry out of the machine.', korean: '세탁기에서 빨래 꺼내는 걸 깜빡했어.'),
+    ],
+    'leftovers': [
+      WordExample(english: 'I often eat leftovers for lunch the next day.', korean: '다음 날 점심으로 남은 음식을 자주 먹어.'),
+      WordExample(english: 'We had so many leftovers after the party.', korean: '파티 끝나고 남은 음식이 정말 많았어.'),
+      WordExample(english: 'Can I take the leftovers home?', korean: '남은 음식 집에 가져가도 돼?'),
+    ],
+    'takeout': [
+      WordExample(english: 'We ordered takeout because we were too tired to cook.', korean: '요리하기 너무 피곤해서 음식을 포장 주문했어.'),
+      WordExample(english: 'Chinese takeout is my go-to on Friday nights.', korean: '금요일 밤엔 중국 음식 포장이 내 단골 메뉴야.'),
+      WordExample(english: 'The café offers takeout for a lower price.', korean: '그 카페는 포장하면 더 싸게 줘.'),
+    ],
+    'bargain': [
+      WordExample(english: 'These shoes were a real bargain.', korean: '이 신발 정말 싸게 샀어.'),
+      WordExample(english: 'My mom loves to bargain at the market.', korean: '엄마는 시장에서 흥정하는 걸 좋아하셔.'),
+      WordExample(english: 'I found a great bargain at the outlet.', korean: '아울렛에서 정말 좋은 걸 싸게 건졌어.'),
+    ],
+    'refund': [
+      WordExample(english: 'I asked for a refund because the shirt was too small.', korean: '셔츠가 너무 작아서 환불을 요청했어.'),
+      WordExample(english: 'You can get a full refund within 7 days.', korean: '7일 이내면 전액 환불받을 수 있어.'),
+      WordExample(english: 'The refund took two weeks to arrive.', korean: '환불금이 들어오는 데 2주 걸렸어.'),
+    ],
+    'discount': [
+      WordExample(english: 'Students get a 20 percent discount here.', korean: '여기서는 학생이 20퍼센트 할인받아.'),
+      WordExample(english: 'I bought this jacket at a big discount.', korean: '이 재킷을 크게 할인받아서 샀어.'),
+      WordExample(english: 'Is there any discount for members?', korean: '회원 할인 있어?'),
+    ],
+    'membership': [
+      WordExample(english: 'I have a gym membership, but I rarely go.', korean: '헬스장 회원권이 있는데 거의 안 가.'),
+      WordExample(english: 'The membership comes with free parking.', korean: '회원이 되면 무료 주차가 돼.'),
+      WordExample(english: 'I canceled my membership last month.', korean: '지난달에 회원권을 해지했어.'),
+    ],
   };
 }
